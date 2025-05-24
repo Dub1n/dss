@@ -1,0 +1,18 @@
+#Wrap the two scripts in CI so every push stays DSS-compliant.
+
+name: DSS Compliance Check
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      # Add your script execution steps here
+      # For example:
+      # - name: Run script 1
+      #   run: ./meta/scripts/your_script_1.sh
+      # - name: Run script 2
+      #   run: ./meta/scripts/your_script_2.sh

@@ -1,0 +1,1 @@
+repos:\n  - repo: https://github.com/psf/black\n    rev: 24.3.0\n    hooks:\n      - id: black

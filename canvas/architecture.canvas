@@ -1,0 +1,26 @@
+{
+  "nodes": [
+    {
+      "id": "data",
+      "text": "Data",
+      "x": 0,
+      "y": 0,
+      "width": 120,
+      "height": 60
+    },
+    {
+      "id": "src",
+      "text": "Source\u00a0Code",
+      "x": 200,
+      "y": 0,
+      "width": 120,
+      "height": 60
+    }
+  ],
+  "edges": [
+    {
+      "fromNode": "src",
+      "toNode": "data"
+    }
+  ]
+}

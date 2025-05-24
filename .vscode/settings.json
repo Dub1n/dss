@@ -1,0 +1,6 @@
+{
+    // Point Cursor’s Python extension at your venv
+    "python.defaultInterpreterPath": ".venv/bin/python",   // Windows: ".venv\\Scripts\\python.exe"
+    // Make the integrated terminal run `.venv/bin/activate` for you
+    "python.terminal.activateEnvironment": true
+  }
