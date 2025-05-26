@@ -22,7 +22,41 @@ When adding or modifying **code**...
 4️. Update `/meta/roadmap.md` – move ticket from *Planned*→*In Progress* or tick box complete.  
 5️. **Perform Maintenance Checks:** Consult the [Maintenance Checklist](mdc:meta/assistant_guidelines/maintenance_checklist.md) for detailed guidance on performing maintenance tasks relevant to code modification, including triggers, prioritization, and handling ambiguity.
 6. Run `meta/update_links.py` script; fix dead links.  
-7. Commit: `feat: <thing> | docs+meta auto-update`. 
+7. Commit and Push: See [Git Operations](#git-operations) section below.
+
+## Git Operations
+
+### When to Commit Changes
+- Commit after meaningful, logically complete changes
+- Use semantic commit messages: `feat|fix|docs|style|refactor|test|chore: <description>`
+- Include both code changes and related documentation/metadata updates in the same commit
+- Example: `feat: add user authentication | docs+meta auto-update`
+
+### When to Push Changes
+Determine if pushing is appropriate based on these criteria:
+
+1. **Task Completion Status:**
+   - ✅ Push when a logical unit of work is complete
+   - ❌ Don't push work-in-progress code unless specifically requested
+
+2. **Testing Status:**
+   - ✅ Push when changes have been tested (if applicable)
+   - ❌ Don't push if tests are failing or missing where required
+
+3. **Repository Context:**
+   - ✅ Push when working in a personal branch or fork
+   - ❌ Exercise caution when pushing to shared development or main branches
+   - ✅ If appropriate CI/CD pipelines exist, pushing will trigger validation
+
+4. **User Instruction:**
+   - ✅ Always push when explicitly requested by the user
+   - ✅ Ask for confirmation before pushing significant changes if not explicitly requested
+
+### Git Operation Process
+1. Stage changes: `git add <files>`
+2. Commit with semantic message: `git commit -m "<type>: <description>"`
+3. Push when appropriate: `git push`
+4. Inform user of completed Git operations
 
 ## Integration with Core Process
 

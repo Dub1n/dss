@@ -52,6 +52,10 @@ For tasks meeting the above criteria, follow this streamlined workflow:
    - Quick check of the specific change for correctness
    - Verify that file format/structure remains consistent
 
+6️. **Git Operations**:
+   - Commit changes with a concise, descriptive message
+   - Push only when appropriate (see Git Operations guidance below)
+
 ## Abbreviated Maintenance Checklist
 
 This abbreviated checklist replaces the full [Maintenance Checklist](mdc:meta/assistant_guidelines/maintenance_checklist.md) for quick tasks:
@@ -64,6 +68,23 @@ This abbreviated checklist replaces the full [Maintenance Checklist](mdc:meta/as
 | Update Task Management | Only if the task was explicitly tracked |
 | Check Links | Only if modifying linked content |
 | Documentation Updates | Only for the directly modified files |
+| Git Operations | Commit after completion; push when appropriate |
+
+## Git Operations for Quick Tasks
+
+For quick tasks, follow these simplified Git operation guidelines:
+
+1. **Commit Changes:**
+   - Use concise but descriptive commit messages
+   - For tiny changes: `fix: correct typo in filename.md`
+   - For small features: `feat: add quick validation to script.py`
+
+2. **When to Push:**
+   - Push immediately for urgent fixes explicitly requested by the user
+   - For routine changes, ask the user if they want to push now or later
+   - Always respect explicit user instructions about pushing
+
+For more detailed guidance on Git operations, refer to the [Git Operations](mdc:meta/assistant_workflows/code_modification.md#git-operations) section in the Code Modification workflow.
 
 ## Decision Tree: Full vs. Quick Workflow
 
