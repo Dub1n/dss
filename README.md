@@ -1,3 +1,9 @@
+---
+tags: ["draft"]
+provides: []
+requires: []
+---
+
 # Project Title
 
 A brief, one-line description of the purpose of this template/repository.

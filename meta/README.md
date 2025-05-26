@@ -26,6 +26,13 @@ Typical contents: Only direct dependencies, usually with loose or caret pins:
     PyYAML>=6
 Who/what reads it: Humans (“what does this project use?”) & new contributors (pip install -r … to create their first venv).
 
+openai – the LLM API wrapper used in llm_tasks.py
+PyYAML – parsing dss_config.yml
+aiofiles – async file reads/writes for faster batch processing
+rich – coloured CLI logging/spinners (both scripts)
+tqdm – progress bars when walking large repos
+pathspec – advanced glob/ignore matching that mirrors .gitignore rules
+
 ### requirements.lock:
 Role: Snapshot of every package (direct and transitive) and the exact versions that worked on your machine on this day.
 Typical contents: Dozens of fully-pinned lines, e.g.:

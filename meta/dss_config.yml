@@ -1,6 +1,8 @@
 # tagging & folder rules
 # Declares how files are classified (code / data / docs / binary), default tags, and the YAML-front-matter injection rules that convert_to_dss.py needs.
-# You can begin with the skinny template below and tweak as you see patterns that don’t fit.
+# You can begin with the skinny template below and tweak as you see patterns that don't fit.
+
+# When updating this file, update ./.cursor/rules/dss-config.mdc with the same changes
 
 # meta/dss_config.yml
 # ------------------------------------------------------------------
@@ -41,3 +43,63 @@ inject:
     \"\"\"---
     {yaml}
     ---\"\"\"
+
+# LLM-optimized naming conventions
+# These rules are used when --normalize-names flag is provided to convert_to_dss.py
+naming_rules:
+  # Document format: snake_case or kebab-case
+  doc_format: "snake_case"
+  
+  # Generic terms that should be prefixed with domain-specific identifiers
+  generic_terms:
+    - "utils"
+    - "helpers"
+    - "common"
+    - "main"
+    - "app"
+    - "api"
+    - "db"
+    - "data"
+    - "model"
+    - "config"
+    - "test"
+    - "setup"
+  
+  # Domain prefixes based on parent directory
+  domain_prefixes:
+    "data": "data"
+    "src": "core"
+    "api": "api"
+    "auth": "auth"
+    "utils": "utility"
+    "db": "database"
+    "models": "model"
+    "tests": "test"
+  
+  # Transformation rules by file extension
+  transformations:
+    ".py": "snake_case"
+    ".js": "camelCase"
+    ".ts": "camelCase"
+    ".tsx": "PascalCase"
+    ".jsx": "PascalCase"
+    ".md": "snake_case"
+    ".yml": "kebab-case"
+    ".json": "snake_case"
+  
+  # Patterns to ignore during renaming
+  ignore_patterns:
+    - "**/.venv/**"
+    - "**/.git/**"
+    - "**/node_modules/**"
+    - "**/__pycache__/**"
+    - "docs/🔒archive/**"
+    - "README.md"  # Standard name, don't change
+    - "LICENSE"    # Standard name, don't change
+    - ".gitignore" # Standard name, don't change
+    - ".env*"      # Standard pattern, don't change
+
+  # Override rules for specific files or patterns
+  overrides:
+    "src/main.py": "application_entry.py"  # Example specific transformation
+

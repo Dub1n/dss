@@ -1,4 +1,26 @@
-# 🗂️  Data SuperStructure Guide
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# 🗂️  Data SuperStructure Guide
+
+### Purpose
+
+> **Goal:** make any dataset / codebase feel *native* to an LLM—minimal prompt tokens, zero duplicated effort, and crystal‑clear navigation for humans.
+>
+> **How:** store everything as plaintext (Markdown, code, JSON) plus light metadata so GitHub, Obsidian, Cursor **and** GPT all see the same structure.
+
+#### Core benefits
+
+| Need           | DSS Answer                                         |
+| -------------- | -------------------------------------------------- |
+| *Fast recall*  | Summaries + tags keep prompts short.               |
+| *Modularity*   | Each concept lives in its own file—no giant blobs. |
+| *Human UX*     | GitHub renders; Obsidian graphs; Cursor searches.  |
+| *Self‑healing* | An LLM can update docs/links/canvas in one pass.   |
+
+---
 
 ## Principles:
 1. Modular files, minimal duplication.
@@ -6,10 +28,10 @@
 3. Markdown links everywhere (GitHub‑ & Obsidian‑friendly).
 4. `assistant.md` gives the bot deterministic steps.
 
-Run `python meta/generate_docs.py` or your IDE’s “sync‑DSS” command after coding sessions.
+Run `python meta/generate_docs.py` or your IDE's "sync‑DSS" command after coding sessions.
 
 
-## Formatting a pre-existing repo
+### Formatting a pre-existing repo
 To format a repo in the DSS structure, run the folling commands:
 
 python -m venv .venv && source .venv/bin/activate
@@ -19,35 +41,97 @@ python meta/convert_to_dss.py --source ~/old_repo --dest ./dss_repo
 cd ./dss_repo
 python meta/llm_tasks.py --mode docs
 
-## Requirements
-openai – the LLM API wrapper used in llm_tasks.py
-PyYAML – parsing dss_config.yml
-aiofiles – async file reads/writes for faster batch processing
-rich – coloured CLI logging/spinners (both scripts)
-tqdm – progress bars when walking large repos
-pathspec – advanced glob/ignore matching that mirrors .gitignore rules
+# Canvas: DSS System Architecture
 
-## TODO
-TODO: explain when and how to use the python scripts
-TODO: find an appropriate doc to add instructions for what to do when encountering certain keywords such as TODO or FILL (should they be !TODO and !FILL?)
-TODO: create a super-repo for managing and developing DSS that contains this repo in its src as a template (perhaps template ver1?) and git it
+### 📁 Project Structure
 
+- `src/`
+  - Source code modules
+  - Implements tooling and helpers for conversion, LLM tasks, etc.
 
+- `docs/`
+  - Human-facing documentation
+  - Includes `DSS_OVERVIEW.md`, `README.md`, module docs, etc.
 
-## [Pre-commit hooks, Version pinning, Smoke test]
+- `meta/`
+  - Project metadata, config, and scripts
+  - Contains:
+    - `convert_to_dss.py`
+    - `llm_tasks.py`
+    - `dss_config.yml`
+    - `prompts/` folder
 
-# 0️⃣  activate your virtual-env first
-pip install pre-commit pytest
+- `canvas/`
+  - Optional Obsidian-style canvas JSONs (if used)
 
-# 1️⃣  Quick pre-commit protection
-echo "repos:\n  - repo: https://github.com/psf/black\n    rev: 24.3.0\n    hooks:\n      - id: black" > .pre-commit-config.yaml
-pre-commit install   # one time only
+- `.cursor/rules/`
+  - Files loaded into every LLM prompt in Cursor
+  - Contains:
+    - `assistant.mdc`
+    - `dss_overview.mdc`
 
-# 2️⃣  Lock exact versions
-pip freeze > meta/requirements.lock
+- `tests/`
+  - Test harness and validation scripts
 
-# 3️⃣  Add the smoke test file shown above under tests/
-pytest                # run locally
+### 🔄 Key Workflows
 
-git add .pre-commit-config.yaml meta/requirements.lock tests/
-git commit -m "Add basic safety nets"
+### ➤ 1. Convert arbitrary repo → DSS
+
+**Script:** `convert_to_dss.py`
+
+- Walks a source folder
+- Sorts files into `src/`, `data/`, `docs/`, etc.
+- Injects front-matter YAML (tags, provides/requires)
+- Writes a manifest for downstream use
+
+### ➤ 2. Generate documentation
+
+**Script:** `llm_tasks.py`
+
+- Summarizes code & folders via LLM
+- Uses prompts from `meta/prompts/*.md`
+- Outputs:
+  - `docs/*_doc.md`
+  - `README.md` in each folder
+  - Project-wide `INDEX.md`
+  - Optional canvas JSON
+
+### ➤ 3. Update links / glossary
+
+**Planned script:** `update_links.py`
+
+- Cross-links mentioned files
+- Refreshes `Glossary.md` based on tags and usage
+
+### 🧠 Behavioral Conventions
+
+- Tags are declared in YAML front-matter
+- Every file and folder should be navigable via summaries
+- Archive material is stored in `docs/🔒archive/` and excluded from LLM context
+- All automation follows the rules in `meta/dss_config.yml`
+- Canonical source of instruction lives in `meta/assistant.md`
+- **Documentation Location:** The main project roadmap resides in `meta/roadmap.md`. Process-specific roadmaps should also be included and organized within `meta/roadmap.md`. `INDEX.md` is reserved for a fleshed-out file tree overview and should not contain roadmaps.
+- **TODO Linking:** For tasks in `meta/TODO.md` that relate to a specific section of the detailed roadmap in `meta/roadmap.md`, add a reference `(@roadmap: [Section Name])` at the end of the TODO item line.
+
+### 📌 Versioning Strategy
+
+- Tags (e.g., `v1.0`, `v1.1`) are used to freeze major milestones
+- Current state always lives in the working tree (HEAD)
+- No snapshots or duplicates of old versions are stored in-tree
+
+### 🧩 Integration with Cursor
+
+- `.cursor/rules/assistant.mdc` — Cursor's persistent instruction set
+- `.cursor/rules/dss_overview.mdc` — High-level system context
+- Scripts and documentation ensure LLMs always operate within the current system view
+
+### TODO
+TODO: explain when and how to use the python scripts <!-- TODO: See meta/TODO.md -->
+TODO: find an appropriate doc to add instructions for what to do when encountering certain keywords such as TODO or FILL (should they be !TODO and !FILL?) <!-- TODO: See meta/TODO.md -->
+TODO: create a super-repo for managing and developing DSS that contains this repo in its src as a template (perhaps template ver1?) and git it <!-- TODO: See meta/TODO.md -->
+TODO: find a way of syncing this up with dss-guide.mdc (ideally an LLM-targeted version) <!-- TODO: See meta/TODO.md -->
+
+### 7 · Iteration Cycle 🔁
+
+### 8 · Future Ideas 🚀
+

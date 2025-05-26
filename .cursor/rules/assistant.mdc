@@ -1,0 +1,33 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# DSS Assistant Operating Instructions - Core Process
+<LLM-SYSTEM>
+You are the maintainer of this repository's metadata, docs and canvases.
+
+This document outlines the core, step-by-step process the AI assistant follows to handle user prompts and ensure adherence to all DSS guidelines and workflows.
+
+## Core Process Checklist
+
+This checklist guides the AI assistant through processing user prompts, ensuring all relevant steps and guidelines are considered.
+
+1.  **Understand Prompt:** Fully comprehend the user's request or instruction.
+2.  **Gather Context:** Access and process relevant information from the current file, attached files, project structure ([INDEX.md](mdc:INDEX.md)), and conversation history.
+3.  **Categorize Task Type:** Determine the nature and complexity of the task to select the most appropriate workflow:
+    - For simple, atomic tasks → [Quick Tasks Workflow](mdc:meta/assistant_workflows/quick_tasks.md)
+    - For code-focused changes → [Code Modification Workflow](mdc:meta/assistant_workflows/code_modification.md)
+    - For documentation-first approaches → [Docs-Driven Development](mdc:meta/assistant_workflows/docs_driven_development.md)
+    - For systematic documentation updates → [Documentation Refactoring](mdc:meta/assistant_workflows/documentation_refactoring.md)
+    - For complex, multi-step tasks → [Task Decomposition](mdc:meta/assistant_workflows/task_decomposition.md)
+4.  **Identify Applicable Guidelines:** Determine which instructions from this document, the DSS Guide ([meta/DSS_GUIDE.md](mdc:meta/DSS_GUIDE.md)), and other relevant documentation (e.g., [meta/dss_config.yml](mdc:meta/dss_config.yml)) are pertinent to the task.
+5.  **Plan & Cross-Reference:** Develop a plan to address the prompt, explicitly cross-referencing necessary steps with the selected workflow and specific guidelines. Refer to [Workflow Transitions](mdc:meta/assistant_workflows/workflow_transitions.md) if multiple workflows may be needed.
+6.  **Execute & Integrate:** Perform planned actions (tool calls, text generation), ensuring that documentation updates and key maintenance tasks such as managing TODOs ([meta/assistant_guidelines/documentation_task_management.md](mdc:meta/assistant_guidelines/documentation_task_management.md)), updating the Index, adding Frontmatter, and checking Links are integrated into the execution flow. Refer to the [Maintenance Checklist](mdc:meta/assistant_guidelines/maintenance_checklist.md) for detailed guidance on these tasks, including triggers, prioritization, and handling ambiguity.
+7.  **Review & Verify:** Check the outcomes of actions against the prompt's requirements and applicable guidelines.
+8.  **Respond:** Formulate a clear and comprehensive response to the user.
+
+For details on the assistant's commitment to guideline adherence, including proactive checks and handling ambiguity, refer to [meta/assistant_adherence.md](mdc:meta/assistant_adherence.md).
+
+</LLM-SYSTEM>
+

@@ -8,7 +8,7 @@ Usage
 -----
 ```bash
 python meta/convert_to_dss.py --source ~/old_repo --dest ./dss_repo \
-       [--config meta/dss_config.yml] [--force]
+       [--config meta/dss_config.yml] [--force] [--normalize-names]
 ```
 
 After running the converter, simply execute:
@@ -24,6 +24,7 @@ Key features
   in a YAML file so the workflow adapts without code edits.
 * **Idempotent** - Will not overwrite edited files unless `--force`.
 * **Manifest** - Emits `meta/manifest.json` for `llm_tasks.py` to consume.
+* **Name Normalization** - Optional LLM-optimized filename transformations.
 """
 from __future__ import annotations
 
@@ -35,8 +36,13 @@ import shutil
 import sys
 from pathlib import Path
 from typing import Dict, List, Tuple
-from pathlib import Path, dotenv
-dotenv.load_dotenv(Path(__file__).parent.parent / ".env")
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).parent.parent / ".env")
+except ImportError:
+    # dotenv is optional
+    pass
 
 try:
     import yaml  # PyYAML
@@ -75,7 +81,7 @@ DEFAULT_CLASS_MAP = {
     ".xlsx": "data",
 }
 
-# Binary patterns that we do *not* try to open / read
+# Binary patterns that we do *not* try to open / read (used as a fallback check)
 BINARY_RE = re.compile(r"\.(png|jp(e?)g|gif|pdf|zip|gz|tar|tgz|exe|dll|so|dylib)$", re.I)
 
 
@@ -106,10 +112,21 @@ def copy_file(src: Path, dest: Path, overwrite: bool = False) -> None:
     shutil.copy2(src, dest)
 
 
-def inject_metadata(fp: Path, category: str, tag_rules: Dict[str, str]) -> None:
-    """Prepend YAML front‑matter for .md, .py, .ipynb, etc."""
+def inject_metadata(fp: Path, category: str, tag_rules: Dict[str, str], binary_patterns: List[str]) -> None:
+    """Prepend YAML front‑matter for .md, .py, .ipynb, etc.
+    Respects binary patterns from config.
+    """
+    # Check against configured binary patterns
+    rel_path_from_root = fp.relative_to(fp.parent.parent)
+    for pattern in binary_patterns:
+        if rel_path_from_root.match(pattern):
+            # print(f"[DEBUG] Skipping binary file '{rel_path_from_root}' based on config pattern '{pattern}'") # Debugging line
+            return  # skip if matches configured binary pattern
+
+    # Existing fallback checks (extension regex and decode error)
     if BINARY_RE.search(fp.name):
-        return  # skip binaries
+        # print(f"[DEBUG] Skipping binary file '{fp.name}' based on extension regex") # Debugging line
+        return  # skip binaries based on extension regex
 
     tag = tag_rules.get(category, category)
     front_matter = {
@@ -151,6 +168,140 @@ def generate_manifest(dest_root: Path) -> Dict[str, any]:
 
 
 # ---------------------------------------------------------------------------
+# Filename normalization for LLM-optimized naming conventions
+# ---------------------------------------------------------------------------
+
+def transform_filename(path: Path, rules: Dict[str, any]) -> str:
+    """Apply naming convention rules to a filename, following LLM-optimized naming conventions.
+    
+    Args:
+        path: The path of the file to transform
+        rules: Dictionary of naming rules from dss_config.yml
+        
+    Returns:
+        Transformed filename following the specified conventions
+    """
+    if not rules:
+        return path.name  # No rules, return original name
+        
+    # Extract file stem and extension
+    stem = path.stem
+    suffix = path.suffix.lower()
+    
+    # Check if this file should be ignored
+    rel_path_str = path.as_posix()
+    ignore_patterns = rules.get('ignore_patterns', [])
+    for pattern in ignore_patterns:
+        if Path(rel_path_str).match(pattern):
+            return path.name  # Skip transformation for ignored patterns
+    
+    # Check for specific overrides
+    overrides = rules.get('overrides', {})
+    if rel_path_str in overrides:
+        return overrides[rel_path_str]
+    
+    # Get transformation style based on file extension
+    transformations = rules.get('transformations', {})
+    transform_style = transformations.get(suffix, "keep")
+    
+    # If no transformation rule, keep original
+    if transform_style == "keep":
+        return path.name
+    
+    # Transform based on style
+    if transform_style == "snake_case":
+        # Convert PascalCase or camelCase to snake_case
+        transformed = re.sub(r'(?<!^)(?=[A-Z])', '_', stem).lower()
+        transformed = re.sub(r'[-\s]', '_', transformed)
+    elif transform_style == "kebab-case":
+        # Convert to kebab-case
+        transformed = re.sub(r'(?<!^)(?=[A-Z])', '-', stem).lower()
+        transformed = re.sub(r'[_\s]', '-', transformed)
+    elif transform_style == "camelCase":
+        # Convert to camelCase
+        parts = re.split(r'[-_\s]', stem)
+        transformed = parts[0].lower() + ''.join(p.capitalize() for p in parts[1:])
+    elif transform_style == "PascalCase":
+        # Convert to PascalCase
+        parts = re.split(r'[-_\s]', stem)
+        transformed = ''.join(p.capitalize() for p in parts)
+    else:
+        # Unknown style, keep original
+        transformed = stem
+    
+    # Check for generic terms that should be prefixed
+    generic_terms = rules.get('generic_terms', [])
+    domain_prefixes = rules.get('domain_prefixes', {})
+    
+    if transformed.lower() in generic_terms and path.parent.name in domain_prefixes:
+        prefix = domain_prefixes[path.parent.name]
+        # Apply the same case style to the prefix
+        if transform_style == "snake_case":
+            prefix = prefix.lower()
+            transformed = f"{prefix}_{transformed}"
+        elif transform_style == "kebab-case":
+            prefix = prefix.lower()
+            transformed = f"{prefix}-{transformed}"
+        elif transform_style == "camelCase":
+            transformed = prefix.lower() + transformed[0].upper() + transformed[1:]
+        elif transform_style == "PascalCase":
+            transformed = prefix.capitalize() + transformed
+    
+    return transformed + suffix
+
+def normalize_names(files: Dict[str, Path], dest_root: Path, rules: Dict[str, any]) -> Dict[str, Path]:
+    """Apply naming convention rules to all files in the destination.
+    
+    Args:
+        files: Dictionary of original path -> destination path
+        dest_root: Root of the destination directory
+        rules: Naming rules from config
+        
+    Returns:
+        Updated dictionary with normalized filenames
+    """
+    if not rules:
+        return files  # No rules, return original mapping
+    
+    naming_rules = rules.get('naming_rules', {})
+    if not naming_rules:
+        return files  # No naming rules, return original mapping
+    
+    normalized_files = {}
+    
+    for orig_path, dest_path in files.items():
+        # Get the normalized filename
+        new_name = transform_filename(dest_path, naming_rules)
+        
+        if new_name != dest_path.name:
+            # Create new destination path with normalized name
+            new_dest = dest_path.parent / new_name
+            print(f"Normalizing: {dest_path.name} -> {new_name}")
+            
+            # Rename the file if it exists
+            if dest_path.exists():
+                # Create parent directories if they don't exist
+                new_dest.parent.mkdir(parents=True, exist_ok=True)
+                
+                # Ensure we don't overwrite existing files
+                if new_dest.exists() and new_dest != dest_path:
+                    print(f"Warning: Cannot rename {dest_path.name} to {new_name} as it already exists")
+                    normalized_files[orig_path] = dest_path
+                else:
+                    # Rename the file
+                    shutil.move(dest_path, new_dest)
+                    normalized_files[orig_path] = new_dest
+            else:
+                # File doesn't exist yet, just update the mapping
+                normalized_files[orig_path] = new_dest
+        else:
+            # Keep the original mapping
+            normalized_files[orig_path] = dest_path
+    
+    return normalized_files
+
+
+# ---------------------------------------------------------------------------
 # Main logic
 # ---------------------------------------------------------------------------
 
@@ -159,23 +310,38 @@ def convert(source: Path, dest: Path, cfg: Dict[str, any], force: bool = False) 
     class_map = {**DEFAULT_CLASS_MAP, **cfg.get("class_map", {})}
     tag_rules = cfg.get("tags", {})
     ignored = set(cfg.get("ignore", []))
+    binary_patterns = cfg.get("patterns", {}).get("binary", []) # Load binary patterns from config
 
     ensure_skeleton(dest, skeleton)
 
     # 1. Walk source repo ----------------------------------------------------
+    # TODO: meta/TODO.md - Update to respect config 'ignore' patterns
     for src_file in source.rglob("*"):
         if src_file.is_dir():
             continue
-        if src_file.name in ignored or any(part.startswith(".") for part in src_file.parts):
-            continue  # skip dot files & ignored patterns
+
+        # Check if the file path matches any of the ignored patterns from config
+        rel_src_path = src_file.relative_to(source)
+        should_ignore = False
+        for pattern in ignored:
+            if rel_src_path.match(pattern):
+                should_ignore = True
+                break
+
+        # Also keep skipping dot files/directories explicitly
+        if should_ignore or any(part.startswith(".") for part in src_file.parts):
+            continue
 
         category = classify(src_file, class_map)
         # Fallback to misc folder inside meta if unknown
         dst_folder = dest / (category if category in skeleton else "meta/misc")
         dst_path = dst_folder / src_file.name
 
+        if category not in skeleton:
+            print(f"[△] Warning: File '{rel_src_path}' classified as '{category}' (not in skeleton). Moving to '{dst_path.relative_to(dest)}'.")
+
         copy_file(src_file, dst_path, overwrite=force)
-        inject_metadata(dst_path, category, tag_rules)
+        inject_metadata(dst_path, category, tag_rules, binary_patterns) # Pass binary_patterns
 
     # 2. Create READMEs ------------------------------------------------------
     for sub in skeleton:
@@ -208,6 +374,7 @@ def main(argv: List[str] | None = None) -> None:
     parser.add_argument("--dest", type=Path, required=True, help="Destination path for the DSS repo")
     parser.add_argument("--config", type=Path, default=None, help="Optional YAML config file overriding defaults")
     parser.add_argument("--force", action="store_true", help="Overwrite existing files in dest")
+    parser.add_argument("--normalize-names", action="store_true", help="Apply LLM-optimized naming conventions")
 
     args = parser.parse_args(argv)
 
@@ -219,6 +386,18 @@ def main(argv: List[str] | None = None) -> None:
 
     cfg = load_config(args.config)
 
+    # Add handling for normalize-names flag
+    if args.normalize_names:
+        print("Applying LLM-optimized naming conventions...")
+        # Create a mapping of files first, then normalize the names
+        file_mapping = {}
+        # Code to populate file_mapping with source -> destination paths
+        
+        # Apply name normalization
+        file_mapping = normalize_names(file_mapping, args.dest, cfg)
+        
+        # Use the updated mapping for the conversion process
+    
     convert(args.source, args.dest, cfg, force=args.force)
 
 

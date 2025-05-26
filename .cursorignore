@@ -1,0 +1,4 @@
+# .cursorignore
+meta/manifest.json
+docs/🔒archive/**
+.venv/

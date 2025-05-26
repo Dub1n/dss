@@ -1,0 +1,95 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+## DSS Summary for LLM Context (Cursor Prompt Injection)
+<!-- This file is injected into every prompt by Cursor. It provides LLMs with a compressed understanding of DSS and how to behave inside its structure. -->
+
+### 🧭 Purpose
+
+> **Goal:** make any dataset / codebase feel *native* to an LLM—minimal prompt tokens, zero duplicated effort, and crystal‑clear navigation for humans.
+>
+> **How:** store everything as plaintext (Markdown, code, JSON) plus light metadata so GitHub, Obsidian, Cursor **and** GPT all see the same structure.
+
+---
+
+### 📁 Folder Structure
+
+- `src/`
+  - Source code modules
+  - Implements tooling and helpers for conversion, LLM tasks, etc.
+
+- `docs/`
+  - Human-facing documentation
+  - Includes `DSS_OVERVIEW.md`, `README.md`, module docs, etc.
+
+- `meta/`
+  - Project metadata, config, and scripts
+  - Contains:
+    - `convert_to_dss.py`
+    - `llm_tasks.py`
+    - `dss_config.yml`
+    - `prompts/` folder
+
+- `canvas/`
+  - Optional Obsidian-style canvas JSONs (if used)
+
+- `.cursor/rules/`
+  - Files loaded into every LLM prompt in Cursor
+  - Contains:
+    - `assistant.mdc`
+    - `dss_overview.mdc`
+
+- `tests/`
+  - Test harness and validation scripts
+
+---
+
+### 🪚 Primary LLM Workflows
+
+➤ 1. Convert arbitrary repo → DSS
+
+**Script:** `convert_to_dss.py`
+
+- Walks a source folder
+- Sorts files into `src/`, `data/`, `docs/`, etc.
+- Injects front-matter YAML (tags, provides/requires)
+- Writes a manifest for downstream use
+
+➤ 2. Generate documentation
+
+**Script:** `llm_tasks.py`
+
+- Summarizes code & folders via LLM
+- Uses prompts from `meta/prompts/*.md`
+- Outputs:
+  - `docs/*_doc.md`
+  - `README.md` in each folder
+  - Project-wide `INDEX.md`
+  - Optional canvas JSON
+
+➤ 3. Update links / glossary
+
+**Planned script:** `update_links.py`
+
+- Cross-links mentioned files
+- Refreshes `Glossary.md` based on tags and usage
+
+---
+
+### 🤖 LLM Behavior Guidelines
+
+- Tags are declared in YAML front-matter
+- Every file and folder should be navigable via summaries
+- Archive material is stored in `docs/🔒archive/` and excluded from LLM context
+- All automation follows the rules in `meta/dss_config.yml`
+- Canonical source of instruction lives in `meta/assistant.md`
+- **Documentation Location:** The main project roadmap resides in `meta/roadmap.md`. Process-specific roadmaps should also be included and organized within `meta/roadmap.md`. `INDEX.md` is reserved for a fleshed-out file tree overview and should not contain roadmaps.
+- **TODO Linking:** For tasks in `meta/TODO.md` that relate to a specific section of the detailed roadmap in `meta/roadmap.md`, add a reference `(@roadmap: [Section Name])` at the end of the TODO item line.
+
+---
+
+> DSS is a structured system for building structured systems. Your job is to assist its evolution by making intelligent, metadata-aware, structure-preserving suggestions that integrate cleanly with its design.
+
+<!-- End of LLM-facing rules -->
