@@ -110,7 +110,7 @@ Each task and subtask is marked with a status indicator:
 - **Dependencies**: 2.3, 2.4, 2.5
 - **Estimate**: ~25 minutes
 - **Status**: Completed
-- **Notes**: Added implementation details to automated_formatting doc, updated dss_config.yml with naming_rules section, and extended convert_to_dss.py with filename transformation functionality
+- **Notes**: Added implementation details to automated_formatting doc, updated dss_config.yml with naming_rules section, and created validate_filenames.py and auto_rename.py scripts with Git hooks for enforcement
 
 ### 3. Develop Dynamic INDEX.md Generation Script `[DEFERRED]` #automation #backend #documentation
 *Related: [INDEX.md](mdc:INDEX.md), [Python Scripts](mdc:meta/scripts/), [Roadmap Task](mdc:meta/roadmap.md)*
@@ -352,9 +352,9 @@ Each task and subtask is marked with a status indicator:
 | Task | Status | Notes |
 |------|--------|-------|
 | 1. Create an INDEX.md Template File | COMPLETED | Template created and documentation added |
-| 2. Establish LLM-Optimized Naming Conventions | COMPLETED | Guidelines and examples documented |
+| 2. Establish LLM-Optimized Naming Conventions | COMPLETED | Guidelines implemented with Git hooks and supporting scripts |
 | 3. Develop Dynamic INDEX.md Generation Script | DEFERRED | Waiting for tasks 1 and 4 |
-| 4. Build Front-matter Validation & Auto-correction | NOT STARTED | Scheduled to begin after task 2 |
+| 4. Build Front-matter Validation & Auto-correction | NOT STARTED | Next task to be implemented |
 | 5. Create Template Customization Framework | NOT STARTED | Requires 1 and 2 to be completed |
 | 6. Develop Integration Testing Suite | BLOCKED | Blocked by implementation of other tasks |
 
@@ -362,9 +362,9 @@ Each task and subtask is marked with a status indicator:
 
 To ensure efficient implementation, these tasks should be approached in the following order:
 
-1. First, complete [Task 1 (Create INDEX.md Template)](#1-create-an-indexmd-template-file-not-started) as it's the simplest and provides immediate value
-2. Next, tackle [Task 2 (Naming Conventions)](#2-establish-llm-optimized-naming-conventions-not-started) as it informs all subsequent development
-3. Then implement [Task 4 (Front-matter Validation)](#4-build-front-matter-validation--auto-correction-not-started) as it's foundational for other functionality
+1. ✅ First, complete [Task 1 (Create INDEX.md Template)](#1-create-an-indexmd-template-file-completed) as it's the simplest and provides immediate value
+2. ✅ Next, tackle [Task 2 (Naming Conventions)](#2-establish-llm-optimized-naming-conventions-completed) as it informs all subsequent development
+3. Next implement [Task 4 (Front-matter Validation)](#4-build-front-matter-validation--auto-correction-not-started) as it's foundational for other functionality
 4. Follow with [Task 3 (Dynamic INDEX.md Generation)](#3-develop-dynamic-indexmd-generation-script-deferred) which builds on the previous tasks
 5. Next, develop [Task 5 (Template Customization)](#5-create-template-customization-framework-not-started) which is more complex but highly valuable
 6. Finally, implement [Task 6 (Integration Testing)](#6-develop-integration-testing-suite-blocked) to ensure quality of all previous work
