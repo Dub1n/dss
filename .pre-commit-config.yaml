@@ -1,1 +1,10 @@
 repos:\n  - repo: https://github.com/psf/black\n    rev: 24.3.0\n    hooks:\n      - id: black
+  - repo: local
+    hooks:
+    -   id: naming-conventions
+        name: LLM-Optimized Naming Conventions
+        entry: python meta/scripts/auto_rename.py
+        language: python
+        pass_filenames: false
+        always_run: true
+        description: "Apply LLM-optimized naming conventions to new files"

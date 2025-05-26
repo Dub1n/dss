@@ -52,6 +52,23 @@ This template provides a structured starting point for documentation-heavy data 
 * `markdown-link-check` for dead link validation
 * `prettier` or `remark` for formatting Markdown files
 
+## 📝 Naming Conventions
+
+This repository follows LLM-optimized naming conventions to enhance semantic discoverability:
+
+* **Python files**: `snake_case.py` (e.g., `data_processing_pipeline.py`)
+* **Documentation**: `descriptive_name.md` (e.g., `naming_conventions.md`)
+* **Configuration**: `scope_config.yml` (e.g., `database_config.yml`)
+
+Files are automatically renamed according to these conventions using:
+* Git hooks that run after checkout and commit
+* Pre-commit hooks for consistent enforcement
+* The `auto_rename.py` script in `meta/scripts/`
+
+For more details, see:
+* [Naming Conventions](meta/guidelines/naming_conventions.md)
+* [Filename Transformations](docs/filename_transformations.md)
+
 ---
 
 ## 🧪 Testing & Validation
