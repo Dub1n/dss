@@ -125,16 +125,6 @@ python meta/llm_tasks.py --mode docs
 - `.cursor/rules/dss-overview.mdc` — High-level system context
 - Scripts and documentation ensure LLMs always operate within the current system view
 
-### TODO
-TODO: explain when and how to use the python scripts <!-- TODO: See meta/TODO.md -->
-TODO: find an appropriate doc to add instructions for what to do when encountering certain keywords such as TODO or FILL (should they be !TODO and !FILL?) <!-- TODO: See meta/TODO.md -->
-TODO: create a super-repo for managing and developing DSS that contains this repo in its src as a template (perhaps template ver1?) and git it <!-- TODO: See meta/TODO.md -->
-TODO: find a way of syncing this up with dss-guide.mdc (ideally an LLM-targeted version) <!-- TODO: See meta/TODO.md -->
-
-### 7 · Iteration Cycle 🔁
-
-### 8 · Future Ideas 🚀
-
 ## Referenced By
 
 - [meta/scripts/sync_dss_mdc.py](mdc:meta/scripts/sync_dss_mdc.py) - Used as source file for generating .cursor/rules/dss-overview.mdc
