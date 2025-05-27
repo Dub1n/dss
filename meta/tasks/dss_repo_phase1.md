@@ -263,7 +263,7 @@ Each task and subtask is marked with a status indicator:
 - **Dependencies**: 4.8
 - **Estimate**: ~15 minutes
 - **Status**: Completed
-- **Notes**: Created comprehensive documentation in meta/scripts/README_frontmatter.md with usage examples, command-line options, integration tips, and troubleshooting information
+- **Notes**: Created comprehensive documentation in meta/scripts/readme_frontmatter.md with usage examples, command-line options, integration tips, and troubleshooting information
 
 #### 4.10. Plan Assistant Workflow Integration `[COMPLETED]`
 - **Inputs**: Completed frontmatter validation tool

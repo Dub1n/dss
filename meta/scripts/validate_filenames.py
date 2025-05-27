@@ -68,7 +68,7 @@ def validate_filename(filename, config):
         'CHANGELOG.md',
         'DSS_GUIDE.md',
         'TODO.md',
-        'README_frontmatter.md',
+        'readme_frontmatter.md',
         'folder_README_template.md'
     ]
     
