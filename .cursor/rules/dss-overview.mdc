@@ -1,7 +1,7 @@
 ---
 description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 ## DSS Summary for LLM Context (Cursor Prompt Injection)
 <!-- This file is injected into every prompt by Cursor. It provides LLMs with a compressed understanding of DSS and how to behave inside its structure. -->
@@ -39,7 +39,7 @@ alwaysApply: false
   - Files loaded into every LLM prompt in Cursor
   - Contains:
     - `assistant.mdc`
-    - `dss_overview.mdc`
+    - `dss-overview.mdc`
 
 - `tests/`
   - Test harness and validation scripts
@@ -93,3 +93,4 @@ alwaysApply: false
 > DSS is a structured system for building structured systems. Your job is to assist its evolution by making intelligent, metadata-aware, structure-preserving suggestions that integrate cleanly with its design.
 
 <!-- End of LLM-facing rules -->
+

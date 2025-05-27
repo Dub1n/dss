@@ -10,6 +10,8 @@ This file serves as a running list of tasks, improvements, and ideas identified 
 
 ## Tasks
 
+- [ ] Decide if dss-guide.mdc and dss-overview.mdc are both needed and if they can be combined/one removed.
+- [ ] Add to the task_decomposition.md to add appropriate (and appropriately placed) subtasks for integrating any developments into the assistant workflow
 - [ ] Review all existing TODOs in `meta/TODO.md` and add `(@roadmap: [Section Name])` links where appropriate- [ ] Teach the AI to cross-reference .mdc files with commit messages to refine intent tracking.
 - [ ] Set up a daily summary ping (here's what changed today, here's what I learned, here's what we should clarify next).
 - [ ] Go over all of this repo's files and make sure they are actually usefully laid out and have the appropriate information: start by filling out the INDEX.md as completely as possible, and work from there
@@ -32,7 +34,10 @@ This file serves as a running list of tasks, improvements, and ideas identified 
 - [ ] Update LLM prompt injection to explain task decomposition to LLMs
 - [ ] Implement tasks from Phase 1 of DSS Repo Development Timeline following the breakdown in meta/tasks/dss_repo_phase1.md (refer to status tracking and tags for current progress and categorization)
 - [ ] Adopt tag conventions from meta/guidelines/tag_conventions.md throughout the project
-- [x] Implement assistant workflow improvements as defined in [Assistant Workflow Improvement](mdc:meta/tasks/assistant_workflow_improvement.md)
+- [ ] Implement the `update_links.py` script that can automatically generate and update backlinks based on references in files (@roadmap: Documentation Tools)
+- [ ] Extend `convert_to_dss.py` to support backlink generation during the conversion process
+- [ ] Create a pre-commit hook to verify backlink consistency
+- [ ] Develop Obsidian MDC Links plugin as specified in meta/integrations/obsidian_mdc_links_plugin.md (@roadmap: Tool Integration)
 
 ## Completed Tasks
 
@@ -57,4 +62,10 @@ This file serves as a running list of tasks, improvements, and ideas identified 
 - [x] Add a link back from `meta/roadmap.md` to `ROADMAP.md` (Completed 2024-07-29) 
 - [x] Create an INDEX.md template file (Completed 2024-07-29)
 - [x] Bootstrap DSS template
+- [x] Created backlink conventions documentation and updated relevant files to support bidirectional references
+- [x] Renamed `dss_overview.mdc` to `dss-overview.mdc` to comply with Cursor's rule naming requirements
+- [x] Implement assistant workflow improvements as defined in [Assistant Workflow Improvement](mdc:meta/tasks/assistant_workflow_improvement.md)
+- [x] Decide if folder README.md files should include listings for files in subdirectories or not (Completed: Created policy document at meta/guidelines/folder_readme_policy.md and updated folder README template)
+- [x] Update the folder README.md template to specify the inclusion of links to files (Completed: Enhanced policy with linking guidelines, added tags column, and created readme_link_checker.py script)
+- [x] Add a way to update the README.md files systematically in case they are not synced up (Completed: Created readme_link_checker.py script that scans READMEs, identifies missing links, and generates assistant prompts)
 

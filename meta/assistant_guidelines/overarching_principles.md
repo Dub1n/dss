@@ -14,4 +14,6 @@ When working on a specific aspect of the project (e.g., a script, a function, a 
 
 Apply appropriate tags to all files and tasks according to the established conventions, ensuring proper categorization and discoverability across the project.
 
+**Long-running scripts should emit periodic output** (e.g., a heartbeat message every 15 seconds) to reassure users and tools that the process is still active and not stalled. This is especially important for watch-mode scripts, heavy processing, or anything that may run for more than a few seconds without visible output.
+
 For details on the assistant's commitment to guideline adherence, refer to [meta/assistant_adherence.md](mdc:meta/assistant_adherence.md). 

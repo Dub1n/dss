@@ -1,113 +1,179 @@
 ---
-tags: ["draft"]
-provides: []
+tags: ["template", "dss", "framework"]
+provides: [dss_template, project_structure]
 requires: []
 ---
 
-# Project Title
+# DSS Template Repository
 
-A brief, one-line description of the purpose of this template/repository.
+**A structured, LLM-optimized project framework for seamless human+AI collaboration.**
 
----
-
-## 🧭 Overview
-
-This template provides a structured starting point for documentation-heavy data science or software solution projects. It includes:
-- A meta folder for guides and automation scripts
-- Organized directories for source code, data, and technical documentation
-- Scripts to maintain and auto-generate links and index files
+[![Use this template](https://img.shields.io/badge/Use%20this-Template-green?style=flat-square)](https://github.com/yourusername/dss_template_repo/generate)
+[![DSS Auto-formatter](https://img.shields.io/badge/DSS-Auto--formatter-blue?style=flat-square)](#auto-formatter)
 
 ---
 
-## 🗂 Folder Structure
+## 🧭 What is DSS?
 
-| Folder      | Purpose                                                                |
-|-------------|------------------------------------------------------------------------|
-| `meta/`     | Project roadmap, documentation tools, and utility scripts              |
-| `docs/`     | Technical documentation like architecture and API references           |
-| `src/`      | Placeholder for implementation or code examples                        |
-| `data/`     | Placeholder for datasets or data references                            |
-| `canvas/`   | Visual tools or layout files (e.g., architecture diagrams)             |
+Data SuperStructure (DSS) is a structured, LLM-compatible project framework designed to:
+
+* **Enable transparent, documented evolution** of code, data, and ideas
+* **Support human+AI collaboration** through consistent structure and metadata  
+* **Use automation and LLMs** to generate and maintain clean, living documentation
+* **Make any codebase feel native to LLMs** with minimal prompt tokens and crystal-clear navigation
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Quick Start
 
-1. Clone this repository:
+### Option 1: Use as GitHub Template
+
+1. Click the **"Use this template"** button above or [create a new repository from this template](https://github.com/yourusername/dss_template_repo/generate)
+2. Clone your new repository
+3. Run the initialization script:
    ```bash
-   git clone https://your-repo-url.git
-2. Review and update the documentation files in `meta/` and `docs/`
-3. Run link update and documentation generation scripts:
-
-   ```bash
-   python meta/update_links.py
-   python meta/generate_docs.py
+   cd your-new-repo
+   python meta/scripts/init_dss_project.py --name "Your Project" --description "Your description"
    ```
 
----
+### Option 2: Auto-format Existing Repository
 
-## 🛠 Recommended Tools
-
-* `markdownlint-cli` for style checking
-* `markdown-link-check` for dead link validation
-* `prettier` or `remark` for formatting Markdown files
-
-## 📝 Naming Conventions
-
-This repository follows LLM-optimized naming conventions to enhance semantic discoverability:
-
-* **Python files**: `snake_case.py` (e.g., `data_processing_pipeline.py`)
-* **Documentation**: `descriptive_name.md` (e.g., `naming_conventions.md`)
-* **Configuration**: `scope_config.yml` (e.g., `database_config.yml`)
-
-Files are automatically renamed according to these conventions using:
-* Git hooks that run after checkout and commit
-* Pre-commit hooks for consistent enforcement
-* The `auto_rename.py` script in `meta/scripts/`
-
-For more details, see:
-* [Naming Conventions](meta/guidelines/naming_conventions.md)
-* [Filename Transformations](docs/filename_transformations.md)
-
----
-
-## 🧪 Testing & Validation
-
-Describe how documentation and scripts should be tested, e.g.:
+Transform any existing repository into DSS structure:
 
 ```bash
-# Run lint checks
-npx markdownlint '**/*.md'
+# Install the DSS auto-formatter
+pip install dss-autoformatter
 
-# Check links
-npx markdown-link-check README.md
+# Or download the standalone script
+curl -O https://raw.githubusercontent.com/yourusername/dss_template_repo/main/meta/scripts/dss_autoformat.py
+
+# Format your repository
+python dss_autoformat.py --source /path/to/your/repo --output /path/to/dss/repo
+```
+
+### Option 3: Manual Setup
+
+```bash
+# Clone this template
+git clone https://github.com/yourusername/dss_template_repo.git my_project
+cd my_project
+
+# Set up environment
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -r meta/requirements.txt
+
+# Configure your project
+python meta/scripts/setup_project.py
 ```
 
 ---
 
-## 📌 Examples
+## 📁 Project Structure
 
-*Include real or hypothetical examples of this template in use.*
+```text
+/src/         → Source code and executable logic
+/data/        → Datasets, artifacts, and data files  
+/docs/        → Human and AI-generated documentation
+/canvas/      → Obsidian Canvas JSON diagrams (optional)
+/meta/        → Scripts, prompts, config, and automation
+/tests/       → Test files and validation datasets
+```
+
+### Key Features
+
+* **YAML front-matter** on all files for rich metadata and LLM context
+* **Automated documentation generation** via LLM integration
+* **Token-efficient prompts** through structured summaries and cross-references
+* **Git-friendly structure** that renders beautifully on GitHub
+* **Obsidian-compatible** for visual knowledge management
 
 ---
 
-## 📅 Roadmap
+## 🤖 Auto-Formatter
 
-Refer to `meta/roadmap.md` for planned updates and feature ideas.
+The DSS auto-formatter intelligently transforms any repository into DSS structure while preserving functionality and git history.
+
+### Features
+
+* **Multi-phase processing**: Discovery → Classification → Planning → Execution → Enhancement → Validation
+* **LLM-assisted classification** for ambiguous files
+* **Safe transformation** with automatic rollback on failure
+* **Dependency analysis** and import updating
+* **Metadata injection** with intelligent tag generation
+* **Risk assessment** and conflict resolution
+
+### Usage
+
+```bash
+# Basic transformation
+dss-autoformat --source ./my-repo --dest ./my-repo-dss
+
+# Advanced options
+dss-autoformat \
+  --source ./my-repo \
+  --dest ./my-repo-dss \
+  --config custom_dss_config.yml \
+  --llm-assist \
+  --preserve-git-history \
+  --dry-run
+```
+
+For comprehensive documentation, see [Automated Formatting Guide](docs/automated_formatting.md).
+
+---
+
+## 📖 Documentation
+
+### Getting Started
+- [Getting Started Guide](docs/getting_started.md) - Complete setup and usage guide
+- [DSS Overview](meta/DSS_GUIDE.md) - Core concepts and principles
+- [Configuration](meta/dss_config.yml) - Customization options
+
+### Advanced Usage  
+- [LLM Task Automation](meta/llm_tasks.py) - Generate docs and maintain structure
+- [Naming Conventions](meta/guidelines/naming_conventions.md) - File and folder naming standards
+- [Template System](meta/templates/README.md) - Standardized file templates
+
+### Integration
+- [Cursor IDE Setup](.cursor/rules/assistant.mdc) - AI assistant configuration
+- [VS Code Integration](meta/integrations/vscode.md) - Editor plugins and workflows
+- [CI/CD Integration](meta/integrations/github_actions.yml) - Automated workflows
+
+---
+
+## 🛠 Requirements
+
+- **Python 3.8+**
+- **Git** 
+- **OpenAI API key** (for LLM-powered automation)
+- [Optional] **Node.js** (for markdown table formatting)
+
+---
+
+## 🤝 Contributing
+
+1. Use this template to create your own DSS project
+2. Share improvements back via pull requests
+3. Report issues or suggest enhancements
+4. Help improve the auto-formatter based on real-world usage
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ---
 
 ## 📄 License
 
-[MIT License](LICENSE)
+MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-## 👥 Contributing
+## 🔗 Related Projects
 
-Please see `CONTRIBUTING.md` (if included) for guidelines on how to contribute.
+- [DSS Auto-formatter](https://github.com/yourusername/dss-autoformatter) - Standalone formatting tool
+- [DSS Examples](https://github.com/yourusername/dss-examples) - Example projects using DSS
+- [DSS Plugins](https://github.com/yourusername/dss-plugins) - Community extensions
 
-```
+---
 
-Let me know if you'd like this customized further for a specific audience (internal team, open source, etc.).
-```
+> **DSS is a structured system for building structured systems.** Help us make every codebase LLM-native and human-friendly.

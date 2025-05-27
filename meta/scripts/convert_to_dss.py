@@ -397,7 +397,7 @@ def main(argv: List[str] | None = None) -> None:
         file_mapping = normalize_names(file_mapping, args.dest, cfg)
         
         # Use the updated mapping for the conversion process
-    
+
     convert(args.source, args.dest, cfg, force=args.force)
 
 

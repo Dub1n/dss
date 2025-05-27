@@ -32,6 +32,19 @@ defaults:
   tags: ["draft"]
   provides: []
   requires: []
+  
+# Backlink configuration  
+backlinks:
+  enabled: true
+  section_title: "## Referenced By"
+  formats:
+    markdown: |
+      ## Referenced By
+      
+      - No known references yet.
+    python: |
+      # Referenced By
+      # - No known references yet.
 
 # How to embed the YAML depending on file type
 inject:

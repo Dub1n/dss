@@ -26,6 +26,8 @@ These tasks are integral to ensuring the integrity, discoverability, and current
     *   **Add Frontmatter Stubs:** *Triggered when a new `.md`, `.py`, or `.ipynb` file is created.* Add appropriate YAML (or triple-quoted) frontmatter stubs (`tags`, `provides`, `requires`) based on the rules in `meta/dss_config.yml` and following the guidelines in `meta/guidelines/tag_conventions.md`.
     *   **Add Appropriate Tags:** *Triggered when creating or modifying files.* Apply tags following the conventions in `meta/guidelines/tag_conventions.md`, including file type tags, purpose tags, status tags, and topic tags as appropriate.
     *   **Preserve Existing Frontmatter:** *Triggered whenever editing an existing file that already has frontmatter.* Ensure existing frontmatter is retained.
+    *   **Validate Frontmatter:** *Triggered when creating or modifying files with frontmatter, or when frontmatter validation is explicitly requested.* Use the frontmatter validation tool (`meta/scripts/frontmatter_utils.py`) to ensure frontmatter adheres to validation rules defined in `meta/guidelines/validation_rules.md`. Fix any validation errors following the auto-correction logic in `meta/scripts/docs/frontmatter_auto_correction.md`.
+    *   **Report Validation Issues:** *Triggered when frontmatter validation fails and cannot be automatically corrected.* Inform the user of the validation issues and suggest appropriate fixes.
 
 -   **Link Validation:**
     *   **Check and Update Links:** *Triggered after any file is created, deleted, moved, or renamed, particularly if it's linked from other documents or contains links to other documents.* Ensure links, particularly `.mdc` links, are valid.

@@ -68,7 +68,7 @@ python meta/llm_tasks.py --mode docs
   - Files loaded into every LLM prompt in Cursor
   - Contains:
     - `assistant.mdc`
-    - `dss_overview.mdc`
+    - `dss-overview.mdc`
 
 - `tests/`
   - Test harness and validation scripts
@@ -122,7 +122,7 @@ python meta/llm_tasks.py --mode docs
 ### 🧩 Integration with Cursor
 
 - `.cursor/rules/assistant.mdc` — Cursor's persistent instruction set
-- `.cursor/rules/dss_overview.mdc` — High-level system context
+- `.cursor/rules/dss-overview.mdc` — High-level system context
 - Scripts and documentation ensure LLMs always operate within the current system view
 
 ### TODO
@@ -134,4 +134,11 @@ TODO: find a way of syncing this up with dss-guide.mdc (ideally an LLM-targeted 
 ### 7 · Iteration Cycle 🔁
 
 ### 8 · Future Ideas 🚀
+
+## Referenced By
+
+- [meta/scripts/sync_dss_mdc.py](mdc:meta/scripts/sync_dss_mdc.py) - Used as source file for generating .cursor/rules/dss-overview.mdc
+- [.cursor/rules/dss-overview.mdc](mdc:.cursor/rules/dss-overview.mdc) - Generated from this file's content
+- [meta/guidelines/backlink_conventions.md](mdc:meta/guidelines/backlink_conventions.md) - Referenced as part of backlink implementation examples
+- [docs/automated_formatting](mdc:docs/automated_formatting) - Referenced in automation documentation
 

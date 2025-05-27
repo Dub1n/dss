@@ -1,16 +1,70 @@
 ---
-tags: [assistant_workflow, meta, integration]
+tags: [assistant_workflow, meta, integration, transitions]
 provides: [assistant_workflow_transitions]
-requires: [meta/assistant_workflows/code_modification.md, meta/assistant_workflows/docs_driven_development.md, meta/assistant_workflows/task_decomposition.md, meta/assistant_workflows/quick_tasks.md, meta/assistant_workflows/documentation_refactoring.md, meta/assistant_guidelines/status_tracking.md]
+requires: [meta/assistant_workflows/code_modification.md, meta/assistant_workflows/docs_driven_development.md, meta/assistant_workflows/task_decomposition.md, meta/assistant_workflows/quick_tasks.md, meta/assistant_workflows/documentation_refactoring.md, meta/assistant_guidelines/status_tracking.md, .cursor/rules/assistant.mdc]
 ---
 
 # Assistant Workflow: Cross-Workflow Transition Protocol
 
 This document outlines how to smoothly transition between different assistant workflows while preserving context and maintaining consistency. It provides guidelines for determining when to transition, how to preserve context during transitions, and how to ensure continuity in the assistant's operations.
 
-## Workflow Relationship Map
+## When to Use Cross-Workflow Transitions
 
-The DSS Assistant operates with the following core workflows that frequently interact:
+This transition protocol should be used when ANY of the following criteria are met:
+
+1. **Workflow Mismatch**: Current task no longer fits the criteria of the workflow being used
+2. **Scope Change**: Task scope expands or contracts beyond the current workflow's intended range
+3. **Complexity Evolution**: Task reveals itself to be more or less complex than initially assessed
+4. **Multi-Workflow Requirements**: Task requires coordinated application of multiple different workflows
+5. **Error Recovery**: Need to correct an initial workflow selection that proved inappropriate
+
+Examples of transition scenarios:
+- Quick task revealing complexity requiring code modification workflow
+- Documentation task requiring significant code implementation
+- Simple task expanding into multi-phase project needing decomposition
+- Complex task breaking down into simpler atomic subtasks
+- Error correction when wrong workflow was initially selected
+
+## Cross-Workflow Transition Steps
+
+When transitioning between workflows, follow this protocol:
+
+1️⃣ **Document Current State:**
+   - Record the current state of the task, including status indicators and progress made
+   - Summarize decisions taken and any outstanding questions or ambiguities
+   - Note specific work products or outputs already created
+
+2️⃣ **Assess Transition Need:**
+   - Clearly identify why the current workflow is no longer appropriate
+   - Determine which target workflow better fits the evolved task requirements
+   - Evaluate whether transition preserves or enhances overall efficiency
+
+3️⃣ **Preserve Essential Context:**
+   - Carry forward all essential context elements using the preservation guidelines
+   - Ensure task goals, user requirements, and key decisions remain clear
+   - Maintain awareness of all files and dependencies involved in the task
+
+4️⃣ **Execute Transition:**
+   - Explicitly announce the workflow transition with clear rationale
+   - Begin following the target workflow from its appropriate entry point
+   - Apply target workflow criteria to confirm the transition is appropriate
+
+5️⃣ **Update Documentation:**
+   - Update any task tracking documents to reflect the workflow change
+   - Add references to relevant documentation from the new workflow
+   - Maintain links between related tasks across workflow boundaries
+
+🔧 **DSS Maintenance Integration:**
+   - **Update INDEX.md:** If the transition involves creating new files or changing the project structure, update [INDEX.md](mdc:INDEX.md) to reflect any changes. See [How to Update Index](mdc:docs/how_to_update_index.md).
+   - **Validate Frontmatter:** Ensure proper YAML frontmatter follows [DSS Config](mdc:meta/dss_config.yml) standards across all workflows.
+   - **Check Links:** Verify all MDC links remain valid during workflow transitions.
+   - **Consult Checklist:** Reference [Maintenance Checklist](mdc:meta/assistant_guidelines/maintenance_checklist.md) for comprehensive guidance.
+
+## Reference Materials
+
+### Workflow Relationship Map
+
+The DSS Assistant operates with core workflows that frequently interact:
 
 ```
 ┌───────────────────────┐       ┌───────────────────────┐
@@ -38,52 +92,20 @@ The DSS Assistant operates with the following core workflows that frequently int
 └───────────────────────┘
 ```
 
-### Primary Transition Scenarios
-
-1. **Task Decomposition → Specific Workflow**: When a complex task is broken down into atomic subtasks, each subtask may require a different workflow.
-
-2. **Quick Tasks → Full Workflow**: When a task initially thought to be simple turns out to be more complex than anticipated.
-
-3. **Code Modification ↔ Docs-Driven Development**: When code changes reveal the need for documentation updates or vice versa.
-
-4. **Any Workflow → Task Decomposition**: When any task reveals itself to be more complex than initially thought and requires structured breakdown.
-
-## Context Preservation Protocol
-
-When transitioning between workflows, follow these steps to preserve context:
-
-### 1. Document Current State
-
-Before transitioning:
-- Document the current state of the task, including [status indicators](mdc:meta/assistant_guidelines/status_tracking.md)
-- Summarize progress made and decisions taken
-- Note any outstanding questions or ambiguities
-
-### 2. Carry Forward Essential Context
-
-The following context must be carried forward during any transition:
+### Context Preservation Guidelines
 
 | Context Element | How to Preserve |
 |-----------------|-----------------|
 | Task Goals | Explicitly restate the overall goal at the beginning of the new workflow |
 | User Requirements | Summarize key requirements that must be satisfied |
-| Progress Status | Use consistent [status tracking](mdc:meta/assistant_guidelines/status_tracking.md) across workflows |
+| Progress Status | Use consistent status tracking across workflows |
 | Key Decisions | Note important decisions made that affect the current work |
 | Related Files | Maintain awareness of all files involved in the task |
 | Dependencies | Track dependencies between tasks across workflow boundaries |
 
-### 3. Update References
+### Transition Decision Trees
 
-When transitioning:
-- Update any task tracking documents to reflect the workflow change
-- Add references to relevant documentation from the new workflow
-- Maintain links between related tasks in different workflows
-
-## Transition Decision Trees
-
-Use these decision trees to determine when to transition between workflows.
-
-### From Quick Tasks Workflow
+#### From Quick Tasks Workflow
 
 ```
 Is the task more complex than initially thought?
@@ -97,7 +119,7 @@ Is the task more complex than initially thought?
 └── NO → Continue with Quick Tasks Workflow
 ```
 
-### From Code Modification Workflow
+#### From Code Modification Workflow
 
 ```
 Is the code change revealing larger complexity?
@@ -107,7 +129,7 @@ Is the code change revealing larger complexity?
          └── NO → Continue with Code Modification Workflow
 ```
 
-### From Docs-Driven Development
+#### From Docs-Driven Development
 
 ```
 Does the documentation reveal the need for significant code changes?
@@ -117,7 +139,7 @@ Does the documentation reveal the need for significant code changes?
 └── NO → Continue with Docs-Driven Development
 ```
 
-### From Task Decomposition
+#### From Task Decomposition
 
 ```
 For each atomic subtask:
@@ -132,7 +154,7 @@ For each atomic subtask:
     └── NO → Further decompose using Task Decomposition
 ```
 
-### From Documentation Refactoring
+#### From Documentation Refactoring
 
 ```
 Are code changes needed in addition to documentation updates?
@@ -146,7 +168,15 @@ Are code changes needed in addition to documentation updates?
          └── NO → Continue with Documentation Refactoring
 ```
 
-## Practical Transition Examples
+## Decision Points
+
+If during any workflow you discover that:
+- **Task complexity has fundamentally changed** → Assess against all workflow criteria and transition to the most appropriate one
+- **Multiple workflow types are needed** → Transition to Task Decomposition to coordinate different workflow applications
+- **Current workflow feels inefficient or wrong** → Stop and reassess using the decision trees above
+- **User requirements have shifted** → Document the change and reassess workflow appropriateness
+
+## Practical Examples
 
 ### Example 1: Quick Task → Code Modification
 
@@ -217,36 +247,26 @@ Are code changes needed in addition to documentation updates?
    ```
 3. Follow Code Modification workflow steps, preserving the progress made in documentation updates
 
-## Implementation Guidelines
+## Integration with Core Process
 
+This transition protocol integrates with the [Core Process Checklist](mdc:.cursor/rules/assistant.mdc) in the following ways:
+
+- **Step 3 (Categorize Task Type)**: Provides detailed guidance on selecting the appropriate workflow and recognizing when recategorization is needed
+- **Step 5 (Plan & Cross-Reference)**: Offers structured approach to transitions when multiple workflows are needed
+- **Step 6 (Execute & Integrate)**: Ensures context is preserved during workflow changes and transitions are handled smoothly
+
+## Integration with Other Workflows
+
+### Related Workflows
+- **[Quick Tasks](mdc:meta/assistant_workflows/quick_tasks.md)**: Most common starting point for simple tasks that may need escalation
+- **[Code Modification](mdc:meta/assistant_workflows/code_modification.md)**: Frequent transition target for tasks requiring code changes
+- **[Docs-Driven Development](mdc:meta/assistant_workflows/docs_driven_development.md)**: Common transition for tasks requiring documentation creation
+- **[Task Decomposition](mdc:meta/assistant_workflows/task_decomposition.md)**: Coordination workflow when multiple other workflows are needed
+- **[Documentation Refactoring](mdc:meta/assistant_workflows/documentation_refactoring.md)**: Specialized workflow for multi-file documentation updates
+
+### Implementation Guidelines
 1. **Be Explicit**: Always explicitly announce a workflow transition to maintain clarity
 2. **Document Transitions**: Record workflow transitions in task documentation
 3. **Preserve Progress**: Ensure no progress or context is lost during transitions
 4. **Avoid Churn**: Don't transition unnecessarily - only when the current workflow is clearly insufficient
-5. **Complete Cycles**: When possible, complete the current workflow cycle before transitioning
-
-## Integration with Status Tracking
-
-Workflow transitions should be recorded as part of the task's status history:
-
-```markdown
-**Status Update [2024-08-17]**: Transitioning from Quick Tasks to Code Modification workflow due to increased scope. Task status: [IN PROGRESS]
-```
-
-For complex tasks using the Task Decomposition workflow, record transitions at the subtask level in the status summary table:
-
-```markdown
-| Task | Status | Workflow | Started | Completed | Progress |
-|------|--------|----------|---------|-----------|----------|
-| 1.1. Subtask | COMPLETED | Quick Tasks | 2024-08-17 | 2024-08-17 | 100% |
-| 1.2. Subtask | IN PROGRESS | Code Modification | 2024-08-17 | - | 50% |
-| 1.3. Subtask | NOT STARTED | Docs-Driven | - | - | 0% |
-```
-
-## Integration with Core Process
-
-The transition protocol integrates with the [Core Process Checklist](mdc:.cursor/rules/assistant.mdc) in the following ways:
-
-- It extends step 3 (**Categorize Task Type**) by providing detailed guidance on selecting the appropriate workflow
-- It supplements step 5 (**Plan & Cross-Reference**) by offering a structured approach to transitions when multiple workflows are needed
-- It informs step 6 (**Execute & Integrate**) by ensuring context is preserved during workflow changes 
+5. **Complete Cycles**: When possible, complete the current workflow cycle before transitioning 

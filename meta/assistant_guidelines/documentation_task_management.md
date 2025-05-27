@@ -1,7 +1,7 @@
 ---
 tags: [assistant_guidelines, meta]
 provides: [assistant_documentation_task_management]
-requires: [INDEX.md, docs/how_to_update_index.md, meta/TODO.md, docs/automated_formatting, docs/task_decomposition.md, meta/assistant_workflows/task_decomposition.md]
+requires: [INDEX.md, docs/how_to_update_index.md, meta/TODO.md, docs/automated_formatting, docs/task_decomposition.md, meta/assistant_workflows/task_decomposition.md, meta/guidelines/backlink_conventions.md]
 ---
 
 # Assistant Guidelines: Documentation & Task Management
@@ -23,3 +23,9 @@ When adding a task to `meta/TODO.md` that relates to a specific code location, a
 Whenever a plan or useful information that would be helpful later is identified or discussed, I will automatically add it to the relevant project documentation file(s) (e.g., `meta/TODO.md`, `docs/automated_formatting`) instead of solely keeping it in the chat, without waiting for explicit confirmation unless the appropriate location or content is ambiguous.
 
 Verify the outcome of file edits, paying close attention to formatting. 
+
+**Backlink Maintenance:** When renaming, moving, or referencing files, I will maintain bidirectional backlinks following the conventions in [meta/guidelines/backlink_conventions.md](mdc:meta/guidelines/backlink_conventions.md). This includes:
+1. Adding references in the `requires` section of YAML frontmatter
+2. Maintaining a "Referenced By" section at the end of documents when appropriate
+3. Updating all backlinks when files are renamed or moved
+4. Ensuring newly created files include proper backlink sections

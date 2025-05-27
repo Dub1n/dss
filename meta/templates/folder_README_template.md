@@ -9,6 +9,12 @@ requires: []
 ## Overview
 <!-- 2-3 lines: what/why -->
 ## Files
-| file | purpose |
-|------|---------|
-|      |         |
+|  file                        |  purpose          |  tags             |
+| ---------------------------- | ----------------- | ----------------- |
+|  [README.md](mdc:README.md)  |  Folder overview  |  [documentation]  |
+|                              |                   |                   |
+
+## Subdirectories
+|  directory  |  purpose  |
+| ----------- | --------- |
+|             |           |

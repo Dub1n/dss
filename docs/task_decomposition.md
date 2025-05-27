@@ -161,4 +161,62 @@ Each of these subtasks would be written using the template above, with IDs, inpu
 
 ---
 
+## 8. Integrating into Assistant Workflow
+
+When breaking down tasks, consider how completed work will be integrated into the assistant workflow. Each task should include appropriate subtasks for:
+
+1. **Assistant Integration Planning**
+   * Identify which assistant workflow(s) will be affected by the implementation
+   * Determine where in the workflow the new functionality should be integrated
+   * Document potential edge cases and error handling strategies
+
+2. **Workflow Documentation Updates**
+   * Add specific subtasks for updating relevant workflow documentation
+   * Ensure changes maintain consistent formatting and structure
+   * Verify that links to new functionality are correctly added
+
+3. **Maintenance Checklist Integration**
+   * Determine if new functionality requires updates to maintenance triggers
+   * Add appropriate trigger conditions to the maintenance checklist
+   * Document priority levels for new maintenance tasks
+
+4. **Validation Implementation**
+   * Add subtasks for validation of changes after integration
+   * Include test cases or example scenarios
+   * Document expected behavior and outputs
+
+These integration subtasks should be included in the main task breakdown to ensure that completed work is properly incorporated into the assistant's operational guidelines and workflows.
+
+### Example Integration Subtasks
+
+For a feature like "Frontmatter Validation":
+
+```markdown
+4.10. Plan Assistant Workflow Integration `[NOT STARTED]`
+- **Inputs**: Completed frontmatter validation tool
+- **Outputs**: Integration plan document
+- **Dependencies**: 4.1-4.9
+- **Estimate**: ~15 minutes
+
+4.11. Update Maintenance Checklist `[NOT STARTED]`
+- **Inputs**: Integration plan, existing maintenance checklist
+- **Outputs**: Updated maintenance checklist with frontmatter validation triggers
+- **Dependencies**: 4.10
+- **Estimate**: ~10 minutes
+
+4.12. Add to Assistant Workflows `[NOT STARTED]`
+- **Inputs**: Integration plan, assistant workflow documents
+- **Outputs**: Updated workflow documents with frontmatter validation steps
+- **Dependencies**: 4.10
+- **Estimate**: ~20 minutes
+
+4.13. Create Validation Examples `[NOT STARTED]`
+- **Inputs**: Frontmatter validation tool
+- **Outputs**: Example scenarios for testing integration
+- **Dependencies**: 4.9
+- **Estimate**: ~15 minutes
+```
+
+---
+
 *Add this file to `docs/task_decomposition.md` in the DSS repository. Agents can reference it to ensure consistency in breaking down and executing tasks.*

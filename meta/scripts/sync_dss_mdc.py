@@ -1,8 +1,13 @@
-"""
+"""---
+tags: [code, automation, documentation]
+provides: [dss_overview_sync]
+requires: [meta/DSS_GUIDE.md]
+---
+
 sync_dss_mdc.py
 
 Watches the DSS overview source file (docs/DSS_OVERVIEW.md) and only updates
-.cursor/rules/dss_overview.mdc when the generated content differs.
+.cursor/rules/dss-overview.mdc when the generated content differs.
 """
 
 from pathlib import Path
@@ -12,7 +17,7 @@ import time
 
 # --- Config ---
 SOURCE_FILE = Path("meta/DSS_GUIDE.md")
-DEST_FILE = Path(".cursor/rules/dss_overview.mdc")
+DEST_FILE = Path(".cursor/rules/dss-overview.mdc")
 CHECK_INTERVAL = 2  # seconds
 
 # --- Extraction helpers ---
@@ -99,3 +104,7 @@ def sync_once():
 
 if __name__ == "__main__":
     sync_once()
+
+# Referenced By
+# - docs/automated_formatting - Listed in automation documentation table
+# - meta/guidelines/backlink_conventions.md - Used as an example for backlink implementation

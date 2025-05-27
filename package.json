@@ -1,0 +1,13 @@
+{
+  "name": "dss-template-repo",
+  "version": "1.0.0",
+  "description": "DSS template repository",
+  "main": "index.js",
+  "scripts": {
+    "prettify-md": "markdown-table-prettify",
+    "check-md": "markdown-table-prettify --check"
+  },
+  "dependencies": {
+    "markdown-table-prettify": "^3.6.0"
+  }
+} 

@@ -31,7 +31,7 @@ Update `INDEX.md` whenever:
 5.  **Update the descriptions:** Make sure each item in the file tree has a corresponding description.
     * Use level 3 headings (`###`) for directories and level 4 headings (`####`) for files.
     * Provide a clear, concise description of each item's purpose and function.
-6.  **Ensure consistency:** Make sure the document accurately reflects the directories and their contents as described in other documentation (e.g., the Canonical Folder Layout in `docs/automated_formatting.md`).
+6.  **Ensure consistency:** Make sure the document accurately reflects the directories and their contents as described in other documentation (e.g., the Canonical Folder Layout in `docs/automated_formatting.md`)
 7.  **Save the file.**
 
 There are currently no automated scripts specifically for updating `INDEX.md`; it is a manual documentation task. For detailed guidance on using the standardized template, refer to [Using the INDEX.md Template](mdc:docs/index_template_usage.md). 

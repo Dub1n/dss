@@ -1,16 +1,16 @@
 ---
-tags: [assistant_workflow, meta, documentation]
+tags: [assistant_workflow, meta, documentation, refactoring]
 provides: [assistant_documentation_refactoring_workflow]
-requires: [meta/assistant_guidelines/maintenance_checklist.md, .cursor/rules/assistant.mdc, meta/assistant_workflows/workflow_transitions.md]
+requires: [meta/assistant_guidelines/maintenance_checklist.md, .cursor/rules/assistant.mdc, meta/assistant_workflows/workflow_transitions.md, meta/dss_config.yml]
 ---
 
 # Assistant Workflow: Documentation Refactoring
 
 This document outlines a specialized workflow for systematically updating, improving, or restructuring existing documentation across multiple files. It's designed for tasks that require coordinated changes to documentation that don't involve creating new documentation from scratch or significant code modifications.
 
-## Documentation Refactoring Criteria
+## When to Use Documentation Refactoring
 
-A task can be considered "documentation refactoring" if it meets MOST of the following criteria:
+A task should use this workflow if it meets MOST of the following criteria:
 
 1. **Focus**: The task primarily involves updating existing markdown or documentation files
 2. **Scope**: Changes span multiple related files (typically more than 2)
@@ -25,64 +25,75 @@ Examples of documentation refactoring tasks:
 - Restructuring the organization of content within documentation
 - Updating links, references, or file paths across multiple files
 
-## Documentation Refactoring Workflow Steps
+## Documentation Refactoring Steps
 
 For tasks meeting the above criteria, follow this workflow:
 
-1️. **Analyze Documentation Structure**:
-   - Identify all affected documentation files
-   - Understand the relationships between the files
-   - Determine how changes to one file will affect others
+1️⃣ **Analyze Documentation Structure:**
+   - Identify all affected documentation files across the project
+   - Understand the relationships and dependencies between the files
+   - Map out how changes to one file will cascade to affect others
+   - Review existing frontmatter and cross-references
 
-2️. **Plan Coordinated Changes**:
-   - Create a clear plan for what changes are needed across all files
-   - Establish patterns or templates for consistent changes
-   - Identify any potential conflicts or dependencies
+2️⃣ **Plan Coordinated Changes:**
+   - Create a clear, systematic plan for what changes are needed across all files
+   - Establish patterns, templates, or standards for consistent changes
+   - Identify any potential conflicts, dependencies, or breaking changes
+   - Prioritize changes based on dependencies and impact
 
-3️. **Apply Changes Systematically**:
-   - Make changes to one file at a time, following a logical order
-   - Ensure consistent formatting, terminology, and structure
-   - Preserve existing YAML frontmatter (`tags`, `provides`, `requires`)
-   - Update frontmatter as needed to reflect new content relationships
+3️⃣ **Apply Changes Systematically:**
+   - Make changes to one file at a time, following a logical dependency order
+   - Ensure consistent formatting, terminology, and structure across all files
+   - Preserve existing YAML frontmatter (`tags`, `provides`, `requires`) unless specifically updating metadata
+   - Update frontmatter as needed to reflect new content relationships and dependencies
 
-4️. **Update Cross-References**:
-   - Ensure all internal links between documents remain valid
-   - Update any cross-references to reflect the new content
-   - Check external references for consistency
+4️⃣ **Update Cross-References:**
+   - Ensure all internal links between documents remain valid and accurate
+   - Update any cross-references to reflect the new or modified content
+   - Check external references for consistency and accuracy
+   - Verify MDC links point to correct file paths
+   - **Prettify markdown tables:** For any files containing tables that were edited, run `meta/scripts/prettify_md.ps1 filename.md` to ensure consistent table formatting
 
-5️. **Perform Documentation Maintenance**:
-   - Check for and fix any broken links
-   - Ensure consistent formatting across all updated files
-   - Update the INDEX.md if documentation structure has changed
-   - Verify all files have appropriate frontmatter
+5️⃣ **Validate Documentation Integrity:**
+   - Check for and fix any broken links introduced by the changes
+   - Ensure consistent formatting and style across all updated files
+   - Verify all files have appropriate and accurate frontmatter
+   - Validate frontmatter using `meta/scripts/frontmatter_utils.py` guidelines
 
-6️. **Review for Consistency**:
-   - Verify that changes are applied consistently across all files
-   - Check that terminology, formatting, and structure are uniform
-   - Ensure the overall documentation coherence is maintained
+6️⃣ **Review for Consistency:**
+   - Verify that changes are applied consistently across all affected files
+   - Check that terminology, formatting, and structural patterns are uniform
+   - Ensure the overall documentation coherence and flow is maintained
+   - Confirm that the documentation set achieves the intended improvements
+
+🔧 **DSS Maintenance Integration:**
+   - **Update INDEX.md:** If documentation structure has changed significantly, update [INDEX.md](mdc:INDEX.md) to reflect new organization. See [How to Update Index](mdc:docs/how_to_update_index.md).
+   - **Validate Frontmatter:** Ensure proper YAML frontmatter follows [DSS Config](mdc:meta/dss_config.yml) standards across all modified files.
+   - **Check Links:** Verify all MDC links remain valid after restructuring or content changes.
+   - **Consult Checklist:** Reference [Maintenance Checklist](mdc:meta/assistant_guidelines/maintenance_checklist.md) for comprehensive guidance.
+
+## Decision Points
+
+If during execution you discover that:
+- **Task requires creating entirely new documentation from scratch** → Transition to [Docs-Driven Development](mdc:meta/assistant_workflows/docs_driven_development.md)
+- **Task requires significant code changes to accompany documentation updates** → Transition to [Code Modification](mdc:meta/assistant_workflows/code_modification.md)
+- **Task scope is much larger than anticipated and needs structured breakdown** → Transition to [Task Decomposition](mdc:meta/assistant_workflows/task_decomposition.md)
+- **Task affects only 1-2 files with minimal coordination needed** → Consider switching to [Quick Tasks](mdc:meta/assistant_workflows/quick_tasks.md)
 
 ## Integration with Core Process
 
 This workflow integrates with the [Core Process Checklist](mdc:.cursor/rules/assistant.mdc):
 
-- Step 3 (Categorize Task Type) identifies documentation refactoring tasks that involve coordinated changes across multiple files
-- Steps 5-8 are implemented through the detailed steps of this workflow
+- **Step 3 (Categorize Task Type)**: Identifies documentation refactoring tasks through multi-file scope and coordination requirements
+- **Steps 5-8**: Implemented through systematic planning and coordinated execution with emphasis on consistency and cross-reference integrity
 
-When a task also requires significant code changes or creation of entirely new documentation, refer to [Workflow Transitions](mdc:meta/assistant_workflows/workflow_transitions.md) for guidance on transitioning to Code Modification or Docs-Driven Development workflows.
+## Integration with Other Workflows
 
-## Relationship to Other Workflows
+### Related Workflows
+- **[Quick Tasks](mdc:meta/assistant_workflows/quick_tasks.md)**: Use for simple documentation changes affecting 1-2 files
+- **[Docs-Driven Development](mdc:meta/assistant_workflows/docs_driven_development.md)**: Use when creating new documentation from scratch
+- **[Code Modification](mdc:meta/assistant_workflows/code_modification.md)**: Use when documentation changes must be accompanied by significant code changes
+- **[Task Decomposition](mdc:meta/assistant_workflows/task_decomposition.md)**: Use for large-scale documentation restructuring requiring multiple phases
 
-This workflow complements other existing workflows:
-
-- **Quick Tasks**: For simple documentation changes to 1-2 files, use the Quick Tasks workflow instead
-- **Docs-Driven Development**: For creating new documentation from scratch, use the Docs-Driven Development workflow
-- **Code Modification**: When documentation changes must be accompanied by significant code changes
-- **Task Decomposition**: For large-scale documentation restructuring that requires breaking down into multiple phases
-
-## Decision Points
-
-If during execution you discover that:
-- The task requires creating entirely new documentation → Transition to Docs-Driven Development
-- The task requires significant code changes → Transition to Code Modification
-- The task is much larger than anticipated → Transition to Task Decomposition
-- The task affects only 1-2 files → Consider switching to Quick Tasks 
+### Transition Protocol
+When transitioning from this workflow to others, refer to [Workflow Transitions](mdc:meta/assistant_workflows/workflow_transitions.md) for guidance on preserving completed work and maintaining continuity across the remaining tasks. 

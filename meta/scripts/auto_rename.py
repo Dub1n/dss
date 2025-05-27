@@ -190,8 +190,13 @@ def watch_repository(rules: Dict):
     try:
         print("Watching for new files (Ctrl+C to exit)...")
         import time
+        last_heartbeat = time.time()
         while True:
             time.sleep(1)
+            # Print a heartbeat every 15 seconds
+            if time.time() - last_heartbeat > 15:
+                print("[auto_rename] Still watching for new files...")
+                last_heartbeat = time.time()
     except KeyboardInterrupt:
         observer.stop()
     

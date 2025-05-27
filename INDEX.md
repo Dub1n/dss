@@ -105,7 +105,7 @@ The Python virtual environment directory (typically git-ignored) where project d
 
 ### Cursor Configuration (`/.cursor/rules/`)
 
-Configuration files specific to the Cursor AI assistant, including persistent instructions (`assistant.mdc`) and project context (`dss_overview.mdc`).
+Configuration files specific to the Cursor AI assistant, including persistent instructions (`assistant.mdc`) and project context (`dss-overview.mdc`).
 
 ### Canvas Diagrams (`/canvas/`)
 
@@ -247,6 +247,14 @@ A directory containing Python scripts for project automation and management (e.g
 
 A directory containing template files used for generating new project documents or code stubs.
 
+#### meta/templates/meta/integration_template.md
+
+Template for documenting tool integrations and compatibility solutions, providing a standardized structure for integration specifications.
+
+#### meta/templates/meta/assistant_workflow_template.md
+
+Standardized template for creating assistant workflow documents with optimized structure for clarity, consistency, and DSS integration. Synthesizes best practices from existing workflows.
+
 #### meta/tasks/
 
 A directory containing task breakdown documents that follow the Hierarchical Atomic Decomposition (HAD) method for complex project implementations.
@@ -254,6 +262,22 @@ A directory containing task breakdown documents that follow the Hierarchical Ato
 #### meta/guidelines/
 
 A directory containing standardized guidelines and conventions for the project, including tagging systems, naming conventions, and best practices.
+
+#### meta/guidelines/backlink_conventions.md
+
+Guidelines for implementing and maintaining backlinks between files to improve navigation and dependency tracking.
+
+#### meta/integrations/
+
+A directory containing documentation for proposed and developed integrations that extend DSS functionality across different tools and platforms.
+
+#### meta/integrations/obsidian_mdc_links_plugin.md
+
+Specification for an Obsidian plugin to make `mdc:` prefixed links clickable and functional for human users while preserving LLM automation capabilities.
+
+#### meta/assistant_workflows/workflow_transitions.md
+
+Comprehensive guide for transitioning between different assistant workflows, including preserving context, decision trees, and maintenance considerations including INDEX.md updates.
 
 ### Source Code (`/src/`)
 

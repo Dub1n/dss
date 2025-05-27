@@ -1,0 +1,86 @@
+# DSS Auto-formatter Configuration: Data Science Projects
+# Optimized for ML/data science repositories
+
+use_llm_classification: true
+preserve_git_history: true
+dry_run: false
+
+# Ignore patterns specific to data science
+ignore_patterns:
+  - "**/.git/**"
+  - "**/node_modules/**" 
+  - "**/__pycache__/**"
+  - "**/.venv/**"
+  - "**/.env"
+  - "**/.*"
+  - "**/checkpoints/**"
+  - "**/models/*.pkl"
+  - "**/models/*.joblib"
+  - "**/wandb/**"
+  - "**/.ipynb_checkpoints/**"
+
+# Classification rules for data science projects
+classification_rules:
+  src:
+    - "**/*.py"
+    - "**/src/**"
+    - "**/scripts/**"
+    - "**/pipeline/**"
+    - "**/models/**"
+    - "**/utils/**"
+    - "**/preprocessing/**"
+    - "**/training/**"
+    - "**/inference/**"
+
+  data:
+    - "**/*.csv"
+    - "**/*.parquet"
+    - "**/*.json"
+    - "**/*.jsonl"
+    - "**/*.feather"
+    - "**/*.h5"
+    - "**/*.hdf5"
+    - "**/*.pkl"
+    - "**/*.pickle"
+    - "**/data/**"
+    - "**/datasets/**"
+    - "**/raw/**"
+    - "**/processed/**"
+    - "**/features/**"
+
+  docs:
+    - "**/*.md"
+    - "**/*.rst"
+    - "**/*.txt"
+    - "**/docs/**"
+    - "**/notebooks/**/*.ipynb"  # Documentation notebooks
+    - "**/examples/**/*.ipynb"
+
+  tests:
+    - "**/test_*.py"
+    - "**/*_test.py"
+    - "**/tests/**"
+    - "**/unit_tests/**"
+    - "**/integration_tests/**"
+
+  meta:
+    - "**/meta/**"
+    - "**/.github/**"
+    - "**/config/**"
+    - "**/configs/**"
+    - "**/requirements*.txt"
+    - "**/environment*.yml"
+    - "**/Dockerfile"
+    - "**/docker-compose*.yml"
+    - "**/*.cfg"
+    - "**/*.ini"
+    - "**/*.toml"
+    - "**/setup.py"
+    - "**/pyproject.toml"
+
+# Special handling for ambiguous files
+special_handling:
+  notebooks:
+    # Analysis notebooks go to data, tutorial notebooks go to docs
+    analysis_keywords: ["analysis", "eda", "exploration", "experiment"]
+    documentation_keywords: ["tutorial", "demo", "example", "guide"] 

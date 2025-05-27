@@ -3,6 +3,10 @@
 __pycache__/
 *.py[cod]
 
+# Node.js
+node_modules/
+package-lock.json
+
 # LLM stuff
 .env
 openai.log
