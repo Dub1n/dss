@@ -10,6 +10,7 @@ This file serves as a running list of tasks, improvements, and ideas identified 
 
 ## Tasks
 
+- [ ] bootstrap: Could the assistant ask if the user wishes for a new DSS formatted repo to be created from the original or if they would like the current one to be used?
 - [ ] Decide if dss-guide.mdc and dss-overview.mdc are both needed and if they can be combined/one removed.
 - [ ] Add to the task_decomposition.md to add appropriate (and appropriately placed) subtasks for integrating any developments into the assistant workflow
 - [ ] Review all existing TODOs in `meta/TODO.md` and add `(@roadmap: [Section Name])` links where appropriate- [ ] Teach the AI to cross-reference .mdc files with commit messages to refine intent tracking.
@@ -41,6 +42,7 @@ This file serves as a running list of tasks, improvements, and ideas identified 
 
 ## Completed Tasks
 
+- [x] Consolidate bootstrap scripts by removing the redundant `dss_bootstrap_enhanced.py` and keeping only the complete `dss_bootstrap.py` as the final version (2024-06)
 - [x] Rework detailed roadmap file (`meta/roadmap.md`) to be organized by topic.
 - [x] Create and populate top-level roadmap overview file (`ROADMAP.md`).
 - [x] Rework project index file (`INDEX.md`) with detailed file tree and descriptions.
@@ -68,4 +70,6 @@ This file serves as a running list of tasks, improvements, and ideas identified 
 - [x] Decide if folder README.md files should include listings for files in subdirectories or not (Completed: Created policy document at meta/guidelines/folder_readme_policy.md and updated folder README template)
 - [x] Update the folder README.md template to specify the inclusion of links to files (Completed: Enhanced policy with linking guidelines, added tags column, and created readme_link_checker.py script)
 - [x] Add a way to update the README.md files systematically in case they are not synced up (Completed: Created readme_link_checker.py script that scans READMEs, identifies missing links, and generates assistant prompts)
+- [x] Fix GitHub installation report submission issue with label validation (2024-06)
+- [x] Add installation report submission guidelines for the assistant
 

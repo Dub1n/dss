@@ -132,3 +132,21 @@ python meta/llm_tasks.py --mode docs
 - [meta/guidelines/backlink_conventions.md](mdc:meta/guidelines/backlink_conventions.md) - Referenced as part of backlink implementation examples
 - [docs/automated_formatting](mdc:docs/automated_formatting) - Referenced in automation documentation
 
+### 🤖 LLM Behavior Guidelines
+
+* **Preserve front-matter:** When editing `.md`, `.py`, or `.ipynb` files with front-matter blocks (YAML or triple-quoted), retain `tags`, `provides`, and `requires`.
+
+* **Respect structure:** Do not propose reorganizing folders unless explicitly asked. Each directory exists with defined intent.
+
+* **Defer to config:** Use `meta/dss_config.yml` to understand file classification, metadata injection patterns, and ignore rules.
+
+* **Ignore archives:** Never modify, summarize, or reference content in `docs/🔒archive/` unless explicitly instructed.
+
+* **Generate only on request:** Do not create READMEs, glossaries, or canvases unless instructed via user prompt or a script like `llm_tasks.py`.
+
+* **Explain uncertainty:** If unsure about file intent, insert a short inline note instead of guessing.
+
+* **Cursor Rules Naming:** All Cursor rules files in `.cursor/rules/` must use kebab-case naming (e.g., `dss-voice-commands.mdc`, `dss-overview.mdc`).
+
+---
+

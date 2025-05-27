@@ -24,6 +24,9 @@ Improvements in v2.2.0:
 - Iterative versioning for output directories
 - Enhanced console output reliability for Windows terminals
 
+Note: This is the consolidated script that includes all enhancements previously
+separated into dss_bootstrap_enhanced.py. This is the only bootstrap script needed.
+
 Drop this file into any repository root and run:
     python dss_bootstrap.py
 
@@ -84,33 +87,31 @@ node_modules/
 class DSSBootstrap:
     """Enhanced DSS transformation with robust error handling and improved GitHub integration."""
     
-    def __init__(self, repo_path: str = "."):
-        self.repo_path = Path(repo_path).resolve()
-        self.original_path = self.repo_path
-        self.dss_path = self._get_versioned_dss_path()
-        self.backup_path = self.repo_path.parent / f"{self.repo_path.name}-backup-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
+    def __init__(self, repo_path: Path = None, dss_path: Path = None):
+        """Initialize with repository paths and setup state tracking."""
+        self.repo_path = repo_path or Path.cwd()
+        self.dss_path = dss_path or self._get_versioned_dss_path()
+        self.backup_path = None
         self.platform = platform.system().lower()
         
-        # Installation report data collection
+        # Report data structure
         self.report_data = {
             'start_time': datetime.now(),
+            'end_time': None,
             'platform': self.platform,
-            'python_version': sys.version,
             'issues': [],
             'warnings': [],
-            'optimizations': [],
-            'performance_metrics': {},
             'project_info': {},
-            'validation_results': {},
-            'transformation_method': 'unknown'
+            'transformation_method': 'auto',
+            'validation_results': {}
         }
+        
+        # Initialize GitHub labels cache
+        self._github_labels_cache = None
         
         # Set up Unicode handling for Windows
         if self.platform == "windows":
             os.environ['PYTHONIOENCODING'] = 'utf-8'
-        
-        # GitHub repository labels cache
-        self._github_labels_cache = None
         
     def _get_versioned_dss_path(self) -> Path:
         """Determine the next available versioned DSS path.
@@ -448,10 +449,26 @@ if __name__ == "__main__":
     
     def _detect_project_type_enhanced(self) -> Dict:
         """Enhanced project type detection with detailed WearOS and Android analysis."""
-        files = list(self.repo_path.rglob('*'))
-        file_names = [f.name.lower() for f in files if f.is_file()]
-        file_extensions = [f.suffix.lower() for f in files if f.is_file()]
-        file_paths = [str(f).lower() for f in files if f.is_file()]
+        try:
+            files = list(self.repo_path.rglob('*'))
+            
+            # Handle large projects with timeout protection
+            if len(files) > 10000:  # Large project detection
+                self._add_report_warning(f"Large project detected ({len(files)} files) - using optimized scanning")
+                # Sample files for large projects to avoid timeout
+                files = files[:5000] + [f for f in files[5000:] if any(pattern in f.name.lower() 
+                                       for pattern in ['manifest', 'gradle', 'wear', 'wearos'])]
+            
+            file_names = [f.name.lower() for f in files if f.is_file()]
+            file_extensions = [f.suffix.lower() for f in files if f.is_file()]
+            file_paths = [str(f).lower() for f in files if f.is_file()]
+        except Exception as e:
+            self._add_report_issue(f"Project scanning error: {e}", "warning")
+            # Fallback to basic detection
+            files = []
+            file_names = []
+            file_extensions = []
+            file_paths = []
         
         # Enhanced counting with more categories and specific WearOS detection
         counts = {
@@ -1010,8 +1027,7 @@ Transformation date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
             print("   ✅ Enhanced documentation created")
             
         except Exception as e:
-            print(f"   ⚠️  Documentation creation warning: {e}")
-    
+            print(f"   ⚠️  Documentation creation warning: {e}")    
     def _generate_structure_documentation(self, dest_path: Path) -> str:
         """Generate detailed project structure documentation."""
         structure = []
@@ -1119,7 +1135,7 @@ Transformation date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         # System Information
         report.append("## System Information")
         report.append(f"- **Platform:** {self.report_data['platform']}")
-        report.append(f"- **Python Version:** {self.report_data['python_version'].split()[0]}")
+        report.append(f"- **Python Version:** {sys.version}")
         report.append(f"- **Repository Name:** {self.repo_path.name}")
         report.append("")
         
@@ -1202,9 +1218,12 @@ Transformation date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         
         if project_type == "android_wearos":
             recommendations.extend([
-                "Consider organizing WearOS-specific modules in src/wearos/",
-                "Create dedicated documentation for WearOS deployment in docs/wearos/",
-                "Set up device-specific testing in tests/devices/"
+                "Organize WearOS app module in src/wear/ and companion app in src/mobile/",
+                "Create dedicated documentation for WearOS deployment and watch face development in docs/wearos/",
+                "Set up device-specific testing with emulator configurations in tests/wearos/",
+                "Document WearOS-specific data sync patterns between watch and companion app",
+                "Consider creating templates for complications, tiles, and watch faces in docs/templates/",
+                "Set up Android Gradle plugin configuration for WearOS modules"
             ])
         elif project_type == "android_kotlin":
             recommendations.extend([
@@ -1257,6 +1276,15 @@ Transformation date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         duration = self.report_data.get('total_duration', 0)
         if duration > 300:  # 5 minutes
             feedback.append("Transformation performance could be optimized for large projects")
+        
+        # Platform-specific feedback
+        platform = self.report_data.get('platform', '')
+        if platform.lower() == 'windows':
+            if any('console' in issue['description'].lower() for issue in self.report_data['issues']):
+                feedback.append("Windows console compatibility could be improved")
+            if any('path' in issue['description'].lower() for issue in self.report_data['issues']):
+                feedback.append("Windows file path handling could be enhanced")
+            feedback.append("Windows-specific WearOS development environment setup could be documented")
         
         # Validation-based feedback
         failed_validations = [k for k, v in self.report_data['validation_results'].items() if not v]
@@ -1312,6 +1340,68 @@ When the user first opens this project in Cursor, proactively:
         except Exception as e:
             print(f"   ⚠️  GitHub submission preparation warning: {e}")
     
+    def _get_github_labels(self) -> Set[str]:
+        """Fetch and cache available GitHub labels for the repository."""
+        if self._github_labels_cache is not None:
+            return self._github_labels_cache
+        
+        try:
+            # Try to get labels using GitHub CLI
+            result = subprocess.run(
+                ['gh', 'label', 'list', '--repo', DSS_REPO, '--json', 'name'],
+                capture_output=True, text=True, timeout=15
+            )
+            
+            if result.returncode == 0:
+                try:
+                    labels_data = json.loads(result.stdout)
+                    labels = {label['name'] for label in labels_data}
+                    self._github_labels_cache = labels
+                    return labels
+                except json.JSONDecodeError:
+                    pass
+                
+        except (subprocess.TimeoutExpired, FileNotFoundError):
+            pass
+        
+        # Fallback to common DSS labels if GitHub CLI fails
+        fallback_labels = {
+            'bug', 'enhancement', 'documentation', 'question', 'help wanted',
+            'good first issue', 'wontfix', 'duplicate', 'invalid', 'installation-report'
+        }
+        self._github_labels_cache = fallback_labels
+        return fallback_labels
+    
+    def _validate_github_labels(self, labels: List[str]) -> List[str]:
+        """Validate and filter GitHub labels against available repository labels."""
+        available_labels = self._get_github_labels()
+        valid_labels = []
+        
+        for label in labels:
+            if label in available_labels:
+                valid_labels.append(label)
+            else:
+                self._add_report_warning(f"Label '{label}' does not exist in repository - skipping")
+        
+        return valid_labels
+    
+    def _sanitize_title_for_github(self, title: str) -> str:
+        """Sanitize title for GitHub CLI to prevent encoding issues."""
+        # Replace problematic characters that can cause encoding issues
+        title = title.replace(':', ' -')
+        title = title.replace('|', ' ')
+        title = title.replace('\n', ' ')
+        title = title.replace('\r', ' ')
+        
+        # Remove any control characters
+        title = re.sub(r'[\x00-\x1f\x7f-\x9f]', '', title)
+        
+        # Limit length to avoid command line issues
+        if len(title) > 100:
+            title = title[:97] + "..."
+        
+        return title.strip()
+    
     def _generate_github_cli_command(self, dest_path: Path, report_content: str, quiet: bool = False):
         """Generate a GitHub CLI command for manual execution.
         
@@ -1320,45 +1410,64 @@ When the user first opens this project in Cursor, proactively:
             report_content: Content of the installation report
             quiet: If True, suppress output messages
         """
-        # Create a concise issue title
-        project_type = self.report_data['project_info'].get('type', 'unknown')
-        platform = self.report_data['platform']
-        # Add versioning info if applicable
-        version_info = ""
-        if not self.dss_path.name.endswith("-dss") and "-dss-" in self.dss_path.name:
-            try:
-                version = self.dss_path.name.split("-dss-")[1]
-                version_info = f" (v{version})"
-            except:
-                pass
-        title = f"DSS Installation Report: {project_type} project on {platform}{version_info}"
-        
-        # Create GitHub issue body
-        issue_body = self._create_github_issue_body(report_content)
-        
-        # Create the GitHub CLI command
-        gh_command = [
-            'gh', 'issue', 'create',
-            '--repo', f'{DSS_REPO}',
-            '--title', title,
-            '--body-file', '-',  # Read from stdin
-            '--label', 'installation-report',
-            '--label', f'platform-{platform}',
-            '--label', f'project-{project_type}'
-        ]
-        
-        # Save command and body to files for easy use
-        command_file = dest_path / "meta" / "github_issue_command.sh"
-        body_file = dest_path / "meta" / "github_issue_body.md"
-        
-        # Create platform-specific scripts
-        if self.platform == "windows":
-            # Create PowerShell script for Windows
-            ps_script = fr"""# PowerShell script to submit DSS installation report
+        try:
+            # Create a concise issue title
+            project_type = self.report_data['project_info'].get('type', 'unknown')
+            platform = self.report_data['platform']
+            # Add versioning info if applicable
+            version_info = ""
+            if not self.dss_path.name.endswith("-dss") and "-dss-" in self.dss_path.name:
+                try:
+                    version = self.dss_path.name.split("-dss-")[1]
+                    version_info = f" (v{version})"
+                except:
+                    pass
+            title_raw = f"DSS Installation Report: {project_type} project on {platform}{version_info}"
+            title = self._sanitize_title_for_github(title_raw)
+            
+            # Create GitHub issue body
+            issue_body = self._create_github_issue_body(report_content)
+            
+            # Validate labels before using them
+            proposed_labels = ['installation-report', f'platform-{platform}', f'project-{project_type}']
+            valid_labels = self._validate_github_labels(proposed_labels)
+            
+            # Create label arguments based on validation
+            if not valid_labels:
+                # If no labels are valid, don't use any to avoid errors
+                self._add_report_warning("No valid GitHub labels found - creating issue without labels")
+                label_args = []
+            else:
+                label_args = []
+                for label in valid_labels:
+                    label_args.extend(['--label', label])
+            
+            # Create the GitHub CLI command with validated labels
+            gh_command = [
+                'gh', 'issue', 'create',
+                '--repo', f'{DSS_REPO}',
+                '--title', title,
+                '--body-file', '-',  # Read from stdin
+            ] + label_args
+            
+            # Save command and body to files for easy use
+            command_file = dest_path / "meta" / "github_issue_command.sh"
+            body_file = dest_path / "meta" / "github_issue_body.md"
+            
+            # Create platform-specific scripts
+            if self.platform == "windows":
+                # Create PowerShell script for Windows with validated labels
+                label_commands = ""
+                if valid_labels:
+                    for label in valid_labels:
+                        label_commands += f'        --label "{label}" `\n'
+                
+                ps_script = fr"""# PowerShell script to submit DSS installation report
 
 Write-Host "Submitting DSS installation report to GitHub..." -ForegroundColor Cyan
 Write-Host "Repository: {DSS_REPO}" -ForegroundColor Cyan
 Write-Host "Title: {title}" -ForegroundColor Cyan
+Write-Host "Valid Labels: {', '.join(valid_labels) if valid_labels else 'None (will create without labels)'}" -ForegroundColor Cyan
 Write-Host ""
 
 # Check if GitHub CLI is installed
@@ -1387,141 +1496,41 @@ try {{
         --repo "{DSS_REPO}" `
         --title "{title}" `
         --body-file - `
-        --label "installation-report" `
-        --label "platform-{platform}" `
-        --label "project-{project_type}"
-    
-    Write-Host ""
-    Write-Host "Issue submitted! Thank you for helping improve DSS." -ForegroundColor Green
+{label_commands}
+    Write-Host "DSS installation report submitted successfully!" -ForegroundColor Green
 }} catch {{
-    Write-Host "Error submitting issue: $_" -ForegroundColor Red
-    Write-Host "Please try manually submitting the report from {body_file.name}" -ForegroundColor Yellow
-}} 
-"""
-            ps_file = dest_path / "meta" / "github_issue_command.ps1"
-            ps_file.write_text(ps_script, encoding='utf-8')
-            
-        # Create bash script for all platforms (Unix & Windows with Git Bash)
-        shell_script = fr"""#!/bin/bash
-# Generated GitHub CLI command to submit DSS installation report
-
-echo "Submitting DSS installation report to GitHub..."
-echo "Repository: {DSS_REPO}"
-echo "Title: {title}"
-echo ""
-
-# Submit the issue using GitHub CLI
-cat "{body_file.name}" | {' '.join(f'"{arg}"' if ' ' in arg else arg for arg in gh_command)}
-
-echo ""
-echo "Issue submitted! Thank you for helping improve DSS."
-"""
-        
-        command_file.write_text(shell_script, encoding='utf-8')
-        body_file.write_text(issue_body, encoding='utf-8')
-        
-        # Make shell script executable on Unix-like systems
-        try:
-            import stat
-            command_file.chmod(command_file.stat().st_mode | stat.S_IEXEC)
-        except:
-            pass
-        
-        if not quiet:
-            print(f"\n✅ GitHub submission files created:")
-            print(f"   📄 Issue body: {body_file}")
-            print(f"   🚀 Command script: {command_file}")
-            
-            if self.platform == "windows":
-                ps_file = dest_path / "meta" / "github_issue_command.ps1"
-                print(f"   🔷 PowerShell script: {ps_file}")
-                print(f"\nTo submit the issue (Windows):")
-                print(f"   1. Ensure GitHub CLI is installed: https://cli.github.com/")
-                print(f"   2. Authenticate: gh auth login")
-                print(f"   3. Run in PowerShell: {ps_file}")
-                print(f"   Or in Command Prompt: powershell -ExecutionPolicy Bypass -File {ps_file}")
-            else:
-                print(f"\nTo submit the issue:")
-                print(f"   1. Ensure GitHub CLI is installed: https://cli.github.com/")
-                print(f"   2. Authenticate: gh auth login")
-                print(f"   3. Run: {command_file}")
+    Write-Host "Failed to submit issue. Please try manually using the command:" -ForegroundColor Red
+    Write-Host "{' '.join(gh_command)}" -ForegroundColor Yellow
+    exit 1
+}}"""
                 
-            print(f"\nOr manually run:")
-            print(f"   cd {dest_path}")
-            print(f"   cat {body_file.name} | {' '.join(gh_command)}")
-    
-    def _create_github_issue_body(self, report_content: str) -> str:
-        """Create a GitHub issue body from the installation report."""
-        # Extract key sections for the GitHub issue
-        project_info = self.report_data['project_info']
-        
-        issue_body = fr"""## DSS Installation Report
-
-**Auto-generated installation report from DSS Bootstrap v{__version__}**
-
-### Quick Summary
-- **Project Type**: {project_info.get('type', 'unknown')}
-- **Technologies**: {', '.join(project_info.get('technologies', []))}
-- **Platform**: {self.report_data['platform']}
-- **Duration**: {self.report_data.get('total_duration', 0):.1f} seconds
-- **Transformation Method**: {self.report_data.get('transformation_method', 'unknown')}
-
-### Issues Encountered
-"""
-        
-        if self.report_data['issues']:
-            for issue in self.report_data['issues']:
-                severity_emoji = {"critical": "🔴", "error": "🟠", "warning": "🟡"}.get(issue['severity'], "ℹ️")
-                issue_body += f"- {severity_emoji} **{issue['severity'].title()}**: {issue['description']}\n"
-        else:
-            issue_body += "- ✅ No issues encountered\n"
-        
-        issue_body += "\n### Optimization Suggestions\n"
-        
-        if self.report_data['optimizations']:
-            for opt in self.report_data['optimizations']:
-                issue_body += f"- **{opt['category'].title()}**: {opt['suggestion']}\n"
-        else:
-            issue_body += "- No specific optimizations suggested\n"
-        
-        issue_body += fr"""
-### Validation Results
-"""
-        
-        passed = sum(1 for v in self.report_data['validation_results'].values() if v)
-        total = len(self.report_data['validation_results'])
-        issue_body += f"- **Validation Score**: {passed}/{total} checks passed\n"
-        
-        for check, status in self.report_data['validation_results'].items():
-            status_emoji = "✅" if status else "❌"
-            issue_body += f"- {status_emoji} {check}\n"
-        
-        issue_body += fr"""
-
-### Performance Metrics
-- **Total Duration**: {self.report_data.get('total_duration', 0):.2f} seconds
-"""
-        
-        for metric, data in self.report_data['performance_metrics'].items():
-            issue_body += f"- **{metric.replace('_', ' ').title()}**: {data['value']:.2f} {data['unit']}\n"
-        
-        issue_body += fr"""
-
----
-
-<details>
-<summary>Full Installation Report</summary>
-
-```markdown
-{report_content}
-```
-
-</details>
-
-**Note**: This report contains no sensitive data or file contents, only structural and performance information to help improve DSS.
-"""
-        
-        return issue_body
+                # Save PowerShell script
+                ps_script_file = dest_path / "meta" / "github_issue_command.ps1"
+                ps_script_file.write_text(ps_script, encoding='utf-8')
+                print(f"   ✅ PowerShell script saved to: {ps_script_file}")
+            
+            # Save GitHub CLI command and body for all platforms
+            command_file.write_text(f"{' '.join(gh_command)}\n", encoding='utf-8')
+            body_file.write_text(issue_body, encoding='utf-8')
+            
+            print(f"   ✅ GitHub CLI command saved to: {command_file}")
+            print(f"   ✅ GitHub issue body saved to: {body_file}")
+            
+            if not quiet:
+                print(f"🤖 AI Assistant Next Steps:")
+                print("Your DSS installation report is ready! When you chat with the AI assistant, it will:")
+                print("   • Offer to review the installation report")
+                print("   • Help you submit feedback to improve DSS")
+                print("   • Suggest project-specific improvements")
+                print("   • Assist with GitHub submission if requested")
+                print("\n📋 Simply open this project in Cursor and start chatting with the assistant")
+                
+            return True
+            
+        except Exception as e:
+            print(f"   ❌ Failed to generate GitHub CLI command: {e}")
+            self._add_report_issue(f"GitHub CLI command generation failed: {e}", "critical")
+            return False
 
 def main():
     """Enhanced main entry point with better argument handling."""
@@ -1581,4 +1590,4 @@ Examples:
     print(f"\n🎯 DSS Bootstrap v{__version__} completed successfully!")
 
 if __name__ == '__main__':
-    main() 
+    main()

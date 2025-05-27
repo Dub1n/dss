@@ -1,7 +1,7 @@
 ---
 tags: [assistant_workflow, meta, integration, transitions]
 provides: [assistant_workflow_transitions]
-requires: [meta/assistant_workflows/code_modification.md, meta/assistant_workflows/docs_driven_development.md, meta/assistant_workflows/task_decomposition.md, meta/assistant_workflows/quick_tasks.md, meta/assistant_workflows/documentation_refactoring.md, meta/assistant_guidelines/status_tracking.md, .cursor/rules/assistant.mdc]
+requires: [meta/assistant_workflows/code_modification.md, meta/assistant_workflows/docs_driven_development.md, meta/assistant_workflows/task_decomposition.md, meta/assistant_workflows/quick_tasks.md, meta/assistant_workflows/documentation_refactoring.md, meta/assistant_workflows/github_issues_integration.md, meta/assistant_guidelines/status_tracking.md, .cursor/rules/assistant.mdc]
 ---
 
 # Assistant Workflow: Cross-Workflow Transition Protocol
@@ -81,15 +81,15 @@ The DSS Assistant operates with core workflows that frequently interact:
 │  Development          │       │                       │
 │                       │       │                       │
 └───────────┬───────────┘       └───────────────────────┘
-            │
-            │
-            ▼
-┌───────────────────────┐
-│                       │
-│  Documentation        │
-│  Refactoring          │
-│                       │
-└───────────────────────┘
+            │                               │
+            │                               │
+            ▼                               ▼
+┌───────────────────────┐       ┌───────────────────────┐
+│                       │       │                       │
+│  Documentation        │◄─────►│  GitHub Issues        │
+│  Refactoring          │       │  Integration          │
+│                       │       │                       │
+└───────────────────────┘       └───────────────────────┘
 ```
 
 ### Context Preservation Guidelines
@@ -166,6 +166,29 @@ Are code changes needed in addition to documentation updates?
          │         ├── YES → Transition to Task Decomposition
          │         └── NO → Transition to Docs-Driven Development
          └── NO → Continue with Documentation Refactoring
+```
+
+#### From GitHub Issues Integration
+
+```
+What type of task was generated from the issue analysis?
+├── Bug fixes or feature implementations → Transition to Code Modification Workflow
+├── Complex multi-component improvements → Transition to Task Decomposition
+├── Documentation gaps or improvements → Transition to Documentation Refactoring
+├── New feature requests → Transition to Docs-Driven Development
+└── Simple maintenance tasks → Transition to Quick Tasks Workflow
+```
+
+#### To GitHub Issues Integration
+
+```
+Should GitHub Issues analysis be triggered?
+├── User asks "what should I work on?" → Trigger GitHub Issues Integration
+├── User mentions DSS improvements needed → Trigger GitHub Issues Integration  
+├── Weekly development review → Trigger GitHub Issues Integration
+├── Completion of major development tasks → Trigger GitHub Issues Integration
+├── User reports recurring problems → Trigger GitHub Issues Integration
+└── Working on specific DSS components → Trigger component-specific analysis
 ```
 
 ## Decision Points
