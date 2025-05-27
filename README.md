@@ -67,7 +67,7 @@ curl -sSL https://raw.githubusercontent.com/yourusername/dss_template_repo/main/
 dss-autoformat --source /path/to/your/repo --dest /path/to/dss/repo
 ```
 
-### Option 3: Manual Setup
+### Option 5: Manual Setup
 
 ```bash
 # Clone this template
