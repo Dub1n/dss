@@ -1,7 +1,7 @@
 ---
 tags: [assistant_guidelines, meta, maintenance]
 provides: [assistant_maintenance_checklist]
-requires: [meta/TODO.md, INDEX.md, meta/dss_config.yml, meta/roadmap.md, docs/automated_formatting, meta/assistant_guidelines/documentation_task_management.md, meta/guidelines/tag_conventions.md]
+requires: [meta/TODO.md, INDEX.md, meta/dss_config.yml, meta/roadmap.md, docs/automated_formatting, meta/assistant_guidelines/documentation_task_management.md, meta/guidelines/tag_conventions.md, meta/assistant_guidelines/installation_report_submission.md]
 ---
 
 # Assistant Guidelines: Maintenance Checklist
@@ -18,6 +18,11 @@ These tasks are integral to ensuring the integrity, discoverability, and current
     *   **Move Major Tasks to Completed:** *Triggered upon successfully completing a significant, multi-step, or user-requested task.* Move the `[x]` marked task from 'Tasks' to the 'Completed Tasks' section in `meta/TODO.md`.
     *   **Add Code Comments for TODOs:** *Triggered when a task in `meta/TODO.md` is directly related to a specific code location being discussed or modified.* Add a comment in the code referencing `meta/TODO.md` and the task.
     *   **Add Roadmap Links to TODOs:** *Triggered when reviewing `meta/TODO.md` tasks or when adding a new task that clearly aligns with a roadmap item.* Add `(@roadmap: [Section Name])` links where appropriate.
+
+-   **Installation Report Submission:**
+    *   **Guide GitHub Issue Submission:** *Triggered when a user mentions submitting installation reports, feedback, or GitHub issues.* Refer to the [Installation Report Submission Guidelines](mdc:meta/assistant_guidelines/installation_report_submission.md) to provide accurate guidance on the submission process with label validation.
+    *   **Handle Label Errors:** *Triggered when a user reports label-related errors during GitHub issue submission.* Explain the label validation process and assure the user that the content is more important than the labels.
+    *   **Recommend Script Updates:** *Triggered when troubleshooting installation report submission issues.* Check if the user has the latest version of the DSS Bootstrap script with label validation.
 
 -   **Index Maintenance:**
     *   **Update INDEX.md:** *Triggered whenever a file is created, deleted, moved, or renamed, or when a significant new section or directory is added or removed.* Update `INDEX.md` to accurately reflect the current project structure.
