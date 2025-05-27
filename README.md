@@ -28,7 +28,7 @@ Data SuperStructure (DSS) is a structured, LLM-compatible project framework desi
 
 ### Option 1: Voice Command (Instant!) 🎙️
 
-**Open any repository in Cursor and say:**
+**drop the [bootstrapper](github.com/Dub1n/dss/blob/main/meta/scripts/dss_bootstrap.py) into any repository in Cursor and say:**
 - **"Format this repo"** 
 - **"Apply DSS formatting"**
 - **"Transform to DSS structure"**
