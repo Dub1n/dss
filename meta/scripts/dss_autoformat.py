@@ -412,6 +412,9 @@ class DSSAutoFormatter:
         
         # Set up git repository if source had git
         self._setup_git_repository()
+        
+        # Set up Cursor assistant integration
+        self._setup_cursor_integration()
     
     def _validate_transformation(self) -> bool:
         """Phase 6: Validate the transformation."""
@@ -653,6 +656,74 @@ For more information about DSS, visit:
             
         except Exception as e:
             self.logger.warning(f"Could not set up git repository: {e}")
+    
+    def _setup_cursor_integration(self):
+        """Set up Cursor assistant integration with DSS intelligence."""
+        try:
+            # Download and run cursor rules manager
+            import urllib.request
+            import tempfile
+            import subprocess
+            
+            url = f"{DEFAULT_DSS_TEMPLATE_URL}/raw/main/meta/scripts/cursor_rules_manager.py"
+            
+            with tempfile.NamedTemporaryFile(mode='w+', suffix='.py', delete=False) as tmp:
+                try:
+                    with urllib.request.urlopen(url) as response:
+                        tmp.write(response.read().decode())
+                    tmp_path = tmp.name
+                except urllib.error.URLError:
+                    self.logger.warning("Could not download Cursor rules manager - skipping Cursor integration")
+                    return
+            
+            # Determine project type based on files
+            project_type = self._detect_project_type()
+            
+            # Run the cursor rules manager
+            result = subprocess.run([
+                sys.executable, tmp_path, "install",
+                "--project-type", project_type,
+                "--repo-root", str(self.dest_path)
+            ], capture_output=True, text=True, cwd=self.dest_path)
+            
+            # Cleanup
+            Path(tmp_path).unlink()
+            
+            if result.returncode == 0:
+                self.logger.info("✅ Cursor assistant integration installed")
+                self.logger.info("   Your AI assistant now understands DSS conventions!")
+            else:
+                self.logger.warning(f"Cursor integration warning: {result.stderr}")
+        
+        except Exception as e:
+            self.logger.error(f"Failed to setup Cursor integration: {e}")
+    
+    def _detect_project_type(self) -> str:
+        """Detect project type based on files and structure."""
+        # Check for common patterns
+        files = list(self.dest_path.rglob('*'))
+        file_names = [f.name.lower() for f in files]
+        file_extensions = [f.suffix.lower() for f in files]
+        
+        # Data science indicators
+        if any(ext in file_extensions for ext in ['.ipynb', '.csv', '.parquet']) or \
+           any(name in file_names for name in ['requirements.txt', 'environment.yml', 'conda.yml']):
+            return "data_science"
+        
+        # Web application indicators  
+        if any(name in file_names for name in ['package.json', 'webpack.config.js', 'next.config.js']) or \
+           any(ext in file_extensions for ext in ['.js', '.ts', '.jsx', '.tsx', '.vue']):
+            return "web_application"
+        
+        # Python package indicators
+        if any(name in file_names for name in ['setup.py', 'pyproject.toml', '__init__.py']):
+            return "python_package"
+        
+        # Documentation project indicators
+        if len([f for f in files if f.suffix.lower() == '.md']) > len(files) * 0.5:
+            return "documentation"
+        
+        return "general"
     
     def _validate_structure(self) -> bool:
         """Validate that DSS structure was created correctly."""
