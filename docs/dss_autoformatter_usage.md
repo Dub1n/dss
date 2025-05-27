@@ -191,7 +191,21 @@ cd my-project-dss
 tree -L 2
 ```
 
-### 2. Update File Descriptions
+### 2. Verify Cursor Integration (if using Cursor IDE)
+
+Check that the AI assistant intelligence was installed correctly:
+
+```bash
+# Check that Cursor rules were installed
+ls .cursor/rules/
+# Should show: assistant.mdc, dss-overview.mdc, dss-guide.mdc, etc.
+
+# Test the assistant - open any file in Cursor and ask:
+# "Create a new analysis notebook following DSS conventions"
+# The assistant should understand DSS structure and apply proper frontmatter
+```
+
+### 3. Update File Descriptions
 
 Edit the generated `README.md` files in each directory to add meaningful descriptions:
 
@@ -204,7 +218,7 @@ Edit the generated `README.md` files in each directory to add meaningful descrip
 | model.py | Model architecture and utilities |
 ```
 
-### 3. Set Up Development Environment
+### 4. Set Up Development Environment
 
 ```bash
 # Create virtual environment
@@ -218,7 +232,7 @@ pip install -r meta/requirements.txt
 python src/main.py  # or whatever your entry point is
 ```
 
-### 4. Review and Update Metadata
+### 5. Review and Update Metadata
 
 Check the YAML front-matter added to files and update as needed:
 
@@ -230,7 +244,7 @@ requires: [data/training_data.csv, src/model.py]
 ---
 ```
 
-### 5. Generate Documentation
+### 6. Generate Documentation
 
 If you have an OpenAI API key, generate comprehensive documentation:
 

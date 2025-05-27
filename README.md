@@ -98,6 +98,7 @@ The DSS auto-formatter intelligently transforms any repository into DSS structur
 
 * **Multi-phase processing**: Discovery → Classification → Planning → Execution → Enhancement → Validation
 * **LLM-assisted classification** for ambiguous files
+* **Cursor AI assistant integration** with project-specific context and DSS intelligence
 * **Safe transformation** with automatic rollback on failure
 * **Dependency analysis** and import updating
 * **Metadata injection** with intelligent tag generation
@@ -136,7 +137,8 @@ For comprehensive documentation, see [Automated Formatting Guide](docs/automated
 - [Template System](meta/templates/README.md) - Standardized file templates
 
 ### Integration
-- [Cursor IDE Setup](.cursor/rules/assistant.mdc) - AI assistant configuration
+- [Cursor Integration Guide](docs/cursor_integration.md) - Complete Cursor AI assistant setup and propagation
+- [Cursor IDE Setup](.cursor/rules/assistant.mdc) - AI assistant configuration files
 - [VS Code Integration](meta/integrations/vscode.md) - Editor plugins and workflows
 - [CI/CD Integration](meta/integrations/github_actions.yml) - Automated workflows
 
