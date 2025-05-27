@@ -26,7 +26,26 @@ Data SuperStructure (DSS) is a structured, LLM-compatible project framework desi
 
 ## 🚀 Quick Start
 
-### Option 1: Use as GitHub Template
+### Option 1: Voice Command (Instant!) 🎙️
+
+**Open any repository in Cursor and say:**
+- **"Format this repo"** 
+- **"Apply DSS formatting"**
+- **"Transform to DSS structure"**
+
+The AI assistant will guide you through instant transformation with full intelligence integration!
+
+### Option 2: One-File Bootstrap
+
+```bash
+# Download and run the bootstrap
+curl -sSL https://raw.githubusercontent.com/yourusername/dss_template_repo/main/meta/scripts/dss_bootstrap.py -o dss_bootstrap.py
+python dss_bootstrap.py
+```
+
+**Result:** 2-minute transformation with Cursor AI intelligence!
+
+### Option 3: Use as GitHub Template
 
 1. Click the **"Use this template"** button above or [create a new repository from this template](https://github.com/yourusername/dss_template_repo/generate)
 2. Clone your new repository
@@ -36,19 +55,16 @@ Data SuperStructure (DSS) is a structured, LLM-compatible project framework desi
    python meta/scripts/init_dss_project.py --name "Your Project" --description "Your description"
    ```
 
-### Option 2: Auto-format Existing Repository
+### Option 4: Advanced Auto-formatter
 
-Transform any existing repository into DSS structure:
+Transform any existing repository with full control:
 
 ```bash
-# Install the DSS auto-formatter
-pip install dss-autoformatter
-
-# Or download the standalone script
-curl -O https://raw.githubusercontent.com/yourusername/dss_template_repo/main/meta/scripts/dss_autoformat.py
+# Download the full auto-formatter
+curl -sSL https://raw.githubusercontent.com/yourusername/dss_template_repo/main/meta/scripts/install_dss_autoformatter.py | python3
 
 # Format your repository
-python dss_autoformat.py --source /path/to/your/repo --output /path/to/dss/repo
+dss-autoformat --source /path/to/your/repo --dest /path/to/dss/repo
 ```
 
 ### Option 3: Manual Setup
@@ -127,6 +143,7 @@ For comprehensive documentation, see [Automated Formatting Guide](docs/automated
 ## 📖 Documentation
 
 ### Getting Started
+- [DSS Bootstrap Guide](docs/dss_bootstrap_guide.md) - **⚡ Instant transformation with voice commands**
 - [Getting Started Guide](docs/getting_started.md) - Complete setup and usage guide
 - [DSS Overview](meta/DSS_GUIDE.md) - Core concepts and principles
 - [Configuration](meta/dss_config.yml) - Customization options
