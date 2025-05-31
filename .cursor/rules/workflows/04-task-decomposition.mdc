@@ -1,5 +1,47 @@
 ---
-description:
-globs:
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
+# Task Decomposition Workflow
+
+**For**: Complex, multi-step tasks requiring coordination
+
+## Criteria
+MOST must be met:
+- **Complexity**: Multi-step, cannot complete in single cycle
+- **Coordination**: Spans multiple files, systems, or workflows
+- **Planning Benefit**: Explicit dependency tracking needed
+- **Duration**: May span multiple interactions or phases
+- **Uncertainty**: Scope unclear, needs structured exploration
+
+## Process
+Break into phases → Document plan → Execute incrementally → Update
+
+## Examples
+- Complex features
+- Large refactoring
+- Multi-phase rollouts
+- Integration projects
+- Research tasks
+
+## Execution Guidelines (8 steps)
+1. **Identify Top-Level Task**: Clear goal and success criteria
+2. **Break Down into Major Phases**: 3-5 logical phases
+3. **Decompose to Atomic Subtasks**: 1-5 minute atomic actions
+4. **Annotate Each Subtask**: Inputs, outputs, dependencies, estimates
+5. **Add Tags, Links and References**: Categorization and cross-references
+6. **Create Status Summary Table**: Track completion progress
+7. **Document the Task Breakdown**: Create task file or document in conversation
+8. **Execute and Track Progress**: Follow hierarchy, update status
+
+## Status Indicators
+- `[NOT STARTED]` - Work has not yet begun
+- `[IN PROGRESS]` - Work has started but is not complete  
+- `[BLOCKED]` - Cannot proceed due to dependencies
+- `[COMPLETED]` - Task finished and verified
+- `[DEFERRED]` - Intentionally postponed
+
+## When to De-escalate
+- **→ Other workflows**: Individual subtasks fit simpler patterns
+
