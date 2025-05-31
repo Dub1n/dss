@@ -1,5 +1,100 @@
 ---
-description:
-globs:
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
+# Workflow Selection & Decision Tree
+
+## All Available Workflows
+
+1. **Quick Tasks** - Simple, atomic tasks (1-2 files, single interaction)
+2. **Code Modification** - Development-focused source code changes
+3. **Documentation-Driven Development** - Documentation-first planning tasks
+4. **Task Decomposition** - Complex, multi-step coordination tasks
+5. **Documentation Refactoring** - Systematic updates across multiple docs
+6. **GitHub Issues Integration** - Processing community feedback into development tasks
+
+## Enhanced Selection Decision Tree
+
+```
+1. Is this primarily about processing GitHub Issues/feedback?
+   YES → GitHub Issues Integration
+   NO → Continue
+
+2. Is this systematic documentation updates across multiple files?
+   YES → Documentation Refactoring  
+   NO → Continue
+
+3. Task affects > 2 files OR requires multiple steps?
+   YES → Consider Task Decomposition
+   NO → Continue
+
+4. Task primarily involves source code changes?
+   YES → Code Modification
+   NO → Continue
+
+5. Task focuses on creating documentation/planning?
+   YES → Documentation-Driven Development
+   NO → Continue
+
+6. Task meets ALL Quick Tasks criteria?
+   YES → Quick Tasks
+   NO → Re-evaluate with Task Decomposition
+```
+
+## Workflow Comparison Matrix
+
+| Workflow | Scope | Files Affected | Primary Focus | Duration |
+|----------|-------|----------------|---------------|----------|
+| Quick Tasks | 1-2 files | Minimal | Single fix/addition | <30 min |
+| Code Modification | 2-5 files | Moderate | Source code changes | 1-3 hours |
+| Documentation-Driven | Variable | Moderate | Planning/specification | 1-2 hours |
+| Documentation Refactoring | 3+ files | Multiple docs | Systematic doc updates | 2-4 hours |
+| Task Decomposition | Many files | Extensive | Complex coordination | Multiple sessions |
+| GitHub Issues Integration | Variable | Variable | Community feedback processing | Ongoing |
+
+## Workflow Transitions
+
+### When to Escalate
+- **Quick Tasks → Code Modification**: Task affects more files than assessed
+- **Quick Tasks → Documentation-Driven**: Significant documentation needed
+- **Code Modification → Task Decomposition**: Task affects >5 files or requires complex coordination
+- **Documentation-Driven → Code Modification**: Moving from docs to implementation
+- **Any workflow → GitHub Issues Integration**: Pattern emerges from multiple user reports
+
+### When to De-escalate  
+- **Any workflow → Quick Tasks**: Task simpler than initially assessed
+- **Task Decomposition → Other workflows**: Individual subtasks fit simpler patterns
+- **Documentation Refactoring → Quick Tasks**: Changes affect fewer files than expected
+
+### Transition Protocol
+When transitioning workflows:
+1. Preserve completed work from current workflow
+2. Assess what criteria triggered the transition
+3. Resume appropriate workflow from relevant step
+4. Update task documentation to reflect transition
+
+## Integration with DSS Maintenance
+
+### Automatic Maintenance Triggers
+All workflows integrate these maintenance behaviors:
+
+- **New file created** → Add appropriate frontmatter with tags/provides/requires
+- **File moved/renamed** → Update cross-references in documentation  
+- **Structure changed** → Update INDEX.md to reflect changes
+- **Dependencies changed** → Update provides/requires metadata
+- **Documentation outdated** → Suggest updates or corrections
+
+### Template-First Approach
+Before creating any new file:
+1. Check `meta/templates/` for existing template
+2. Use template if available, customize for specific use case
+3. Follow template frontmatter patterns
+4. Maintain template structure and conventions
+
+### Cross-Reference Management
+- Use MDC links (`mdc:path/to/file`) for internal references
+- Update links when files are moved or renamed
+- Validate link integrity after structural changes
+- Maintain provides/requires relationships
+

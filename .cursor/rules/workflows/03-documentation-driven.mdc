@@ -1,5 +1,40 @@
 ---
-description:
-globs:
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
+# Documentation-Driven Development Workflow
+
+**For**: Documentation-first or planning-heavy tasks
+
+## Criteria
+MOST must be met:
+- **Documentation Focus**: Primary deliverable is documentation
+- **Planning Requirement**: Benefits from specification before implementation
+- **Communication Need**: Clarifies requirements with stakeholders
+- **Implementation Uncertainty**: Code details unclear, docs help define
+- **Template Availability**: Appropriate templates exist
+
+## Process
+Analyze structure → Generate following patterns → Cross-link
+
+## Examples
+- Feature specifications
+- Integration guides
+- API documentation
+- Workflow documentation
+- Design documents
+
+## Execution Guidelines (5 steps)
+1. **Create New Documentation File**: Check templates first
+2. **Add Initial Structure & Frontmatter**: Use template, proper YAML
+3. **Develop Comprehensive Content**: Detailed content with examples
+4. **Generate Code Stubs (Optional)**: Based on documentation if applicable
+5. **Refine and Integrate**: Review and potentially transition to Code Modification
+
+## When to Transition
+- **→ Code Modification**: Moving from docs to implementation
+
+## When to De-escalate
+- **→ Quick Tasks**: Task simpler than initially assessed
+

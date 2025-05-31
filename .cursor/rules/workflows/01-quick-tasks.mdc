@@ -1,5 +1,39 @@
 ---
-description:
-globs:
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
+# Quick Tasks Workflow
+
+**For**: Simple, atomic tasks requiring minimal complexity
+
+## Criteria
+ALL must be met:
+- **Scope**: Changes to at most 1-2 files
+- **Complexity**: Single interaction completion
+- **Risk**: Low potential for errors or breakage
+- **Dependencies**: Minimal or no dependencies
+- **Documentation Impact**: Minimal updates required
+
+## Process
+Make change → Update metadata → Done
+
+## Examples
+- Text corrections
+- Simple tags
+- Minor fixes  
+- TODO additions
+- Template-based file creation
+
+## Execution Guidelines (1-2 steps)
+1. **Quick Assessment**: Verify all criteria met
+2. **Minimal Context**: Read only directly relevant files
+3. **Focused Execution**: Avoid scope creep
+4. **Essential Maintenance**: Only critical updates
+5. **Quick Verification**: Check specific change only
+
+## When to Escalate
+- **→ Code Modification**: Task affects more files than assessed
+- **→ Documentation-Driven**: Significant documentation needed
+- **→ Task Decomposition**: Task more complex than initially assessed
+

@@ -1,5 +1,40 @@
 ---
-description:
-globs:
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
+# Code Modification Workflow
+
+**For**: Development-focused tasks affecting source code
+
+## Criteria
+MOST must be met:
+- **Primary Focus**: Creating, editing, or refactoring source code
+- **API Impact**: May affect public APIs or interfaces
+- **Architecture Integration**: Needs architecture documentation updates
+- **Testing Requirements**: Requires test updates or validation
+- **Documentation Coupling**: Code changes need doc updates
+
+## Process
+Analyze → Check templates → Implement → Update docs → Update deps
+
+## Examples
+- New functions/classes
+- Refactoring
+- API extensions
+- Bug fixes
+- Dependency integration
+
+## Execution Guidelines (5 steps)
+1. **Locate Documentation Context**: Find existing docs and specs
+2. **Update Documentation and Metadata**: YAML frontmatter, tags, summaries
+3. **Handle Public API Changes**: Update API reference and architecture
+4. **Update Project Tracking**: Move roadmap items, document progress
+5. **Validate and Link Check**: Frontmatter validation, fix dead links
+
+## When to Escalate
+- **→ Task Decomposition**: Task affects >5 files or requires complex coordination
+
+## When to De-escalate
+- **→ Quick Tasks**: Task simpler than initially assessed
+

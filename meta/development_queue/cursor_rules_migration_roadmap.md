@@ -33,13 +33,26 @@ dss_template_repo/
 4. **Improve maintainability**: Make rules easier to update and customize
 5. **Enable version control**: Let users track DSS updates via git
 
+## ⚠️ Critical Requirements for Cursor Rules
+
+### File Naming Requirements
+- **Must use kebab-case**: `00-dss-core.mdc`, `01-dss-behavior.mdc`
+- **Must have .mdc extension**: Cursor only loads .mdc files as rules
+- **Sequential numbering**: Use 00-, 01-, 02- prefixes for loading order
+- **Not .md**: Markdown files (.md) are NOT loaded as rules by Cursor
+
+### Manual Cursor Configuration Required
+- User must manually set new rule files to "Always included in prompts" in Cursor
+- Cannot be automated - requires manual UI interaction in Cursor
+- Each new rule file needs individual configuration
+
 ## Detailed Migration Tasks
 
 ### Phase 1: Create New Rules Structure (Days 1-3)
 
 #### Day 1: Core Rules Files
 
-##### Task 1.1: Create `.cursor/rules/00_dss_core.md`
+##### Task 1.1: Create `.cursor/rules/00-dss-core.mdc`
 **Goal**: Establish fundamental DSS concepts for AI understanding
 
 **Subtasks**:
@@ -63,25 +76,34 @@ dss_template_repo/
    - Include data patterns: `**/*.csv`, `**/*.json`, `**/*.parquet`
    - Include docs patterns: `**/*.md`, `**/*.rst`
 
+5. **Save with correct naming: `00-dss-core.mdc`**
+   - Use kebab-case naming
+   - Use .mdc extension (not .md)
+   - Include sequential prefix 00-
+
 **Validation**:
 - [ ] File contains all 6 core folder definitions
 - [ ] Metadata fields (tags, provides, requires) are documented with examples
 - [ ] Archive convention is clearly stated
 - [ ] File follows DSS frontmatter format
+- [ ] File named correctly: `00-dss-core.mdc`
 
-##### Task 1.2: Create `.cursor/rules/01_dss_behavior.md`
+##### Task 1.2: Create `.cursor/rules/01-dss-behavior.mdc`
 **Goal**: Define assistant personality and core behaviors
 
 **Subtasks**:
-1. **Extract Riley personality from `.cursor/rules/assistant.mdc` lines 1-20**
+1. **Extract Riley personality from user-specific rules**
    - Include "nonbinary senior code dev" definition
    - Add "thoughtful PR reviewer" behavior
    - Include "concise with care" communication style
+   - Add incremental work approach
+   - Include collaborative peer mindset
 
 2. **Extract behavior rules from `meta/assistant_guidelines/`**
    - Consolidate from `documentation_task_management.md`
    - Include from `maintenance_checklist.md`
    - Add from `installation_report_submission.md`
+   - Extract from `overarching_principles.md`
 
 3. **Add frontmatter preservation rules**
    - Document preservation for .md, .py, .ipynb files
@@ -99,6 +121,12 @@ dss_template_repo/
    - Include line number citation format: `12:15:file.tsx`
    - Add architectural reasoning requirements
    - Include transparency expectations
+   - Add dry humor permission
+
+6. **Save with correct naming: `01-dss-behavior.mdc`**
+   - Use kebab-case naming
+   - Use .mdc extension (not .md)
+   - Include sequential prefix 01-
 
 **Validation**:
 - [ ] Riley personality is fully defined
@@ -106,39 +134,50 @@ dss_template_repo/
 - [ ] File creation workflow has 5 clear steps
 - [ ] Response style includes citation format
 - [ ] File follows DSS frontmatter format
+- [ ] File named correctly: `01-dss-behavior.mdc`
 
 ##### Task 1.3: Test Core Rules
 **Goal**: Verify new rules work correctly
 
 **Subtasks**:
-1. **Backup current rules**
-   - Rename `assistant.mdc` → `assistant.mdc.backup`
-   - Rename `dss-overview.mdc` → `dss-overview.mdc.backup`
+1. **Backup old rules**
+   - Rename old `.mdc` files to `.mdc.backup`
+   - Keep only new `00-dss-core.mdc` and `01-dss-behavior.mdc` active
+   - Ensure clean testing environment
 
-2. **Test with simple DSS task**
+2. **Manual Cursor configuration**
+   - User must set `00-dss-core.mdc` to "Always included in prompts"
+   - User must set `01-dss-behavior.mdc` to "Always included in prompts"
+   - Cannot be automated - requires manual UI steps
+
+3. **Test with simple DSS task**
    - Create a new markdown file
    - Verify frontmatter is added correctly
    - Check that INDEX.md update is suggested
 
-3. **Test personality consistency**
+4. **Test personality consistency**
    - Ask for code review
    - Verify Riley personality shows through
    - Check response style matches guidelines
+   - Confirm incremental approach
 
-4. **Validate rule loading**
-   - Confirm Cursor loads new rules
-   - Check no syntax errors in markdown
+5. **Validate rule loading**
+   - Confirm Cursor loads new .mdc rules
+   - Check no syntax errors in rule files
    - Verify behavior changes are active
+   - Test that old rules are not interfering
 
 **Validation**:
-- [ ] Backup files created successfully
-- [ ] New file creation follows workflow
+- [ ] Backup files created successfully (`.mdc.backup`)
+- [ ] Only new rule files active in `.cursor/rules/`
+- [ ] New file creation follows 5-step workflow
 - [ ] AI personality matches Riley definition
 - [ ] No rule loading errors
+- [ ] User has manually configured Cursor to include new rules
 
 #### Day 2: Workflow Rules
 
-##### Task 2.1: Create `.cursor/rules/02_dss_workflows.md`
+##### Task 2.1: Create `.cursor/rules/02-dss-workflows.mdc`
 **Goal**: Convert workflow documentation into actionable rules
 
 **Subtasks**:
@@ -167,11 +206,17 @@ dss_template_repo/
    - Include complexity indicators
    - Add transition points between workflows
 
+6. **Save with correct naming: `02-dss-workflows.mdc`**
+   - Use kebab-case naming
+   - Use .mdc extension
+   - Include sequential prefix 02-
+
 **Validation**:
 - [ ] All 4 workflow types are documented
 - [ ] Each workflow has clear process steps
 - [ ] Decision tree helps choose workflow
 - [ ] File follows DSS frontmatter format
+- [ ] File named correctly: `02-dss-workflows.mdc`
 
 ##### Task 2.2: Cross-reference workflow files
 **Goal**: Ensure workflow integration works correctly
@@ -225,7 +270,7 @@ dss_template_repo/
 
 #### Day 3: Templates and Maintenance
 
-##### Task 3.1: Create `.cursor/rules/03_dss_templates.md`
+##### Task 3.1: Create `.cursor/rules/03-dss-templates.mdc`
 **Goal**: Consolidate template information for easy AI access
 
 **Subtasks**:
@@ -255,14 +300,20 @@ dss_template_repo/
    - How to customize templates
    - Template inheritance rules
 
+6. **Save with correct naming: `03-dss-templates.mdc`**
+   - Use kebab-case naming
+   - Use .mdc extension
+   - Include sequential prefix 03-
+
 **Validation**:
 - [ ] Python template includes frontmatter and docstrings
 - [ ] Documentation template has all 4 sections
 - [ ] Common patterns are extracted and documented
 - [ ] Usage guidelines are clear
 - [ ] File follows DSS frontmatter format
+- [ ] File named correctly: `03-dss-templates.mdc`
 
-##### Task 3.2: Create `.cursor/rules/04_dss_maintenance.md`
+##### Task 3.2: Create `.cursor/rules/04-dss-maintenance.mdc`
 **Goal**: Define automatic maintenance behaviors
 
 **Subtasks**:
@@ -292,12 +343,18 @@ dss_template_repo/
    - Dependency graph consistency
    - Archive compliance
 
+5. **Save with correct naming: `04-dss-maintenance.mdc`**
+   - Use kebab-case naming
+   - Use .mdc extension
+   - Include sequential prefix 04-
+
 **Validation**:
 - [ ] All 5 automatic triggers are documented
 - [ ] Regular tasks are clearly defined
 - [ ] 5-step workflow is documented
 - [ ] Validation rules are comprehensive
 - [ ] File follows DSS frontmatter format
+- [ ] File named correctly: `04-dss-maintenance.mdc`
 
 ##### Task 3.3: Create `.cursor/rules/config/` directory
 **Goal**: Provide default configuration and templates
@@ -337,11 +394,13 @@ dss_template_repo/
    - Provide curl command for downloading
    - Include manual download steps
    - Add verification steps
+   - **Important**: Emphasize .mdc file requirements
 
 2. **Document Method 2: Git Submodule**
    - Step-by-step submodule setup
    - Symlink creation commands
    - Update procedures
+   - **Important**: Note that .mdc files need manual Cursor configuration
 
 3. **Document Method 3: Git Subtree**
    - Subtree add command
@@ -352,11 +411,13 @@ dss_template_repo/
    - Common issues and solutions
    - Platform-specific considerations
    - Verification procedures
+   - **Important**: Cursor rule configuration troubleshooting
 
 5. **Include customization guide**
    - How to add local overrides
    - Configuration modification
    - Template customization
+   - **Important**: File naming requirements for new rules
 
 **Validation**:
 - [ ] All 3 integration methods documented
@@ -364,6 +425,8 @@ dss_template_repo/
 - [ ] Troubleshooting covers common issues
 - [ ] Customization guide is complete
 - [ ] File follows DSS frontmatter format
+- [ ] .mdc requirements clearly documented
+- [ ] Manual Cursor configuration steps included
 
 ##### Task 4.2: Create update scripts
 **Goal**: Convenient update mechanisms for users
@@ -374,23 +437,27 @@ dss_template_repo/
    - Backup existing rules before update
    - Validate downloaded files
    - Restore customizations if possible
+   - **Important**: Preserve .mdc file extensions
 
 2. **Create `validate-dss-rules.py` script**
    - Check frontmatter format in all rule files
    - Validate markdown syntax
    - Verify file references exist
    - Check configuration consistency
+   - **Important**: Validate .mdc file naming
 
 3. **Add update documentation**
    - When to update
    - How to preserve customizations
    - Rollback procedures
+   - **Important**: Note that Cursor configuration may need manual update
 
 **Validation**:
 - [ ] Update script downloads correctly
 - [ ] Validation script catches errors
 - [ ] Documentation covers update process
 - [ ] Scripts work on Windows/Mac/Linux
+- [ ] .mdc naming validation included
 
 ##### Task 4.3: Test distribution methods
 **Goal**: Verify all integration approaches work
@@ -400,6 +467,7 @@ dss_template_repo/
    - Download with curl command
    - Verify all files copied correctly
    - Test AI behavior works immediately
+   - **Important**: Verify .mdc files are copied with correct extensions
 
 2. **Test git submodule method**
    - Add submodule to test repository
@@ -416,277 +484,18 @@ dss_template_repo/
    - Test on macOS Terminal
    - Test on Linux bash
 
+5. **Test Cursor integration**
+   - Verify .mdc files load in Cursor
+   - Test manual configuration process
+   - Verify rule behavior changes
+
 **Validation**:
 - [ ] Direct copy works on all platforms
 - [ ] Submodule setup completes successfully
 - [ ] Subtree updates work correctly
 - [ ] All methods preserve functionality
-
-#### Day 5: Documentation Updates
-
-##### Task 5.1: Update `README.md`
-**Goal**: Replace bootstrap instructions with rules-based approach
-
-**Subtasks**:
-1. **Replace installation section**
-   - Remove bootstrap script references
-   - Add 3 integration methods
-   - Include quick start guide
-
-2. **Update project overview**
-   - Explain rules-based distribution
-   - Highlight simplicity benefits
-   - Update workflow descriptions
-
-3. **Add migration section**
-   - Guide for existing users
-   - Deprecation timeline
-   - Support information
-
-**Validation**:
-- [ ] Bootstrap references removed
-- [ ] 3 integration methods documented
-- [ ] Migration guide is clear
-- [ ] File follows DSS structure
-
-##### Task 5.2: Update project documentation
-**Goal**: Align all docs with new approach
-
-**Subtasks**:
-1. **Update `docs/DSS_OVERVIEW.md`**
-   - Remove bootstrap script references
-   - Add rules distribution explanation
-   - Update getting started section
-
-2. **Update `INDEX.md`**
-   - Reflect new repository structure
-   - Add .cursor/rules/ section
-   - Update file organization
-
-3. **Create migration guide**
-   - Document migration steps for existing users
-   - Include backup procedures
-   - Add troubleshooting for migration issues
-
-**Validation**:
-- [ ] Overview updated consistently
-- [ ] INDEX.md reflects new structure
-- [ ] Migration guide is comprehensive
-- [ ] All docs reference new approach
-
-#### Day 6: Testing and Validation
-
-##### Task 6.1: Integration testing
-**Goal**: Comprehensive testing across scenarios
-
-**Subtasks**:
-1. **Test with fresh repository**
-   - Create new empty repository
-   - Install DSS rules using each method
-   - Verify AI behavior is correct
-   - Test file creation and maintenance
-
-2. **Test with existing DSS project**
-   - Use current DSS project
-   - Replace old rules with new ones
-   - Verify no behavior regression
-   - Test all workflows
-
-3. **Test update scenarios**
-   - Simulate rule updates
-   - Test each update method
-   - Verify customizations preserved
-   - Check for conflicts
-
-**Validation**:
-- [ ] Fresh install works perfectly
-- [ ] Existing projects migrate successfully
-- [ ] Updates work smoothly
-- [ ] No functionality lost
-
-##### Task 6.2: User experience testing
-**Goal**: Ensure setup is truly simple
-
-**Subtasks**:
-1. **Time setup process**
-   - Measure direct copy: target < 2 minutes
-   - Measure submodule setup: target < 5 minutes
-   - Measure subtree setup: target < 3 minutes
-
-2. **Test with non-technical users**
-   - Provide instructions only
-   - Observe friction points
-   - Document common questions
-
-3. **Validate documentation clarity**
-   - Check instructions are unambiguous
-   - Verify examples work exactly as written
-   - Test troubleshooting effectiveness
-
-**Validation**:
-- [ ] All methods complete within time targets
-- [ ] Non-technical users succeed
-- [ ] Documentation needs no clarification
-- [ ] Troubleshooting resolves issues
-
-### Phase 3: Migration Execution (Days 7-9)
-
-#### Day 7: Repository Restructure
-
-##### Task 7.1: Clean up meta directory
-**Goal**: Remove user-facing content, keep development tools
-
-**Subtasks**:
-1. **Archive obsolete files**
-   - Move `meta/assistant_guidelines/` → `docs/🔒archive/assistant_guidelines/`
-   - Move `meta/assistant_workflows/` → `docs/🔒archive/assistant_workflows/`
-   - Move `dss_bootstrap.py` → `docs/🔒archive/dss_bootstrap.py`
-
-2. **Keep development tools in meta/**
-   - Retain `meta/scripts/` for DSS development
-   - Keep `meta/config/` for development configuration
-   - Maintain `meta/development_queue/` for roadmap items
-
-3. **Update meta/dss_config.yml**
-   - Add note that this is for DSS development
-   - Reference rules/config/dss_config.yml for users
-   - Update ignore patterns if needed
-
-**Validation**:
-- [ ] User-facing content moved to archive
-- [ ] Development tools remain in meta/
-- [ ] Config file properly referenced
-- [ ] Archive follows convention
-
-##### Task 7.2: Update file references
-**Goal**: Fix all broken links and references
-
-**Subtasks**:
-1. **Update internal documentation links**
-   - Fix links in `docs/` files
-   - Update `INDEX.md` references
-   - Correct `meta/` documentation
-
-2. **Update script imports**
-   - Fix imports in `src/` files
-   - Update script references
-   - Correct configuration paths
-
-3. **Fix cross-references**
-   - Update provides/requires relationships
-   - Fix template references
-   - Correct workflow links
-
-**Validation**:
-- [ ] No broken links in documentation
-- [ ] Scripts import correctly
-- [ ] All cross-references work
-- [ ] Provides/requires are accurate
-
-##### Task 7.3: Repository structure validation
-**Goal**: Ensure new structure follows DSS conventions
-
-**Subtasks**:
-1. **Validate folder structure**
-   - Check .cursor/rules/ organization
-   - Verify meta/ contains only development tools
-   - Confirm docs/ structure is correct
-
-2. **Update INDEX.md**
-   - Reflect new .cursor/rules/ section
-   - Update meta/ description
-   - Add migration notes
-
-3. **Validate metadata consistency**
-   - Check frontmatter in all files
-   - Verify provides/requires relationships
-   - Confirm tags are consistent
-
-**Validation**:
-- [ ] Structure follows DSS conventions
-- [ ] INDEX.md is comprehensive
-- [ ] Metadata is consistent
-- [ ] All files have proper frontmatter
-
-#### Day 8: Final Testing and Documentation
-
-##### Task 8.1: End-to-end testing
-**Goal**: Complete validation before release
-
-**Subtasks**:
-1. **Test complete workflow**
-   - Fresh repository setup
-   - Rule installation
-   - Project development simulation
-   - Update process
-
-2. **Cross-platform verification**
-   - Test Windows PowerShell completion
-   - Test macOS Terminal completion  
-   - Test Linux bash completion
-
-3. **Performance validation**
-   - Verify rule loading speed
-   - Check AI response quality
-   - Confirm no degradation
-
-**Validation**:
-- [ ] End-to-end workflow succeeds
-- [ ] All platforms work correctly
-- [ ] Performance meets standards
-- [ ] No quality degradation
-
-##### Task 8.2: Release preparation
-**Goal**: Prepare for public release
-
-**Subtasks**:
-1. **Create release tag**
-   - Tag version for new approach
-   - Document breaking changes
-   - Include migration timeline
-
-2. **Prepare changelog**
-   - Document all changes
-   - Include migration instructions
-   - Add deprecation notices
-
-3. **Update project status**
-   - Mark roadmap items as complete
-   - Update project documentation
-   - Prepare announcement
-
-**Validation**:
-- [ ] Release properly tagged
-- [ ] Changelog is comprehensive
-- [ ] Documentation updated
-- [ ] Ready for announcement
-
-#### Day 9: Support and Monitoring
-
-##### Task 9.1: User support preparation
-**Goal**: Ready to help users migrate
-
-**Subtasks**:
-1. **Prepare support documentation**
-   - Common migration issues
-   - Quick troubleshooting guide
-   - Contact information
-
-2. **Monitor for issues**
-   - Watch GitHub issues
-   - Check discussion forums
-   - Monitor social media mentions
-
-3. **Document problems and solutions**
-   - Track common issues
-   - Update troubleshooting guide
-   - Improve documentation based on feedback
-
-**Validation**:
-- [ ] Support docs are ready
-- [ ] Monitoring systems active
-- [ ] Issue tracking configured
-- [ ] Team ready to respond
+- [ ] .mdc files load correctly in Cursor
+- [ ] Manual Cursor configuration tested
 
 ## Success Metrics
 
