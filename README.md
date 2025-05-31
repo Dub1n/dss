@@ -196,3 +196,25 @@ MIT License - see [LICENSE](LICENSE) for details.
 ---
 
 > **DSS is a structured system for building structured systems.** Help us make every codebase LLM-native and human-friendly.
+
+# DSS GPT Bridge Service
+
+A FastAPI service that connects Custom ChatGPT with DSS-formatted GitHub repositories, providing intelligent repository analysis and interaction capabilities.
+
+## Features
+
+- **GitHub Integration**: Seamless access to repository structure and files
+- **DSS Intelligence**: Deep understanding of DSS metadata and conventions  
+- **Search Capabilities**: Content and metadata-aware search across repositories
+- **Safety Features**: Validation and safety checks for repository modifications
+- **Multi-Repository Support**: Work with multiple DSS projects from one interface
+
+## Architecture
+
+The bridge service acts as an intermediary between Custom GPT Actions and GitHub's API, translating conversational requests into appropriate repository operations while maintaining DSS conventions.
+
+## Development Status
+
+🚧 **In Development** - This project is being actively developed as part of the DSS ecosystem.
+
+See the [task breakdown](meta/tasks/custom_gpt_dss_integration.md) for detailed development progress.
