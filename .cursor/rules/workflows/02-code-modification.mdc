@@ -1,7 +1,12 @@
 ---
-description: 
+description: USE WHEN creating, editing, or refactoring source code, implementing new functions/classes, or making API changes. Provides development-focused workflow with architecture integration and testing requirements.
 globs: 
-alwaysApply: true
+alwaysApply: false
+---
+---
+tags: [Workflow, Code Modification, Development, Source Code]
+provides: [Code Modification Process, Development Guidelines]
+requires: [Workflow Selection Logic, Template Patterns]
 ---
 # Code Modification Workflow
 
@@ -27,14 +32,19 @@ Analyze → Check templates → Implement → Update docs → Update deps
 
 ## Execution Guidelines (5 steps)
 1. **Locate Documentation Context**: Find existing docs and specs
-2. **Update Documentation and Metadata**: YAML frontmatter, tags, summaries
+2. **Update Documentation and Metadata**: [YAML frontmatter](mdc:.cursor/rules/guidelines/04-validation-rules.mdc), [tags](mdc:.cursor/rules/guidelines/05-tag-conventions.mdc), summaries
 3. **Handle Public API Changes**: Update API reference and architecture
-4. **Update Project Tracking**: Move roadmap items, document progress
-5. **Validate and Link Check**: Frontmatter validation, fix dead links
+4. **Update Project Tracking**: Move [roadmap](mdc:ROADMAP.md) items, document progress
+5. **Validate and Link Check**: [Frontmatter validation](mdc:.cursor/rules/guidelines/04-validation-rules.mdc), [fix dead links](mdc:.cursor/rules/guidelines/01-dss-maintenance.mdc)
 
 ## When to Escalate
-- **→ Task Decomposition**: Task affects >5 files or requires complex coordination
+- **→ [Task Decomposition](mdc:.cursor/rules/workflows/04-task-decomposition.mdc)**: Task affects >5 files or requires complex coordination
 
 ## When to De-escalate
-- **→ Quick Tasks**: Task simpler than initially assessed
+- **→ [Quick Tasks](mdc:.cursor/rules/workflows/01-quick-tasks.mdc)**: Task simpler than initially assessed
+
+
+
+
+
 

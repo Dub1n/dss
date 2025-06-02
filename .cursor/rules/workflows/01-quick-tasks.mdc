@@ -1,7 +1,12 @@
 ---
-description: 
+description: USE WHEN handling simple, atomic tasks affecting 1-2 files that can be completed in a single interaction. Provides streamlined execution guidelines for minimal-scope changes, text corrections, and simple modifications.
 globs: 
-alwaysApply: true
+alwaysApply: false
+---
+---
+tags: [Workflow, Quick Tasks, Simple Changes, Atomic Operations]
+provides: [Quick Task Process, Simple Change Guidelines]
+requires: [Workflow Selection Logic]
 ---
 # Quick Tasks Workflow
 
@@ -33,7 +38,10 @@ Make change → Update metadata → Done
 5. **Quick Verification**: Check specific change only
 
 ## When to Escalate
-- **→ Code Modification**: Task affects more files than assessed
-- **→ Documentation-Driven**: Significant documentation needed
-- **→ Task Decomposition**: Task more complex than initially assessed
+- **→ [Code Modification](mdc:.cursor/rules/workflows/02-code-modification.mdc)**: Task affects more files than assessed
+- **→ [Documentation-Driven](mdc:.cursor/rules/workflows/03-documentation-driven.mdc)**: Significant documentation needed
+- **→ [Task Decomposition](mdc:.cursor/rules/workflows/04-task-decomposition.mdc)**: Task more complex than initially assessed
+
+
+
 

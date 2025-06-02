@@ -1,0 +1,170 @@
+---
+task_id: "{{TASK_ID}}"
+category: "{{CATEGORY}}"
+difficulty: "{{DIFFICULTY}}"
+time_limit: "{{TIME_LIMIT}}"
+focus_areas: [{{FOCUS_AREAS}}]
+rules_testing: [{{RULES_TESTING}}]  # Optional: only for advanced tasks
+---
+
+# Task {{TASK_NUMBER}}: {{TASK_TITLE}}
+
+{{TASK_DESCRIPTION}}
+
+## 📋 Requirements
+
+{{REQUIREMENTS_DESCRIPTION}}
+
+{{#REQUIREMENTS_LIST}}
+{{REQUIREMENT_NUMBER}}. **{{REQUIREMENT_TITLE}}** {{REQUIREMENT_DESCRIPTION}}
+{{/REQUIREMENTS_LIST}}
+
+## ⚙️ Setup Your Task Repository
+
+**First, create your isolated task environment:**
+
+```powershell
+# Create your task directory
+mkdir task_repos/task_{{TASK_NUMBER}}
+cd task_repos/task_{{TASK_NUMBER}}
+
+{{#COPY_COMMANDS}}
+# {{COPY_DESCRIPTION}}
+{{COPY_COMMAND}}
+{{/COPY_COMMANDS}}
+
+{{#CREATE_FILES}}
+# {{FILE_DESCRIPTION}}
+@"
+{{FILE_CONTENT}}
+"@ | Out-File -FilePath {{FILE_PATH}} -Encoding UTF8
+{{/CREATE_FILES}}
+
+# Create complete project structure
+mkdir -p {{PROJECT_DIRECTORIES}}
+```
+
+{{SETUP_DESCRIPTION}}
+
+## 🎯 Current {{CONTEXT_TYPE}}
+
+{{CONTEXT_DESCRIPTION}}
+
+{{#CONTEXT_BULLETS}}
+
+* {{CONTEXT_ITEM}}
+{{/CONTEXT_BULLETS}}
+
+## 📝 Specific {{TASKS_TYPE}}
+
+{{#SPECIFIC_TASKS}}
+
+### {{TASK_STEP_NUMBER}}. {{TASK_STEP_TITLE}}
+
+{{#TASK_STEP_BULLETS}}
+
+* {{TASK_STEP_ITEM}}
+{{/TASK_STEP_BULLETS}}
+
+{{/SPECIFIC_TASKS}}
+
+{{#CODE_REQUIREMENTS}}
+
+## 🔍 {{CODE_SECTION_TITLE}}
+
+{{CODE_DESCRIPTION}}
+
+```{{CODE_LANGUAGE}}
+{{CODE_EXAMPLE}}
+```
+
+{{/CODE_REQUIREMENTS}}
+
+{{#SUCCESS_CRITERIA}}
+
+## 🧪 Success Criteria
+
+{{#SUCCESS_SECTIONS}}
+
+### {{SUCCESS_SECTION_TITLE}} ({{SUCCESS_PERCENTAGE}}%)
+
+{{#SUCCESS_ITEMS}}
+
+* [ ] **{{SUCCESS_ITEM_TITLE}}:** {{SUCCESS_ITEM_DESCRIPTION}}
+{{/SUCCESS_ITEMS}}
+
+{{/SUCCESS_SECTIONS}}
+{{/SUCCESS_CRITERIA}}
+
+{{#WHAT_THIS_TESTS}}
+
+## 🎯 What This Tests
+
+{{TESTING_DESCRIPTION}}
+
+{{#TESTING_SECTIONS}}
+
+### {{TESTING_SECTION_NUMBER}}. **{{TESTING_SECTION_TITLE}}**
+
+{{#TESTING_BULLETS}}
+
+* {{TESTING_ITEM}}
+{{/TESTING_BULLETS}}
+
+{{/TESTING_SECTIONS}}
+{{/WHAT_THIS_TESTS}}
+
+{{#PITFALLS}}
+
+## ⚠️ Common Pitfalls (What NOT to Do)
+
+{{#PITFALL_ITEMS}}
+❌ **{{PITFALL_TITLE}}** {{PITFALL_DESCRIPTION}}
+{{/PITFALL_ITEMS}}
+{{/PITFALLS}}
+
+{{#DELIVERABLES}}
+
+## 📋 Deliverables
+
+{{DELIVERABLES_DESCRIPTION}}
+
+{{#DELIVERABLE_SECTIONS}}
+
+### {{DELIVERABLE_SECTION_NUMBER}}. {{DELIVERABLE_SECTION_TITLE}}
+
+{{#DELIVERABLE_ITEMS}}
+
+* {{DELIVERABLE_ITEM}}
+{{/DELIVERABLE_ITEMS}}
+
+{{/DELIVERABLE_SECTIONS}}
+{{/DELIVERABLES}}
+
+{{#TIME_ALLOCATION}}
+
+## ⏱️ Time {{TIME_SECTION_TITLE}}
+
+**{{TIME_ALLOCATION_TYPE}}:**
+
+{{#TIME_PHASES}}
+
+* **{{TIME_PHASE_NAME}} ({{TIME_PHASE_DURATION}}):** {{TIME_PHASE_DESCRIPTION}}
+{{/TIME_PHASES}}
+{{/TIME_ALLOCATION}}
+
+## ⚡ Getting Started
+
+**{{GETTING_STARTED_INSTRUCTION}}** {{GETTING_STARTED_DESCRIPTION}}
+
+## 📚 Available Resources
+
+{{#RESOURCES}}
+
+* {{RESOURCE_ITEM}}
+{{/RESOURCES}}
+
+***
+
+**Time Limit:** {{TIME_LIMIT}}
+**{{FOCUS_LABEL}}:** {{FOCUS_DESCRIPTION}}

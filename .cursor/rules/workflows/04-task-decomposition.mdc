@@ -1,7 +1,12 @@
 ---
-description: 
+description: USE WHEN handling complex, multi-step tasks that span multiple files or require coordination across systems. Provides structured breakdown methodology, status tracking, and phase management for large initiatives.
 globs: 
-alwaysApply: true
+alwaysApply: false
+---
+---
+tags: [Workflow, Task Decomposition, Complex Tasks, Project Management, Planning]
+provides: [Task Breakdown Process, Complex Task Management, Status Tracking]
+requires: [Workflow Selection Logic, Project Management Guidelines]
 ---
 # Task Decomposition Workflow
 
@@ -30,7 +35,7 @@ Break into phases → Document plan → Execute incrementally → Update
 2. **Break Down into Major Phases**: 3-5 logical phases
 3. **Decompose to Atomic Subtasks**: 1-5 minute atomic actions
 4. **Annotate Each Subtask**: Inputs, outputs, dependencies, estimates
-5. **Add Tags, Links and References**: Categorization and cross-references
+5. **Add Tags, Links and References**: [Categorization](mdc:.cursor/rules/guidelines/05-tag-conventions.mdc) and [cross-references](mdc:.cursor/rules/guidelines/06-backlink-conventions.mdc)
 6. **Create Status Summary Table**: Track completion progress
 7. **Document the Task Breakdown**: Create task file or document in conversation
 8. **Execute and Track Progress**: Follow hierarchy, update status
@@ -44,4 +49,7 @@ Break into phases → Document plan → Execute incrementally → Update
 
 ## When to De-escalate
 - **→ Other workflows**: Individual subtasks fit simpler patterns
+
+
+
 

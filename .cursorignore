@@ -1,4 +1,3 @@
 # .cursorignore
-meta/manifest.json
-docs/🔒archive/**
-.venv/
+#meta/manifest.json
+#.venv/

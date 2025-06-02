@@ -4,217 +4,141 @@ provides: [dss_template, project_structure]
 requires: []
 ---
 
-# DSS Template Repository
+# DSS: Data SuperStructure
 
-**A structured, LLM-optimized project framework for seamless human+AI collaboration.**
+> **DSS is an open protocol for building structured systems.** Help make every repository LLM-native and human-friendly.
 
-[![Use this template](https://img.shields.io/badge/Use%20this-Template-green?style=flat-square)](https://github.com/yourusername/dss_template_repo/generate)
-[![DSS Auto-formatter](https://img.shields.io/badge/DSS-Auto--formatter-blue?style=flat-square)](#auto-formatter)
-
----
-
-## 🧭 What is DSS?
-
-Data SuperStructure (DSS) is a structured, LLM-compatible project framework designed to:
-
-* **Enable transparent, documented evolution** of code, data, and ideas
-* **Support human+AI collaboration** through consistent structure and metadata  
-* **Use automation and LLMs** to generate and maintain clean, living documentation
-* **Make any codebase feel native to LLMs** with minimal prompt tokens and crystal-clear navigation
+[🔗 Use this template](https://github.com/yourusername/dss_template_repo/generate) *(coming soon)*
 
 ---
 
-## 🚀 Quick Start
+## What Problem Does This Solve?
 
-### Option 1: Voice Command (Instant!) 🎙️
+AI assistants are terrible at understanding most codebases. They give you generic suggestions, miss obvious context, and generally act  
+like they've never seen your project before.
 
-**drop the [bootstrapper](github.com/Dub1n/dss/blob/main/meta/scripts/dss_bootstrap.py) into any repository in Cursor and say:**
-- **"Format this repo"** 
-- **"Apply DSS formatting"**
-- **"Transform to DSS structure"**
+Meanwhile, as projects grow, even humans can't find anything. Documentation gets buried, code relationships become mysteries, and  
+navigating your own project becomes a nightmare.
 
-The AI assistant will guide you through instant transformation with full intelligence integration!
+**DSS fixes both problems.** It's an open protocol that actually works with your existing tools:
 
-### Option 2: One-File Bootstrap
-
-```bash
-# Download and run the bootstrap
-curl -sSL https://raw.githubusercontent.com/yourusername/dss_template_repo/main/meta/scripts/dss_bootstrap.py -o dss_bootstrap.py
-python dss_bootstrap.py
-```
-
-**Result:** 2-minute transformation with Cursor AI intelligence!
-
-### Option 3: Use as GitHub Template
-
-1. Click the **"Use this template"** button above or [create a new repository from this template](https://github.com/yourusername/dss_template_repo/generate)
-2. Clone your new repository
-3. Run the initialization script:
-   ```bash
-   cd your-new-repo
-   python meta/scripts/init_dss_project.py --name "Your Project" --description "Your description"
-   ```
-
-### Option 4: Advanced Auto-formatter
-
-Transform any existing repository with full control:
-
-```bash
-# Download the full auto-formatter
-curl -sSL https://raw.githubusercontent.com/yourusername/dss_template_repo/main/meta/scripts/install_dss_autoformatter.py | python3
-
-# Format your repository
-dss-autoformat --source /path/to/your/repo --dest /path/to/dss/repo
-```
-
-### Option 5: Manual Setup
-
-```bash
-# Clone this template
-git clone https://github.com/yourusername/dss_template_repo.git my_project
-cd my_project
-
-# Set up environment
-python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-pip install -r meta/requirements.txt
-
-# Configure your project
-python meta/scripts/setup_project.py
-```
+- **AI assistants finally understand your codebase** and give useful help instead of irrelevant suggestions
+- **Humans can actually find things** without digging through random folders  
+- **Documentation doesn't go stale** because everything stays connected
+- **Works with whatever you're already using** - GitHub, VS Code, Obsidian, Cursor, whatever
 
 ---
 
-## 📁 Project Structure
+## How It Works
+
+DSS is a protocol that is easy for you (and your assistants) to follow. It consists of a **folder structure + metadata protocol** that any  
+tool can read:
 
 ```text
-/src/         → Source code and executable logic
-/data/        → Datasets, artifacts, and data files  
-/docs/        → Human and AI-generated documentation
-/canvas/      → Obsidian Canvas JSON diagrams (optional)
-/meta/        → Scripts, prompts, config, and automation
-/tests/       → Test files and validation datasets
+📁 your-project/
+├── 📂 any/             ← Code
+├── 📂 folders/         ← Documentation and guides  
+├── 📂 that/            ← Image libraries
+├── 📂 you/             ← Ideas
+└── 📂 like/            ← To-do lists
 ```
 
-### Key Features
+Each file gets some **YAML frontmatter** (tags and relationships) that creates connections between everything, while folder READMEs sum up  
+the important bits for quick reference. Both humans and AI can follow the breadcrumbs.
 
-* **YAML front-matter** on all files for rich metadata and LLM context
-* **Automated documentation generation** via LLM integration
-* **Token-efficient prompts** through structured summaries and cross-references
-* **Git-friendly structure** that renders beautifully on GitHub
-* **Obsidian-compatible** for visual knowledge management
+**The result:** Your project makes sense to everyone and everything, no matter at what stage they join.
 
 ---
 
-## 🤖 Auto-Formatter
+## Quick Start
 
-The DSS auto-formatter intelligently transforms any repository into DSS structure while preserving functionality and git history.
+### Get DSS Intelligence in Cursor Right Now
 
-### Features
+Copy [this `.cursor/rules` folder](.cursor/rules) into your project's `.cursor/rules` directory.
 
-* **Multi-phase processing**: Discovery → Classification → Planning → Execution → Enhancement → Validation
-* **LLM-assisted classification** for ambiguous files
-* **Cursor AI assistant integration** with project-specific context and DSS intelligence
-* **Safe transformation** with automatic rollback on failure
-* **Dependency analysis** and import updating
-* **Metadata injection** with intelligent tag generation
-* **Risk assessment** and conflict resolution
+That's it. Your AI assistant now understands DSS structure and will automatically organize files properly, add frontmatter, and maintain  
+documentation links.
 
-### Usage
+### Start a New DSS Project
+
+1. [Use this template](https://github.com/yourusername/dss_template_repo/generate) to create a new repository
+2. Clone it and start coding in the `src/` folder
+3. Watch your AI assistant provide better assistance
+
+---
+
+## Learn More
+
+### For Getting Started
+
+- [Complete Setup Guide](docs/getting_started.md) - The full walkthrough
+- [Troubleshooting](docs/troubleshooting.md) - When things break
+
+### For Understanding DSS
+
+- [DSS Guide](meta/DSS_GUIDE.md) - Core concepts and principles
+- [Project Structure](docs/documentation_index.md) - How folders work
+
+### For AI Integration
+
+- [Cursor Setup](docs/cursor_integration.md) - AI assistant configuration
+- [Auto-formatting](docs/automated_formatting.md) - Automatic transformation tools
+
+---
+
+## What Makes DSS Actually Useful
+
+### **Open Protocol, Nothing Proprietary**
+
+Uses standard stuff - Markdown, YAML, JSON. Works with any tool. No vendor lock-in, no special software required.
+
+### **Built for Humans AND AI**
+
+Something designed for both. Your IDE, GitHub, and Obsidian vault look good, AI assistants understand what's going on.
+
+### **Enhances What You Already Use**
+
+Doesn't replace your workflow - makes it work better. GitHub, VS Code, Obsidian, Cursor - they all just work better with DSS.
+
+### **Actually Stays Organized**
+
+Cross-references and metadata mean things stay connected as your project grows instead of becoming disorganized.
+
+---
+
+## Test Drive: DSS Benchmark
+
+Want to see how this works? Try the benchmark:
 
 ```bash
-# Basic transformation
-dss-autoformat --source ./my-repo --dest ./my-repo-dss
+# Copy benchmark to separate folder
+cp -r benchmark/ ../dss-benchmark-test/
+cd ../dss-benchmark-test/
 
-# Advanced options
-dss-autoformat \
-  --source ./my-repo \
-  --dest ./my-repo-dss \
-  --config custom_dss_config.yml \
-  --llm-assist \
-  --preserve-git-history \
-  --dry-run
+# Open in your AI-enabled editor (like Cursor)
+# Give your AI assistant this task: "Complete benchmark task 01-xs following RUN_BENCHMARK.md"
 ```
 
-For comprehensive documentation, see [Automated Formatting Guide](docs/automated_formatting.md).
+Watch your AI assistant handle realistic development tasks automatically with DSS-organized code.
 
 ---
 
-## 📖 Documentation
+## Contributing
 
-### Getting Started
-- [DSS Bootstrap Guide](docs/dss_bootstrap_guide.md) - **⚡ Instant transformation with voice commands**
-- [Getting Started Guide](docs/getting_started.md) - Complete setup and usage guide
-- [DSS Overview](meta/DSS_GUIDE.md) - Core concepts and principles
-- [Configuration](meta/dss_config.yml) - Customization options
+1. Try DSS with your own projects
+2. [Report issues](https://github.com/yourusername/dss_template_repo/issues) or share improvements
+3. Help us make every codebase more navigable
 
-### Advanced Usage  
-- [LLM Task Automation](meta/llm_tasks.py) - Generate docs and maintain structure
-- [Naming Conventions](meta/guidelines/naming_conventions.md) - File and folder naming standards
-- [Template System](meta/templates/README.md) - Standardized file templates
-
-### Integration
-- [Cursor Integration Guide](docs/cursor_integration.md) - Complete Cursor AI assistant setup and propagation
-- [Cursor IDE Setup](.cursor/rules/assistant.mdc) - AI assistant configuration files
-- [VS Code Integration](meta/integrations/vscode.md) - Editor plugins and workflows
-- [CI/CD Integration](meta/integrations/github_actions.yml) - Automated workflows
-
----
-
-## 🛠 Requirements
-
-- **Python 3.8+**
-- **Git** 
-- **OpenAI API key** (for LLM-powered automation)
-- [Optional] **Node.js** (for markdown table formatting)
-
----
-
-## 🤝 Contributing
-
-1. Use this template to create your own DSS project
-2. Share improvements back via pull requests
-3. Report issues or suggest enhancements
-4. Help improve the auto-formatter based on real-world usage
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+Message for details
 
 ---
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) for details.
+MIT License - see [LICENSE](LICENSE)
 
 ---
 
-## 🔗 Related Projects
-
-- [DSS Auto-formatter](https://github.com/yourusername/dss-autoformatter) - Standalone formatting tool
-- [DSS Examples](https://github.com/yourusername/dss-examples) - Example projects using DSS
-- [DSS Plugins](https://github.com/yourusername/dss-plugins) - Community extensions
+*DSS: An open protocol for projects that make sense.*
 
 ---
-
-> **DSS is a structured system for building structured systems.** Help us make every codebase LLM-native and human-friendly.
-
-# DSS GPT Bridge Service
-
-A FastAPI service that connects Custom ChatGPT with DSS-formatted GitHub repositories, providing intelligent repository analysis and interaction capabilities.
-
-## Features
-
-- **GitHub Integration**: Seamless access to repository structure and files
-- **DSS Intelligence**: Deep understanding of DSS metadata and conventions  
-- **Search Capabilities**: Content and metadata-aware search across repositories
-- **Safety Features**: Validation and safety checks for repository modifications
-- **Multi-Repository Support**: Work with multiple DSS projects from one interface
-
-## Architecture
-
-The bridge service acts as an intermediary between Custom GPT Actions and GitHub's API, translating conversational requests into appropriate repository operations while maintaining DSS conventions.
-
-## Development Status
-
-🚧 **In Development** - This project is being actively developed as part of the DSS ecosystem.
-
-See the [task breakdown](meta/tasks/custom_gpt_dss_integration.md) for detailed development progress.

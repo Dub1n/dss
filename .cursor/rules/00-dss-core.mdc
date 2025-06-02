@@ -1,9 +1,13 @@
 ---
-tags: [dss, core, structure, metadata, rules]
-provides: [dss_core_concepts, folder_structure, metadata_system, archive_conventions]
-requires: []
+description: 
+globs: 
+alwaysApply: true
 ---
-
+---
+tags: [DSS, Core, Structure, Concepts]
+provides: [DSS Core Structure and Concepts]
+requires: [DSS Core Structure and Concepts]
+---
 # DSS Core Structure and Concepts
 
 This file defines the fundamental DSS concepts that the AI should understand when working with Data SuperStructure projects.

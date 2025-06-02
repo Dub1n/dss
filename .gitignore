@@ -1,7 +1,11 @@
+# VSCode
+/scripts
+
 # Python
 .venv/
 __pycache__/
 *.py[cod]
+.envrc
 
 # Node.js
 node_modules/
@@ -10,9 +14,69 @@ package-lock.json
 # LLM stuff
 .env
 openai.log
+
+# DSS Development & Personal Files
+meta/rules_backup/
 meta/manifest.json
 meta/*.cache
+meta/requirements.lock
+meta/requirements_autoformatter.txt
+meta/benchmark/
+meta/development_queue/
+meta/tasks/
+
+# Development Scripts (not part of core DSS workflow)
+meta/scripts/apply_naming_conventions.py
+meta/scripts/auto_rename.py
+meta/scripts/github_issues_processor.py
+meta/scripts/readme_link_checker.py
+meta/scripts/rename_test.py
+meta/scripts/reset_project.py
+meta/scripts/sync_dss_mdc.py
+meta/scripts/update_links.py
+meta/scripts/validate_filenames.py
+meta/scripts/docs/
+
+# Benchmark Rules Store (version snapshots)
+benchmark/rules_store/
+benchmark/.venv/
+
+# Auto-generated and temporary files
+*.tmp
+*.temp
+*.log
+*.backup
+*~
+
+# IDE specific files
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+.cursor/logs/
+.cursor/settings.json
 
 # OS junk
 .DS_Store
 Thumbs.db
+*.swp
+*.swo
+.directory
+
+# Test artifacts and outputs
+test_outputs/
+*.test
+coverage/
+.coverage
+.pytest_cache/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Local configuration overrides
+local_config.yml
+.local/
+personal_notes.md
+scratch/
+draft*/

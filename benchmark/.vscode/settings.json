@@ -1,0 +1,56 @@
+{
+  // Per-repo icon customizations for Benchmark project
+  // This only affects icons when this folder is loaded in a multi-root workspace
+  
+  "material-icon-theme.folders.associations": {
+    // Project-specific folder mappings
+    "docs": "docs",
+    "scripts": "tools", 
+    "tasks": "tasks",
+    "templates": "template",
+    "marking-schemes": "rules",
+    "rules_store": "archive",
+    "benchmark": "benchmark",
+    
+    // Common Python project folders
+    ".venv": "env",
+    "venv": "env",
+    "__pycache__": "temp",
+    "tests": "test",
+    "test": "test",
+    
+    // Generic useful mappings
+    "config": "config",
+    "data": "database",
+    "output": "dist",
+    "results": "dist",
+    "logs": "log"
+  },
+  
+  "material-icon-theme.files.associations": {
+    // Project-specific files
+    "roadmap.md": "roadmap",
+    "TODO.md": "todo",
+    "BENCHMARK_COMPARISON.md": "benchmark",
+    "EVALUATE_BENCHMARK.md": "test",
+    "EXECUTE_BENCHMARK.md": "gear",
+    "benchmark.code-workspace": "vscode",
+    
+    // Python specific
+    "requirements.txt": "python",
+    "pyproject.toml": "python",
+    ".envrc": "dotenv",
+    
+    // Common project files
+    "README.md": "readme",
+    "LICENSE": "license",
+    "CHANGELOG.md": "changelog",
+    ".gitignore": "git"
+  },
+  
+  // Optional: Customize colors for this repo
+  "material-icon-theme.folders.color": "#42a5f5",
+  
+  // Optional: Show arrows on folders
+  "material-icon-theme.folders.theme": "specific"
+}

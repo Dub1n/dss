@@ -9,7 +9,8 @@ requires: []
 This file serves as a running list of tasks, improvements, and ideas identified during development or interaction that should be addressed in the future.
 
 ## Tasks
-
+- [ ] Work on the readme install instructions
+    - [ ] Specifically the manual setup one: it should be the minimal git/manual download to enable the cursor rules folder placed in the repo's rules folder 
 - [ ] bootstrap: Could the assistant ask if the user wishes for a new DSS formatted repo to be created from the original or if they would like the current one to be used?
 - [ ] Decide if dss-guide.mdc and dss-overview.mdc are both needed and if they can be combined/one removed.
 - [ ] Add to the task_decomposition.md to add appropriate (and appropriately placed) subtasks for integrating any developments into the assistant workflow

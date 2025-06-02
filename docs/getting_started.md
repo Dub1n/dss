@@ -6,9 +6,10 @@ requires: [meta/DSS_GUIDE.md]
 
 # Getting Started with DSS (Data SuperStructure)
 
-This guide will walk you through setting up and using the DSS framework for your projects. DSS is designed to make any dataset or codebase feel native to LLMs with minimal prompt tokens, zero duplicated effort, and clear navigation for humans.
+This guide will walk you through setting up and using the DSS framework for your projects. DSS is designed to make any dataset or codebase  
+feel native to LLMs with minimal prompt tokens, zero duplicated effort, and clear navigation for humans.
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [What is DSS?](#what-is-dss)
 - [Prerequisites](#prerequisites)
@@ -20,13 +21,13 @@ This guide will walk you through setting up and using the DSS framework for your
 - [Troubleshooting](#troubleshooting)
 - [Next Steps](#next-steps)
 
-## 🧭 What is DSS?
+## What is DSS?
 
 Data SuperStructure (DSS) is a structured, LLM-compatible project framework designed to:
 
-* Enable transparent, documented evolution of code, data, and ideas
-* Support human+AI collaboration through consistent structure and metadata
-* Use automation and LLMs to generate and maintain clean, living documentation
+- Enable transparent, documented evolution of code, data, and ideas
+- Support human+AI collaboration through consistent structure and metadata
+- Use automation and LLMs to generate and maintain clean, living documentation
 
 The core benefits of DSS include:
 
@@ -37,7 +38,7 @@ The core benefits of DSS include:
 | *Human UX* | GitHub renders; Obsidian graphs; Cursor searches |
 | *Self-healing* | An LLM can update docs/links/canvas in one pass |
 
-## 🛠️ Prerequisites
+## Prerequisites
 
 Before getting started with DSS, ensure you have:
 
@@ -46,7 +47,7 @@ Before getting started with DSS, ensure you have:
 - An OpenAI API key (for LLM-powered automation)
 - [Optional] VS Code or Cursor IDE for enhanced integration
 
-## 🚀 Installation
+## Installation
 
 ### Option 1: Create a new DSS project
 
@@ -91,12 +92,13 @@ export OPENAI_API_KEY=sk-...  # On Windows: set OPENAI_API_KEY=sk-...
 python meta/convert_to_dss.py --source ~/path/to/your/project --dest ~/path/to/output
 ```
 
-## 🏃 Quick Start
+## Quick Start
 
 Once you have a DSS project set up, here's how to get started quickly:
 
 1. **Explore the structure**: Browse the folders to understand the organization
-   ```
+
+   ```text
    /src/         → Source code or execution logic
    /data/        → Data files used or generated
    /docs/        → Documentation written by humans or LLMs
@@ -108,13 +110,14 @@ Once you have a DSS project set up, here's how to get started quickly:
 2. **Create or edit content**: Add your code to `src/`, documentation to `docs/`, etc.
 
 3. **Generate documentation**: After adding content, run the documentation generator
+
    ```bash
    python meta/llm_tasks.py --mode docs
    ```
 
 4. **View the INDEX**: Open `INDEX.md` to see a structured overview of your project
 
-## 🧩 Basic Concepts
+## Basic Concepts
 
 ### Front-matter
 
@@ -131,6 +134,7 @@ requires: [other_concept]
 ```
 
 Key front-matter fields:
+
 - `tags`: Categories and concepts for indexing
 - `provides`: What concepts this file defines
 - `requires`: Dependencies on other concepts
@@ -153,7 +157,7 @@ Link between files using Markdown links with the `mdc:` prefix:
 See the [DSS Guide](mdc:meta/DSS_GUIDE.md) for more information.
 ```
 
-## 🔄 Common Workflows
+## Common Workflows
 
 ### Adding New Content
 
@@ -181,7 +185,7 @@ python meta/llm_tasks.py --mode canvas
 2. The `assistant.md` file provides instructions to the AI
 3. The structured format reduces token usage and improves responses
 
-## ⚙️ Configuration
+## Configuration
 
 DSS is configurable through the `meta/dss_config.yml` file:
 
@@ -207,11 +211,12 @@ defaults:
 ```
 
 Key configuration options:
+
 - `patterns`: Define file types for each category
 - `defaults`: Default metadata for new files
 - `ignore`: Patterns to exclude from processing
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -239,9 +244,9 @@ If your AI assistant isn't giving good responses:
 2. Ensure your files have proper front-matter
 3. Run `python meta/llm_tasks.py --mode docs` to refresh the documentation
 
-## 🚶 Next Steps
+## Next Steps
 
-Now that you've set up your DSS project, consider:
+Now that you have a basic understanding of DSS, here are some next steps:
 
 1. Reviewing the [DSS Guide](mdc:meta/DSS_GUIDE.md) for detailed information
 2. Exploring the [Examples](mdc:docs/examples/) for practical applications
@@ -249,10 +254,12 @@ Now that you've set up your DSS project, consider:
 4. Setting up continuous integration to automate documentation updates
 
 For more detailed information on specific topics, refer to:
+
 - [Documentation Index](mdc:docs/documentation_index.md)
 - [CLI Reference](mdc:docs/cli_reference.md)
 - [Troubleshooting Guide](mdc:docs/troubleshooting.md)
 
 ---
 
-We hope this guide helps you get started with DSS! If you have questions or feedback, please see our [Contribution Guidelines](mdc:CONTRIBUTING.md) for how to get involved. 
+We hope this guide helps you get started with DSS! If you have questions or feedback, please see our  
+[Contribution Guidelines](mdc:CONTRIBUTING.md) for how to get involved.

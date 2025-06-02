@@ -7,9 +7,11 @@ alwaysApply: true
 
 ### Purpose
 
-> **Goal:** make any dataset / codebase feel *native* to an LLM—minimal prompt tokens, zero duplicated effort, and crystal‑clear navigation for humans.
+> **Goal:** make any dataset / codebase feel *native* to an LLM—minimal prompt tokens, zero duplicated effort, and crystal‑clear  
+> navigation for humans.
 >
-> **How:** store everything as plaintext (Markdown, code, JSON) plus light metadata so GitHub, Obsidian, Cursor **and** GPT all see the same structure.
+> **How:** store everything as plaintext (Markdown, code, JSON) plus light metadata so GitHub, Obsidian, Cursor **and** GPT all see the  
+> same structure.
 
 #### Core benefits
 
@@ -22,7 +24,8 @@ alwaysApply: true
 
 ---
 
-## Principles:
+## Principles
+
 1. Modular files, minimal duplication.
 2. YAML front‑matter for quick indexing.
 3. Markdown links everywhere (GitHub‑ & Obsidian‑friendly).
@@ -30,8 +33,8 @@ alwaysApply: true
 
 Run `python meta/generate_docs.py` or your IDE's "sync‑DSS" command after coding sessions.
 
-
 ### Formatting a pre-existing repo
+
 To format a repo in the DSS structure, run the folling commands:
 
 python -m venv .venv && source .venv/bin/activate
@@ -41,7 +44,7 @@ python meta/convert_to_dss.py --source ~/old_repo --dest ./dss_repo
 cd ./dss_repo
 python meta/llm_tasks.py --mode docs
 
-# Canvas: DSS System Architecture
+## Canvas: DSS System Architecture
 
 ### 📁 Project Structure
 
@@ -110,8 +113,10 @@ python meta/llm_tasks.py --mode docs
 - Archive material is stored in `docs/🔒archive/` and excluded from LLM context
 - All automation follows the rules in `meta/dss_config.yml`
 - Canonical source of instruction lives in `meta/assistant.md`
-- **Documentation Location:** The main project roadmap resides in `meta/roadmap.md`. Process-specific roadmaps should also be included and organized within `meta/roadmap.md`. `INDEX.md` is reserved for a fleshed-out file tree overview and should not contain roadmaps.
-- **TODO Linking:** For tasks in `meta/TODO.md` that relate to a specific section of the detailed roadmap in `meta/roadmap.md`, add a reference `(@roadmap: [Section Name])` at the end of the TODO item line.
+- **Documentation Location:** The main project roadmap resides in `meta/roadmap.md`. Process-specific roadmaps should also be included and  
+organized within `meta/roadmap.md`. `INDEX.md` is reserved for a fleshed-out file tree overview and should not contain roadmaps.
+- **TODO Linking:** For tasks in `meta/TODO.md` that relate to a specific section of the detailed roadmap in `meta/roadmap.md`, add a  
+reference `(@roadmap: [Section Name])` at the end of the TODO item line.
 
 ### 📌 Versioning Strategy
 
@@ -134,19 +139,13 @@ python meta/llm_tasks.py --mode docs
 
 ### 🤖 LLM Behavior Guidelines
 
-* **Preserve front-matter:** When editing `.md`, `.py`, or `.ipynb` files with front-matter blocks (YAML or triple-quoted), retain `tags`, `provides`, and `requires`.
-
-* **Respect structure:** Do not propose reorganizing folders unless explicitly asked. Each directory exists with defined intent.
-
-* **Defer to config:** Use `meta/dss_config.yml` to understand file classification, metadata injection patterns, and ignore rules.
-
-* **Ignore archives:** Never modify, summarize, or reference content in `docs/🔒archive/` unless explicitly instructed.
-
-* **Generate only on request:** Do not create READMEs, glossaries, or canvases unless instructed via user prompt or a script like `llm_tasks.py`.
-
-* **Explain uncertainty:** If unsure about file intent, insert a short inline note instead of guessing.
-
-* **Cursor Rules Naming:** All Cursor rules files in `.cursor/rules/` must use kebab-case naming (e.g., `dss-voice-commands.mdc`, `dss-overview.mdc`).
+- **Preserve front-matter:** When editing `.md`, `.py`, or `.ipynb` files with front-matter blocks (YAML or triple-quoted), retain `tags`,  
+`provides`, and `requires`.
+- **Respect structure:** Do not propose reorganizing folders unless explicitly asked. Each directory exists with defined intent.
+- **Defer to config:** Use `meta/dss_config.yml` to understand file classification, metadata injection patterns, and ignore rules.
+- **Ignore archives:** Never modify, summarize, or reference content in `docs/🔒archive/` unless explicitly instructed.
+- **Generate only on request:** Do not create READMEs, glossaries, or canvases unless instructed via user prompt or a script like `llm_tasks.py`.
+- **Explain uncertainty:** If unsure about file intent, insert a short inline note instead of guessing.
+- **Cursor Rules Naming:** All Cursor rules files in `.cursor/rules/` must use kebab-case naming (e.g., `dss-voice-commands.mdc`, `dss-overview.mdc`).
 
 ---
-
