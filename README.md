@@ -6,9 +6,7 @@ requires: []
 
 # DSS: Data SuperStructure
 
-> **DSS is an open protocol for building structured systems.** Help make every repository LLM-native and human-friendly.
-
-[🔗 Use this template](https://github.com/yourusername/dss_template_repo/generate) *(coming soon)*
+**DSS is an open protocol for building structured systems.** Help make every repository LLM-native and human-friendly.
 
 ---
 
