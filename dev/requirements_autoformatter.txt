@@ -1,0 +1,12 @@
+# DSS Auto-formatter Requirements
+# Core dependencies (required)
+PyYAML>=6.0
+
+# Optional dependencies for enhanced functionality
+openai>=1.0.0        # For LLM-assisted file classification
+gitpython>=3.1.0     # For git repository handling
+pathlib>=1.0.1       # For cross-platform path handling
+
+# Development and testing (optional)
+pytest>=7.0.0        # For running tests
+black>=22.0.0        # For code formatting 
