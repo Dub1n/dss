@@ -1,0 +1,25 @@
+# DSS Benchmark - Hidden Files During Testing
+# This file prevents the assistant from seeing evaluation materials during benchmark tests
+# The benchmark runner will temporarily remove these patterns for evaluation
+
+# Optional: Hide other evaluation materials if needed
+
+# USER ADDED CONTENT - This should be preserved
+#/README.md
+#/old/**
+#/rules_store/**
+#/rules_store
+#/old
+#/.vscode
+#/.venv
+#/.envrc
+#/requirements.txt
+
+
+
+# Hide evaluation materials during testing
+marking-schemes/
+*-rubric.md
+#*-marking-scheme.md
+#EVALUATE_BENCHMARK.md
+#BENCHMARK_COMPARISON.md

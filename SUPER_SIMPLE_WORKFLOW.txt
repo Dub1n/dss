@@ -1,0 +1,54 @@
+================================================================================
+                         ULTRA-SIMPLE BENCHMARK WORKFLOW
+================================================================================
+
+You are NOT the LLM anymore! The assistant does EVERYTHING.
+
+================================================================================
+                                   WORKFLOW
+================================================================================
+
+BASELINE TEST:
+1. python meta\scripts\run_benchmark.py start baseline create-module-01
+2. Copy the prompt from: meta/benchmark/FULLY_AUTOMATED_PROMPT.txt
+3. Paste into Cursor → Assistant does everything (task + scoring)
+
+EXPERIMENTAL TEST:  
+1. python meta\scripts\reset_project.py
+2. python meta\scripts\run_benchmark.py start experimental create-module-01
+3. Copy the SAME prompt from: meta/benchmark/FULLY_AUTOMATED_PROMPT.txt  
+4. Paste into Cursor → Assistant does everything (task + scoring)
+
+COMPARE:
+python meta\scripts\run_benchmark.py compare meta\benchmark\results\*baseline*.json meta\benchmark\results\*experimental*.json
+
+================================================================================
+                                 THAT'S IT!
+================================================================================
+
+The assistant will:
+✅ Read the task requirements
+✅ Complete the implementation  
+✅ Read the marking scheme
+✅ Score its own work objectively
+✅ Fill out the results JSON
+✅ Give you a summary
+
+You just switch rules and paste prompts. 🎯
+
+================================================================================
+                              EVEN SIMPLER
+================================================================================
+
+Want to test both rule sets quickly?
+
+1. python meta\scripts\run_benchmark.py start baseline create-module-01
+2. Give assistant the automated prompt → Wait for completion
+3. python meta\scripts\reset_project.py
+4. python meta\scripts\run_benchmark.py start experimental create-module-01  
+5. Give assistant the same prompt → Wait for completion
+6. python meta\scripts\run_benchmark.py compare meta\benchmark\results\*baseline*.json meta\benchmark\results\*experimental*.json
+
+Done! You have objective data on which rules perform better.
+
+================================================================================ 

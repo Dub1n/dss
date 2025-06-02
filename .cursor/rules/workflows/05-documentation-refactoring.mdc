@@ -1,7 +1,12 @@
 ---
-description: 
+description: USE WHEN systematically updating, restructuring, or improving existing documentation across multiple files. Provides coordinated change management, cross-reference updates, and consistency enforcement for doc reorganization.
 globs: 
-alwaysApply: true
+alwaysApply: false
+---
+---
+tags: [Workflow, Documentation Refactoring, Systematic Updates, Cross References, Consistency]
+provides: [Documentation Refactoring Process, Systematic Update Guidelines, Cross Reference Management]
+requires: [Workflow Selection Logic, Backlink Implementation, Maintenance Triggers]
 ---
 # Documentation Refactoring Workflow
 
@@ -28,22 +33,25 @@ Analyze structure → Plan changes → Apply systematically → Update cross-ref
 ## Execution Guidelines (6 steps)
 1. **Analyze Documentation Structure**: Identify all affected files, understand relationships and dependencies, map cascading changes
 2. **Plan Coordinated Changes**: Create systematic plan, establish patterns for consistency, identify conflicts and dependencies
-3. **Apply Changes Systematically**: Make changes one file at a time in logical dependency order, preserve frontmatter unless updating metadata
-4. **Update Cross-References**: Ensure all internal links remain valid, update references to reflect new content, verify MDC links
-5. **Validate Documentation Integrity**: Check for broken links, ensure consistent formatting, validate frontmatter
+3. **Apply Changes Systematically**: Make changes one file at a time in logical dependency order, preserve [frontmatter](mdc:.cursor/rules/guidelines/04-validation-rules.mdc) unless updating metadata
+4. **Update Cross-References**: Ensure all internal links remain valid, update references to reflect new content, verify [MDC links](mdc:.cursor/rules/guidelines/06-backlink-conventions.mdc)
+5. **Validate Documentation Integrity**: Check for [broken links](mdc:.cursor/rules/guidelines/01-dss-maintenance.mdc), ensure consistent formatting, validate [frontmatter](mdc:.cursor/rules/guidelines/04-validation-rules.mdc)
 6. **Review for Consistency**: Verify uniform changes, check terminology and patterns, ensure overall coherence
 
 ## DSS Maintenance Integration
-- **Update INDEX.md** if documentation structure changed significantly
+- **Update [INDEX.md](mdc:INDEX.md)** if documentation structure changed significantly
 - **Validate Frontmatter** follows DSS standards across all modified files
 - **Check Links** - verify all MDC links remain valid after restructuring
-- **Prettify Tables** - run `meta/scripts/prettify_md.ps1 filename.md` for edited tables
+- **Prettify Tables** - run [meta/scripts/prettify_md.ps1](mdc:meta/scripts/prettify_md.ps1) filename.md for edited tables
 
 ## When to Transition
-- **→ Docs-Driven Development**: Task requires creating entirely new documentation from scratch
-- **→ Code Modification**: Task requires significant code changes to accompany documentation updates
-- **→ Task Decomposition**: Task scope much larger than anticipated, needs structured breakdown
+- **→ [Docs-Driven Development](mdc:.cursor/rules/workflows/03-documentation-driven.mdc)**: Task requires creating entirely new documentation from scratch
+- **→ [Code Modification](mdc:.cursor/rules/workflows/02-code-modification.mdc)**: Task requires significant code changes to accompany documentation updates
+- **→ [Task Decomposition](mdc:.cursor/rules/workflows/04-task-decomposition.mdc)**: Task scope much larger than anticipated, needs structured breakdown
 
 ## When to De-escalate
-- **→ Quick Tasks**: Task affects only 1-2 files with minimal coordination needed
+- **→ [Quick Tasks](mdc:.cursor/rules/workflows/01-quick-tasks.mdc)**: Task affects only 1-2 files with minimal coordination needed
+
+
+
 

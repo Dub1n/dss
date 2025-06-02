@@ -14,7 +14,7 @@ This document provides an index and overview of the Data SuperStructure (DSS) pr
     - [README.md](#root-readme)
     - [ROADMAP.md](#project-roadmap-overview)
     - [INDEX.md](#project-index) (You are here!)
-    - [.gitignore](#root-dot-gitignore)
+    - [.gitignore](#root-.gitignore)
     - [.env.example](#root-dot-env-example)
     - [.envrc](#root-dot-envrc)
     - [.pre-commit-config.yaml](#root-dot-pre-commit-config)
@@ -71,7 +71,7 @@ This document provides an index and overview of the Data SuperStructure (DSS) pr
 
 Important configuration and entry points located at the root of the repository.
 
-#### Root README.md
+#### Root README
 
 The main README file for the project, providing a general introduction and overview.
 
