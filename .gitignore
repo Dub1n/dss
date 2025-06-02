@@ -49,11 +49,14 @@ benchmark/.venv/
 *~
 
 # IDE specific files
-.vscode/settings.json
-.vscode/launch.json
-.vscode/tasks.json
+.vscode/
 .cursor/logs/
 .cursor/settings.json
+
+# Environment & Local Config
+.envrc
+local_config.yml
+.local/
 
 # OS junk
 .DS_Store
@@ -75,8 +78,6 @@ build/
 *.egg-info/
 
 # Local configuration overrides
-local_config.yml
-.local/
 personal_notes.md
 scratch/
 draft*/
