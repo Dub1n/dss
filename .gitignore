@@ -5,7 +5,7 @@
 .venv/
 __pycache__/
 *.py[cod]
-.envrc
+# .envrc  # Commented out for development branch
 
 # Node.js
 node_modules/
@@ -15,15 +15,15 @@ package-lock.json
 .env
 openai.log
 
-# DSS Development & Personal Files
+# DSS Development & Personal Files (allowed in development branch)
 meta/rules_backup/
 meta/manifest.json
 meta/*.cache
-meta/requirements.lock
-meta/requirements_autoformatter.txt
-meta/benchmark/
-meta/development_queue/
-meta/tasks/
+# meta/requirements.lock  # Allow in dev branch
+# meta/requirements_autoformatter.txt  # Allow in dev branch
+# meta/benchmark/  # Allow in dev branch  
+# meta/development_queue/  # Allow in dev branch
+# meta/tasks/  # Allow in dev branch
 
 # Development Scripts (not part of core DSS workflow)
 meta/scripts/apply_naming_conventions.py
@@ -48,13 +48,13 @@ benchmark/.venv/
 *.backup
 *~
 
-# IDE specific files
-.vscode/
+# IDE specific files (allowed in development branch)
+# .vscode/  # Allow in development branch
 .cursor/logs/
 .cursor/settings.json
 
-# Environment & Local Config
-.envrc
+# Environment & Local Config (allowed in development branch)
+# .envrc  # Allow in development branch
 local_config.yml
 .local/
 
