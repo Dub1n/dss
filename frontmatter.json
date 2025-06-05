@@ -1,0 +1,88 @@
+{
+  "frontMatter.framework.id": "other",
+  "frontMatter.content.publicFolder": "docs",
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "Dev Tasks",
+      "path": "[[workspace]]/dev"
+    }
+  ],
+  "frontMatter.data.types": [
+    {
+      "id": "status",
+      "title": "Status",
+      "type": "choice",
+      "choices": [
+        "NOT STARTED",
+        "IN PROGRESS",
+        "BLOCKED",
+        "COMPLETED",
+        "DEFERRED"
+      ]
+    }
+  ],
+  "frontMatter.content.defaultFields": [
+    {
+      "title": "tags",
+      "name": "tags",
+      "type": "tags",
+      "required": true
+    },
+    {
+      "title": "provides",
+      "name": "provides",
+      "type": "fields",
+      "required": true
+    },
+    {
+      "title": "requires",
+      "name": "requires",
+      "type": "fields",
+      "required": true
+    },
+    {
+      "title": "status",
+      "name": "status",
+      "type": "choice",
+      "choices": [
+        "NOT STARTED",
+        "IN PROGRESS",
+        "BLOCKED",
+        "COMPLETED",
+        "DEFERRED"
+      ]
+    }
+  ],
+  "frontMatter.dashboard.openOnStart": true,
+  "frontMatter.content.sorting": [
+    {
+      "title": "Status",
+      "name": "status",
+      "type": "string"
+    },
+    {
+      "title": "Date",
+      "name": "date",
+      "type": "date"
+    }
+  ],
+  "frontMatter.content.filters": [
+    {
+      "title": "Status",
+      "name": "status",
+      "type": "choice",
+      "choices": [
+        "NOT STARTED",
+        "IN PROGRESS",
+        "BLOCKED",
+        "COMPLETED",
+        "DEFERRED"
+      ]
+    },
+    {
+      "title": "Tags",
+      "name": "tags",
+      "type": "tags"
+    }
+  ]
+}

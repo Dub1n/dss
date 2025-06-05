@@ -17,7 +17,7 @@ These maintenance actions are automatically triggered during all workflows:
 ### File Creation Triggers
 - **New file created** → Add appropriate frontmatter with tags/provides/requires
 - **Template used** → Ensure template structure and conventions followed
-- **Code file added** → Include proper imports, docstrings, and structure
+- **Code file added** → Include proper imports, docstrings, and structure following [documentation standards](mdc:.cursor/rules/guidelines/11-documentation-standards.mdc)
 - **Documentation created** → Add cross-references and navigation links
 
 ### File Modification Triggers
@@ -31,6 +31,7 @@ These maintenance actions are automatically triggered during all workflows:
 - **Cross-references updated** → Ensure bidirectional linking where appropriate
 - **Tables modified** → Run [meta/scripts/prettify_md.ps1](mdc:meta/scripts/prettify_md.ps1) for consistent formatting
 - **Documentation outdated** → Suggest updates or corrections
+- **Code documentation updated** → Ensure compliance with [documentation standards](mdc:.cursor/rules/guidelines/11-documentation-standards.mdc)
 
 ## Frontmatter Validation Rules
 

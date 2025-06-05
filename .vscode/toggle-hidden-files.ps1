@@ -58,8 +58,24 @@ try {
         }
     }
     
-    # Convert back to JSON with proper formatting
+    # Convert back to JSON with proper formatting (4-space indentation to match original)
     $newContent = $settings | ConvertTo-Json -Depth 10
+    
+    # Fix indentation: Convert 2-space to 4-space indentation to match Cursor's format
+    $lines = $newContent -split "`n"
+    $fixedLines = foreach ($line in $lines) {
+        # Count leading spaces and double them
+        if ($line -match '^(\s*)(.*)$') {
+            $indentation = $matches[1]
+            $content = $matches[2]
+            # Double the indentation (2 spaces -> 4 spaces)
+            $newIndentation = $indentation -replace ' ', '  '
+            "$newIndentation$content"
+        } else {
+            $line
+        }
+    }
+    $newContent = $fixedLines -join "`n"
     
     # Save with backup
     $backupPath = "$settingsPath.backup"

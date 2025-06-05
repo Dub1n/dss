@@ -35,8 +35,9 @@ Analyze structure → Plan changes → Apply systematically → Update cross-ref
 2. **Plan Coordinated Changes**: Create systematic plan, establish patterns for consistency, identify conflicts and dependencies
 3. **Apply Changes Systematically**: Make changes one file at a time in logical dependency order, preserve [frontmatter](mdc:.cursor/rules/guidelines/04-validation-rules.mdc) unless updating metadata
 4. **Update Cross-References**: Ensure all internal links remain valid, update references to reflect new content, verify [MDC links](mdc:.cursor/rules/guidelines/06-backlink-conventions.mdc)
-5. **Validate Documentation Integrity**: Check for [broken links](mdc:.cursor/rules/guidelines/01-dss-maintenance.mdc), ensure consistent formatting, validate [frontmatter](mdc:.cursor/rules/guidelines/04-validation-rules.mdc)
-6. **Review for Consistency**: Verify uniform changes, check terminology and patterns, ensure overall coherence
+5. **Apply Documentation Standards**: Ensure compliance with [documentation standards](mdc:.cursor/rules/guidelines/11-documentation-standards.mdc) for code documentation
+6. **Validate Documentation Integrity**: Check for [broken links](mdc:.cursor/rules/guidelines/01-dss-maintenance.mdc), ensure consistent formatting, validate [frontmatter](mdc:.cursor/rules/guidelines/04-validation-rules.mdc)
+7. **Review for Consistency**: Verify uniform changes, check terminology and patterns, ensure overall coherence
 
 ## DSS Maintenance Integration
 - **Update [INDEX.md](mdc:INDEX.md)** if documentation structure changed significantly
@@ -51,6 +52,12 @@ Analyze structure → Plan changes → Apply systematically → Update cross-ref
 
 ## When to De-escalate
 - **→ [Quick Tasks](mdc:.cursor/rules/workflows/01-quick-tasks.mdc)**: Task affects only 1-2 files with minimal coordination needed
+
+## Related Guidelines
+- [Documentation Standards](mdc:.cursor/rules/guidelines/11-documentation-standards.mdc)
+- [Validation Rules](mdc:.cursor/rules/guidelines/04-validation-rules.mdc)
+- [Backlink Conventions](mdc:.cursor/rules/guidelines/06-backlink-conventions.mdc)
+- [Maintenance Guidelines](mdc:.cursor/rules/guidelines/01-dss-maintenance.mdc)
 
 
 

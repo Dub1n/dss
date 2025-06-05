@@ -10,21 +10,25 @@ This is the **development branch** for the DSS Template Repository. This branch 
 ## Development Files Included
 
 ### Personal Configuration
+
 - `.envrc` - Environment configuration
 - `.vscode/` - VSCode workspace settings
 - `meta/requirements_autoformatter.txt` - Development dependencies
 
 ### Development Tasks & Planning
+
 - `meta/development_queue/` - Task planning and roadmaps
 - `meta/tasks/` - Individual development tasks
 - `meta/benchmark/` - Performance testing and benchmarks
 
 ### Scripts & Tools
+
 - All development scripts in `meta/scripts/`
 - Debugging and testing utilities
 - Repository management tools
 
 ### Backups & Archives
+
 - `meta/rules_backup/` - Previous versions of rules
 - Development notes and scratch files
 
@@ -57,4 +61,4 @@ git checkout development
 - Keep `main` branch focused on end-user experience
 - Use `development` for personal workflow and experimentation
 - Document any changes that should eventually go to `main`
-- Regular sync between branches for shared improvements 
+- Regular sync between branches for shared improvements
