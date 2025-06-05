@@ -12,11 +12,9 @@ requires: []
 
 ## What Problem Does This Solve?
 
-AI assistants are terrible at understanding most codebases. They give you generic suggestions, miss obvious context, and generally act  
-like they've never seen your project before.
+AI assistants are terrible at understanding most codebases. They give you generic suggestions, miss obvious context, and generally act like they've never seen your project before.
 
-Meanwhile, as projects grow, even humans can't find anything. Documentation gets buried, code relationships become mysteries, and  
-navigating your own project becomes a nightmare.
+Meanwhile, as projects grow, even humans can't find anything. Documentation gets buried, code relationships become mysteries, and navigating your own project becomes a nightmare.
 
 **DSS fixes both problems.** It's an open protocol that actually works with your existing tools:
 
@@ -29,8 +27,7 @@ navigating your own project becomes a nightmare.
 
 ## How It Works
 
-DSS is a protocol that is easy for you (and your assistants) to follow. It consists of a **folder structure + metadata protocol** that any  
-tool can read:
+DSS is a protocol that is easy for you (and your assistants) to follow. It consists of a **folder structure + metadata protocol** that any tool can read:
 
 ```text
 📁 your-project/
@@ -41,8 +38,7 @@ tool can read:
 └── 📂 like/            ← To-do lists
 ```
 
-Each file gets some **YAML frontmatter** (tags and relationships) that creates connections between everything, while folder READMEs sum up  
-the important bits for quick reference. Both humans and AI can follow the breadcrumbs.
+Each file gets some **YAML frontmatter** (tags and relationships) that creates connections between everything, while folder READMEs sum up the important bits for quick reference. Both humans and AI can follow the breadcrumbs.
 
 **The result:** Your project makes sense to everyone and everything, no matter at what stage they join.
 
@@ -54,8 +50,7 @@ the important bits for quick reference. Both humans and AI can follow the breadc
 
 Copy [this `.cursor/rules` folder](.cursor/rules) into your project's `.cursor/rules` directory.
 
-That's it. Your AI assistant now understands DSS structure and will automatically organize files properly, add frontmatter, and maintain  
-documentation links.
+That's it. Your AI assistant now understands DSS structure and will automatically organize files properly, add frontmatter, and maintain documentation links.
 
 ### Start a New DSS Project
 
