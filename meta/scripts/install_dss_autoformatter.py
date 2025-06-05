@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""---
+"""
+⚠️  WARNING: This script is in need of significant rework and is kept for reference only.
+    It was written for an earlier version of DSS and does not match the current repo structure.
+    DO NOT USE in production - significant updates required before it can be functional.
+    
+    For current DSS functionality, see the main documentation and newer scripts.
+
 tags: [script, installer, dss, autoformatter]
 provides: [dss_autoformatter_installer]
 requires: [urllib, pathlib, subprocess]

@@ -1,0 +1,128 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+
+# Dev Tasks Overview
+
+Generated: 2025-06-03 08:42:12
+Total tasks: 13
+Sorted by: status
+
+| File                             | Status     | Tags                                     | Provides                       |
+| -------------------------------- | ---------- | ---------------------------------------- | ------------------------------ |
+| [cursor_rules_migration_roadmap](mdc:dev/development_queue/cursor_rules_migration_roadmap.md)  | active     | roadmap, migration, cursor_rules, ...    | migration_roadmap, restr...    |
+| [assistant_workflow_improvement](mdc:dev/tasks/repo_dev/completed/assistant_workflow_improvement.md)  | N/A        | task_breakdown, project_management...    | assistant_workflow_impro...    |
+| [benchmark](mdc:dev/tasks/benchmark.md)                       | N/A        | benchmarking, evaluation, methodol...    | dss_benchmarking_methodo...    |
+| [chat-detection-methods](mdc:dev/ideas/cursor-enhancements/chat-detection-methods.md)          | N/A        | Cursor, Enhancement, Chat Detectio...    | Chat Completion Detectio...    |
+| [cursor_native_enhancement](mdc:dev/tasks/cursor_native_enhancement.md)       | N/A        | task_breakdown, cursor_enhancement...    | cursor_enhancement_roadm...    |
+| [custom_gpt_dss_integration](mdc:dev/tasks/custom_gpt_dss_integration.md)      | N/A        | task_breakdown, project_management...    | custom_gpt_development_r...    |
+| [dss_repo_phase1](mdc:dev/tasks/dss_repo_phase1.md)                 | N/A        | task_breakdown, project_management...    | dss_repo_phase1_tasks          |
+| [export-automation-investigation](mdc:dev/ideas/cursor-enhancements/export-automation-investigation.md) | N/A        | Cursor, Enhancement, Export Automa...    | Export Investigation Not...    |
+| [file-level-branching-proposal](mdc:dev/file-level-branching-proposal.md)   | N/A        | Git, Feature Request, Version Cont...    | File-Level Branching Pro...    |
+| [implementation-guide](mdc:dev/ideas/cursor-enhancements/implementation-guide.md)            | N/A        | Cursor, Implementation, Step-by-St...    | Implementation Guide, Co...    |
+| [plugin-framework-skeleton](mdc:dev/ideas/cursor-enhancements/plugin-framework-skeleton.md)       | N/A        | Cursor, Plugin Framework, VS Code ...    | Plugin Architecture, Com...    |
+| [TODO](mdc:dev/tasks/TODO.md)                            | N/A        | project_management                       | project_todo_list              |
+| [token-counting-approaches](mdc:dev/ideas/cursor-enhancements/token-counting-approaches.md)       | N/A        | Cursor, Enhancement, Token Countin...    | Token Counting Methods, ...    |
+
+## Status Groups
+
+- **active**: Tasks currently in active state
+
+## Details Reference
+
+### [cursor_rules_migration_roadmap](mdc:dev/development_queue/cursor_rules_migration_roadmap.md)
+- **Path**: `development_queue\cursor_rules_migration_roadmap.md`
+- **Status**: active
+- **Tags**: roadmap, migration, cursor_rules, restructure, implementation
+- **Provides**: migration_roadmap, restructure_plan, implementation_steps
+- **Requires**: meta/integrations/cursor_rules_integration.md, meta/DSS_GUIDE.md
+
+### [assistant_workflow_improvement](mdc:dev/tasks/repo_dev/completed/assistant_workflow_improvement.md)
+- **Path**: `tasks\repo_dev\completed\assistant_workflow_improvement.md`
+- **Status**: N/A
+- **Tags**: task_breakdown, project_management, assistant_workflow, enhancement
+- **Provides**: assistant_workflow_improvement_tasks
+- **Requires**: meta/assistant_workflows/code_modification.md, meta/assistant_workflows/docs_driven_development.md, meta/assistant_workflows/task_decomposition.md, meta/assistant_guidelines/maintenance_checklist.md, meta/assistant_guidelines/self_governance_improvement.md
+
+### [benchmark](mdc:dev/tasks/benchmark.md)
+- **Path**: `tasks\benchmark.md`
+- **Status**: N/A
+- **Tags**: benchmarking, evaluation, methodology, performance, quality_assurance
+- **Provides**: dss_benchmarking_methodology, benchmark_metrics, evaluation_framework
+- **Requires**: meta/DSS_GUIDE.md, docs/getting_started.md
+
+### [chat-detection-methods](mdc:dev/ideas/cursor-enhancements/chat-detection-methods.md)
+- **Path**: `ideas\cursor-enhancements\chat-detection-methods.md`
+- **Status**: N/A
+- **Tags**: Cursor, Enhancement, Chat Detection, Technical Implementation
+- **Provides**: Chat Completion Detection Methods, UI Monitoring Approaches
+- **Requires**: Cursor IDE Internal APIs, Browser Extension Development
+
+### [cursor_native_enhancement](mdc:dev/tasks/cursor_native_enhancement.md)
+- **Path**: `tasks\cursor_native_enhancement.md`
+- **Status**: N/A
+- **Tags**: task_breakdown, cursor_enhancement, ai_assistant, native_integration, second_brain
+- **Provides**: cursor_enhancement_roadmap, native_ai_tasks
+- **Requires**: docs/cursor_native_integration.md, meta/tasks/custom_gpt_dss_integration.md
+
+### [custom_gpt_dss_integration](mdc:dev/tasks/custom_gpt_dss_integration.md)
+- **Path**: `tasks\custom_gpt_dss_integration.md`
+- **Status**: N/A
+- **Tags**: task_breakdown, project_management, custom_gpt, github_integration, ai_assistant, phase1
+- **Provides**: custom_gpt_development_roadmap, gpt_integration_tasks
+- **Requires**: meta/integrations/chatgpt_custom_gpt_dss_integration.md, meta/roadmap.md, meta/dss_config.yml
+
+### [dss_repo_phase1](mdc:dev/tasks/dss_repo_phase1.md)
+- **Path**: `tasks\dss_repo_phase1.md`
+- **Status**: N/A
+- **Tags**: task_breakdown, project_management, phase1, automation
+- **Provides**: dss_repo_phase1_tasks
+- **Requires**: meta/roadmap.md, docs/task_decomposition.md, meta/guidelines/tag_conventions.md
+
+### [export-automation-investigation](mdc:dev/ideas/cursor-enhancements/export-automation-investigation.md)
+- **Path**: `ideas\cursor-enhancements\export-automation-investigation.md`
+- **Status**: N/A
+- **Tags**: Cursor, Enhancement, Export Automation, Chat History
+- **Provides**: Export Investigation Notes, Chat History Analysis
+- **Requires**: Cursor IDE Developer Commands, Extension API Access
+
+### [file-level-branching-proposal](mdc:dev/file-level-branching-proposal.md)
+- **Path**: `file-level-branching-proposal.md`
+- **Status**: N/A
+- **Tags**: Git, Feature Request, Version Control, Branching, Innovation
+- **Provides**: File-Level Branching Proposal, Git Enhancement Specification
+- **Requires**: Git Knowledge, Version Control Understanding
+
+### [implementation-guide](mdc:dev/ideas/cursor-enhancements/implementation-guide.md)
+- **Path**: `ideas\cursor-enhancements\implementation-guide.md`
+- **Status**: N/A
+- **Tags**: Cursor, Implementation, Step-by-Step, Plugin Development, Token Tracker
+- **Provides**: Implementation Guide, Code Examples, Development Steps
+- **Requires**: Plugin Framework Skeleton, Token Count Discovery
+
+### [plugin-framework-skeleton](mdc:dev/ideas/cursor-enhancements/plugin-framework-skeleton.md)
+- **Path**: `ideas\cursor-enhancements\plugin-framework-skeleton.md`
+- **Status**: N/A
+- **Tags**: Cursor, Plugin Framework, VS Code Extension, Implementation Guide
+- **Provides**: Plugin Architecture, Complexity Assessment, Development Framework
+- **Requires**: Chat Detection Methods, Token Counting, Export Automation
+
+### [TODO](mdc:dev/tasks/TODO.md)
+- **Path**: `tasks\TODO.md`
+- **Status**: N/A
+- **Tags**: project_management
+- **Provides**: project_todo_list
+
+### [token-counting-approaches](mdc:dev/ideas/cursor-enhancements/token-counting-approaches.md)
+- **Path**: `ideas\cursor-enhancements\token-counting-approaches.md`
+- **Status**: N/A
+- **Tags**: Cursor, Enhancement, Token Counting, Model Detection, Tokenization
+- **Provides**: Token Counting Methods, Model Detection Logic, Tokenizer Comparison
+- **Requires**: Third-party Tokenizer Libraries, Model API Specifications
+
+---
+
+*This file is auto-generated. Run `python dev/dev_table.py` to update.*
+*For more columns, run with `--extra-columns provides requires`*

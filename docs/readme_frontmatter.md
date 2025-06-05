@@ -27,6 +27,7 @@ The frontmatter validation tool checks YAML frontmatter in Markdown and Python f
 ## Installation
 
 The script requires Python 3.6+ and the following dependencies:
+
 - PyYAML
 - pathlib (included in Python 3.4+)
 

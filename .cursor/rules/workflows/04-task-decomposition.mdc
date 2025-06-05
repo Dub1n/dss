@@ -36,9 +36,10 @@ Break into phases → Document plan → Execute incrementally → Update
 3. **Decompose to Atomic Subtasks**: 1-5 minute atomic actions
 4. **Annotate Each Subtask**: Inputs, outputs, dependencies, estimates
 5. **Add Tags, Links and References**: [Categorization](mdc:.cursor/rules/guidelines/05-tag-conventions.mdc) and [cross-references](mdc:.cursor/rules/guidelines/06-backlink-conventions.mdc)
-6. **Create Status Summary Table**: Track completion progress
-7. **Document the Task Breakdown**: Create task file or document in conversation
-8. **Execute and Track Progress**: Follow hierarchy, update status
+6. **Define Documentation Requirements**: Establish [documentation standards](mdc:.cursor/rules/guidelines/11-documentation-standards.mdc) for implementation
+7. **Create Status Summary Table**: Track completion progress
+8. **Document the Task Breakdown**: Create task file or document in conversation
+9. **Execute and Track Progress**: Follow hierarchy, update status
 
 ## Status Indicators
 - `[NOT STARTED]` - Work has not yet begun
@@ -49,6 +50,11 @@ Break into phases → Document plan → Execute incrementally → Update
 
 ## When to De-escalate
 - **→ Other workflows**: Individual subtasks fit simpler patterns
+
+## Related Guidelines
+- [Documentation Standards](mdc:.cursor/rules/guidelines/11-documentation-standards.mdc)
+- [Tag Conventions](mdc:.cursor/rules/guidelines/05-tag-conventions.mdc)
+- [Backlink Conventions](mdc:.cursor/rules/guidelines/06-backlink-conventions.mdc)
 
 
 

@@ -1,3 +1,11 @@
+"""
+⚠️  WARNING: This script is in need of significant rework and is kept for reference only.
+    It was written for an earlier version of DSS and does not match the current repo structure.
+    DO NOT USE in production - significant updates required before it can be functional.
+    
+    For current DSS functionality, see the main documentation and newer scripts.
+"""
+
 #!/usr/bin/env python
 """---
 tags: [utility, frontmatter, validation, automation]
