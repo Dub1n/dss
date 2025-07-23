@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>QRMaker Word Add-in Mocha Tests</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/10.2.0/mocha.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/10.2.0/mocha.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.3.8/chai.min.js"></script>
+  <!-- Office.js is provided by the host at runtime -->
+  <script>mocha.setup("bdd"); const { expect } = chai;</script>
+  <!-- Load Taskpane.js so tests exercise real code -->
+  <script src="/QRMaker/Taskpane.js"></script>
+</head>
+<body>
+  <div id="mocha"></div>
+  <div id="qrcode-container" style="display:none;"></div>
+  <div id="status"></div>
+  <script src="tests.js"></script>
+  <script>
+    Office.onReady(() => {
+      mocha.run(failures => {
+        // Post results back to localhost test server
+        const data = { failures };
+        const query = encodeURIComponent(JSON.stringify(data));
+        fetch(`https://localhost:4201/results?data=${query}`, { method: 'POST' })
+          .then(() => console.log('Results sent to test server'))
+          .catch(err => console.error('Failed to send results', err));
+      });
+    });
+  </script>
+</body>
+</html> 

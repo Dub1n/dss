@@ -1,7 +1,7 @@
 ---
-description: USE WHEN working with YAML frontmatter, file metadata, validation errors, or auto-correction. Provides frontmatter standards, format consistency rules, and validation integration protocols.
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 ---
 tags: [Validation, Frontmatter, Quality Assurance, Automation, Standards]

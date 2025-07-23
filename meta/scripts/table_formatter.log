@@ -1,0 +1,22 @@
+2025-06-07 12:40:10,205 - INFO - Dry run mode - no files will be modified
+2025-06-07 12:40:10,205 - INFO - Processing README.md
+2025-06-07 12:40:10,205 - INFO - Found 1 tables in README.md
+2025-06-07 12:40:10,206 - INFO - 
+Formatted Table 1:
+| File                                     | Purpose                                                        |
+|----------------------------------------|--------------------------------------------------------------|
+| format_markdown_tables.py                | Basic markdown table formatter                                 |
+| ------------------------------------     | ----------------------------------------------------------     |
+| format_markdown_tables_enhanced.py       | Enhanced markdown table formatter with advanced features       |
+| ------------------------------------     | ----------------------------------------------------------     |
+| generate_docs.py                         | Documentation generator (TBD)                                  |
+| ------------------------------------     | ----------------------------------------------------------     |
+| update_links.py                          | Link updater for file renames (TBD)                            |
+
+2025-06-07 12:40:10,208 - INFO - 
+Processing Statistics:
+2025-06-07 12:40:10,208 - INFO - Files processed: 1
+2025-06-07 12:40:10,208 - INFO - Tables found: 1
+2025-06-07 12:40:10,209 - INFO - Tables formatted: 0
+2025-06-07 12:40:10,209 - INFO - Tables with issues: 0
+2025-06-07 12:40:10,209 - INFO - Processing time: 0.00 seconds

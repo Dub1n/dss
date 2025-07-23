@@ -1,7 +1,7 @@
 ---
-description: USE WHEN handling complex, multi-step tasks that span multiple files or require coordination across systems. Provides structured breakdown methodology, status tracking, and phase management for large initiatives.
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 ---
 tags: [Workflow, Task Decomposition, Complex Tasks, Project Management, Planning]

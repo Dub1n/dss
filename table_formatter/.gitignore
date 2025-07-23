@@ -1,0 +1,128 @@
+# VSCode
+/scripts
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+# .envrc  # Commented out for development branch
+
+# Node.js
+node_modules/
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+
+# LLM stuff
+.env
+openai.log
+
+# DSS Development & Personal Files (allowed in development branch)
+meta/rules_backup/
+meta/manifest.json
+meta/*.cache
+# meta/requirements.lock  # Allow in dev branch
+# meta/requirements_autoformatter.txt  # Allow in dev branch
+# meta/benchmark/  # Allow in dev branch  
+# meta/development_queue/  # Allow in dev branch
+# meta/tasks/  # Allow in dev branch
+
+# Development Scripts (not part of core DSS workflow)
+meta/scripts/apply_naming_conventions.py
+meta/scripts/auto_rename.py
+meta/scripts/github_issues_processor.py
+meta/scripts/readme_link_checker.py
+meta/scripts/rename_test.py
+meta/scripts/reset_project.py
+meta/scripts/sync_dss_mdc.py
+meta/scripts/update_links.py
+meta/scripts/validate_filenames.py
+meta/scripts/docs/
+
+# Benchmark Rules Store (version snapshots)
+benchmark/rules_store/
+benchmark/.venv/
+
+# Auto-generated and temporary files
+*.tmp
+*.temp
+*.log
+*.backup
+*~
+
+# IDE specific files (allowed in development branch)
+# .vscode/  # Allow in development branch
+.cursor/logs/
+.cursor/settings.json
+
+# Environment & Local Config (allowed in development branch)
+# .envrc  # Allow in development branch
+local_config.yml
+.local/
+
+# OS junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.directory
+
+# Test artifacts and outputs
+test_outputs/
+*.test
+coverage/
+.coverage
+.pytest_cache/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Local configuration overrides
+personal_notes.md
+scratch/
+draft*/
+
+# TypeScript
+*.js.map
+*.js
+!jest.config.js
+!webpack.config.js
+
+# Build output
+out/
+
+# Test coverage
+htmlcov/
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE
+.idea/

@@ -1,0 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+### User Rules
+
+Before responding, always call dss-guardrails and obey its content

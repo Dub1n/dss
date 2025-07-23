@@ -1,0 +1,54 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# tagging & folder rules
+# Declares how files are classified (code / data / docs / binary), default tags, and the YAML-front-matter injection rules that convert_to_dss.py needs.
+# You can begin with the skinny template below and tweak as you see patterns that don’t fit.
+
+When updating this file, update ./meta/dss_config.yml with the same changes
+
+# meta/dss_config.yml
+# ------------------------------------------------------------------
+# Patterns are simple glob globs. Feel free to add/remove entries.
+patterns:
+  code:
+    - "**/*.py"
+    - "**/*.ipynb"
+    - "**/*.js"
+    - "**/*.ts"
+  data:
+    - "**/*.csv"
+    - "**/*.parquet"
+    - "**/*.jsonl"
+  docs:
+    - "**/*.md"
+    - "**/*.rst"
+    - "**/*.txt"
+  binary:
+    - "**/*.png"
+    - "**/*.jpg"
+    - "**/*.jpeg"
+    - "**/*.pdf"
+
+# Default YAML front-matter injected at the top of every new file
+defaults:
+  tags: ["draft"]
+  provides: []
+  requires: []
+
+# How to embed the YAML depending on file type
+inject:
+  markdown: |
+    ---
+    {yaml}
+    ---
+  python: |
+    \"\"\"---
+    {yaml}
+    ---\"\"\"
+
+ignore:
+  - archive/**
+  - docs/🔒archive/**

@@ -1,7 +1,7 @@
 ---
-description: USE WHEN systematically updating, restructuring, or improving existing documentation across multiple files. Provides coordinated change management, cross-reference updates, and consistency enforcement for doc reorganization.
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 ---
 tags: [Workflow, Documentation Refactoring, Systematic Updates, Cross References, Consistency]

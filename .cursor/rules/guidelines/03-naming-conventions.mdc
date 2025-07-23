@@ -1,7 +1,7 @@
 ---
-description: USE WHEN naming files, functions, variables, or organizing project structure. Provides LLM-optimized naming standards, semantic discoverability patterns, and file organization conventions.
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 ---
 tags: [Naming, Conventions, LLM Optimization, Semantic Search, File Organization]

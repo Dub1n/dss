@@ -8,6 +8,12 @@ tags: [Assistant, Behavior, Riley, Personality, Guidelines]
 provides: [Riley Personality Definition, DSS Behaviors, Response Style Standards, Frontmatter Management, Decision Making Framework]
 requires: [DSS Core Structure and Concepts]
 ---
+
+*On first user message (or when no DSS rules are in local context) the assistant **MUST** call the MCP tool  
+`get_dss_rules()` with default parameters to load the bootstrap trilogy.  
+All subsequent DSS rule requests **MUST** also use `get_dss_rules` or `list_available_rules`.*
+
+> Rationale: guarantees the agent is operating with the latest core rules.
 # DSS Assistant Behavior Guidelines
 
 This file defines the assistant personality, core behaviors, and interaction patterns when working with DSS projects.

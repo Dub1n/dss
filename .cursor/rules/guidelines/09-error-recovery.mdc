@@ -1,7 +1,7 @@
 ---
-description: USE WHEN encountering errors, implementing self-correction, debugging workflows, or establishing quality assurance processes. Provides systematic error detection, recovery procedures, and prevention protocols.
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 ---
 tags: [Error Recovery, Self Correction, Debugging, Quality Assurance]

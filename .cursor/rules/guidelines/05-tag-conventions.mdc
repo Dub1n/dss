@@ -1,7 +1,7 @@
 ---
-description: USE WHEN adding tags to files, categorizing content, or organizing metadata classification systems. Provides comprehensive tagging standards, classification guidelines, and tag consistency frameworks.
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 ---
 tags: [Tags, Conventions, Metadata, Classification, Organization]

@@ -1,0 +1,9 @@
+{
+    "markdownTableFormatter.pythonPath": "python",
+    "markdownTableFormatter.defaultTemplate": "github",
+    "markdownTableFormatter.formatOnSave": true,
+    "markdownTableFormatter.maxTableWidth": 80,
+    "markdownTableFormatter.minPadding": 1,
+    "markdownTableFormatter.preserveCodeBlocks": true,
+    "markdownTableFormatter.wrapText": true
+} 

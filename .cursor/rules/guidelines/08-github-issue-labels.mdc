@@ -1,7 +1,7 @@
 ---
-description: USE WHEN working with GitHub Issues, applying labels, or managing project issue classification systems. Provides standardized label conventions, categorization systems, and automated labeling guidance.
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 ---
 tags: [GitHub, Issues, Labels, Project Management, Automation]

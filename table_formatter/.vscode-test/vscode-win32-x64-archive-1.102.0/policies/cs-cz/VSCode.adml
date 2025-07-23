@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+	<displayName />
+	<description />
+	<resources>
+		<stringTable>
+			<string id="Application">Visual Studio Code</string>
+			<string id="Supported_1_101">Visual Studio Code &gt;= 1.101</string>
+			<string id="Supported_1_67">Visual Studio Code &gt;= 1.67</string>
+			<string id="Supported_1_96">Visual Studio Code &gt;= 1.96</string>
+			<string id="Supported_1_99">Visual Studio Code &gt;= 1.99</string>
+			<string id="Category_extensionsConfigurationTitle">Rozšíření</string>
+			<string id="Category_interactiveSessionConfigurationTitle">Chat</string>
+			<string id="Category_updateConfigurationTitle">Aktualizace</string>
+			<string id="Category_telemetryConfigurationTitle">Telemetrie</string>
+			<string id="ExtensionGalleryServiceUrl">ExtensionGalleryServiceUrl</string>
+			<string id="ExtensionGalleryServiceUrl_extensions_gallery_serviceUrl">Nakonfigurovat adresu URL služby Marketplace pro připojení k</string>
+			<string id="ChatToolsAutoApprove">ChatToolsAutoApprove</string>
+			<string id="ChatToolsAutoApprove_chat_tools_autoApprove_description">Controls whether tool use should be automatically approved. Allow all tools to run automatically without user confirmation, overriding any tool-specific settings such as terminal auto-approval. Use with caution: carefully review selected tools and be extra wary of possible sources of prompt injection!</string>
+			<string id="ChatMCP">ChatMCP</string>
+			<string id="ChatMCP_chat_mcp_enabled">Umožňuje integraci se servery protokolu kontextu modelu, aby bylo možné poskytovat další nástroje a funkce.</string>
+			<string id="ChatAgentExtensionTools">ChatAgentExtensionTools</string>
+			<string id="ChatAgentExtensionTools_chat_extensionToolsPolicy">Umožňuje používat nástroje z rozšíření třetích stran.</string>
+			<string id="ChatAgentMode">ChatAgentMode</string>
+			<string id="ChatAgentMode_chat_agent_enabled_description">Povolit režim agenta pro {0}. Pokud je tato možnost povolená, můžete režim agenta aktivovat prostřednictvím rozevíracího seznamu v zobrazení.</string>
+			<string id="McpGalleryServiceUrl">McpGalleryServiceUrl</string>
+			<string id="McpGalleryServiceUrl_mcp_gallery_serviceUrl">Nakonfigurovat adresu URL služby Galerie MCP pro připojení k</string>
+			<string id="ChatPromptFiles">ChatPromptFiles</string>
+			<string id="ChatPromptFiles_chat_promptFiles_policy">Povolí opakovaně použitelné soubory výzev a pokynů v relacích Chatu, Edits a vloženého chatu.</string>
+			<string id="UpdateMode">UpdateMode</string>
+			<string id="UpdateMode_updateMode">Umožňuje nakonfigurovat, jestli budete dostávat automatické aktualizace. Po změně vyžaduje restart. Aktualizace se načítají z online služby Microsoftu.</string>
+			<string id="UpdateMode_none">Zakázat aktualizace</string>
+			<string id="UpdateMode_manual">Zakázat automatické vyhledávání aktualizací na pozadí (aktualizace lze nechat vyhledat ručně)</string>
+			<string id="UpdateMode_start">Umožňuje vyhledat aktualizace pouze při spuštění. Zakáže automatické vyhledávání aktualizací na pozadí.</string>
+			<string id="UpdateMode_default">Umožňuje povolit automatické vyhledávání aktualizací. Code bude aktualizace vyhledávat automaticky a pravidelně.</string>
+			<string id="TelemetryLevel">TelemetryLevel</string>
+			<string id="TelemetryLevel_telemetry_telemetryLevel_policyDescription">Řídí úroveň telemetrie.</string>
+			<string id="EnableFeedback">EnableFeedback</string>
+			<string id="EnableFeedback_telemetry_feedback_enabled">Umožňuje povolit mechanismy zpětné vazby, jako jsou sestavy problémů, průzkumy a možnosti zpětné vazby, ve funkcích, jako je Copilot Chat.</string>
+			<string id="AllowedExtensions">AllowedExtensions</string>
+			<string id="AllowedExtensions_extensions_allowed_policy">Zadejte seznam rozšíření, která mohou být použita. Pomáhá to udržovat zabezpečené a konzistentní vývojové prostředí tím, že je omezeno používání neautorizovaných rozšíření. Další informace: https://code.visualstudio.com/docs/setup/enterprise#_configure-allowed-extensions</string>
+		</stringTable>
+		<presentationTable>
+			<presentation id="ExtensionGalleryServiceUrl"><textBox refId="ExtensionGalleryServiceUrl"><label>ExtensionGalleryServiceUrl:</label></textBox></presentation>
+			<presentation id="ChatToolsAutoApprove"><checkBox refId="ChatToolsAutoApprove">ChatToolsAutoApprove</checkBox></presentation>
+			<presentation id="ChatMCP"><checkBox refId="ChatMCP">ChatMCP</checkBox></presentation>
+			<presentation id="ChatAgentExtensionTools"><checkBox refId="ChatAgentExtensionTools">ChatAgentExtensionTools</checkBox></presentation>
+			<presentation id="ChatAgentMode"><checkBox refId="ChatAgentMode">ChatAgentMode</checkBox></presentation>
+			<presentation id="McpGalleryServiceUrl"><textBox refId="McpGalleryServiceUrl"><label>McpGalleryServiceUrl:</label></textBox></presentation>
+			<presentation id="ChatPromptFiles"><checkBox refId="ChatPromptFiles">ChatPromptFiles</checkBox></presentation>
+			<presentation id="UpdateMode"><dropdownList refId="UpdateMode" /></presentation>
+			<presentation id="TelemetryLevel"><textBox refId="TelemetryLevel"><label>TelemetryLevel:</label></textBox></presentation>
+			<presentation id="EnableFeedback"><checkBox refId="EnableFeedback">EnableFeedback</checkBox></presentation>
+			<presentation id="AllowedExtensions"><multiTextBox refId="AllowedExtensions" /></presentation>
+		</presentationTable>
+	</resources>
+</policyDefinitionResources>

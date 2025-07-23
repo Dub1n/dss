@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>QR Code Generator</title>
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    
+    <!-- QR Code Generation Library -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/davidshimjs-qrcodejs@0.0.2/qrcode.min.js"></script>
+
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+        }
+        /* Style for disabled buttons */
+        button:disabled {
+            background-color: #a0aec0;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4 flex flex-col h-screen">
+    <div class="space-y-4 flex-grow">
+        <div>
+            <h1 class="text-xl font-semibold text-gray-800">QR Code Tools <span id="version-span" class="text-xs text-gray-400"></span></h1>
+            <p class="text-sm text-gray-600">Create and manage floating QR code pairs.</p>
+        </div>
+
+        <!-- Section for creating and duplicating -->
+        <div class="p-4 bg-white rounded-lg shadow-md space-y-3">
+            <h2 class="text-lg font-medium text-gray-700 border-b pb-2">Actions</h2>
+            
+            <button id="create-new-pair" class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-md transition-all duration-200 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 text-lg" disabled>
+                Create New Pair
+            </button>
+             <p class="text-xs text-gray-500 text-center">Inserts a new, floating text/QR pair.</p>
+
+            <button id="duplicate-pair" class="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-md transition-all duration-200 ease-in-out hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50" disabled>
+                Duplicate Selected Pair
+            </button>
+             <p class="text-xs text-gray-500 text-center">Select a source or QR box, then click.</p>
+            
+            <button id="delete-pair" class="w-full bg-red-600 text-white font-bold py-2 px-4 rounded-md transition-all duration-200 ease-in-out hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50" disabled>
+                Delete Selected Pair
+            </button>
+             <p class="text-xs text-gray-500 text-center">Select a source or QR box, then click.</p>
+
+            <button id="create-templates" class="w-full bg-yellow-600 text-white font-bold py-2 px-4 rounded-md transition-all duration-200 ease-in-out hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50" disabled>
+                Create Templates
+            </button>
+             <p class="text-xs text-gray-500 text-center">Force creation of template elements (debug).</p>
+
+        </div>
+
+        <!-- Section for updates -->
+        <div class="p-4 bg-white rounded-lg shadow-md space-y-3">
+             <h2 class="text-lg font-medium text-gray-700 border-b pb-2">Updates</h2>
+            <button id="refresh-qrs" class="w-full bg-green-600 text-white font-bold py-2 px-4 rounded-md transition-all duration-200 ease-in-out hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50" disabled>
+                Refresh All QR Codes
+            </button>
+            <div class="flex items-center justify-center pt-2">
+                <label for="live-update-toggle" class="flex items-center cursor-pointer">
+                    <div class="relative">
+                        <input type="checkbox" id="live-update-toggle" class="sr-only" disabled>
+                        <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+                        <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                    </div>
+                    <div class="ml-3 text-gray-700 font-medium">
+                        Live Update
+                    </div>
+                </label>
+            </div>
+            <style>
+                input:checked ~ .dot { transform: translateX(100%); background-color: #48bb78; }
+                input:checked ~ .block { background-color: #c6f6d5; }
+            </style>
+        </div>
+        
+        <!-- Hidden element for QR code generation -->
+        <div id="qrcode-container" class="hidden"></div>
+    </div>
+    
+    <!-- Status Messages -->
+    <div id="status" class="text-sm text-center text-gray-600 p-2 bg-gray-200 rounded-md">
+        Initializing...
+    </div>
+
+    <!-- Main Logic -->
+    <script type="text/javascript" src="Taskpane.js?v=6.0.0"></script>
+
+    <!-- Autotest runner (loads only when ?autotest is in the query string) -->
+    <script>
+      (function() {
+        if (!location.search.includes('autotest')) { return; }
+
+        // Add Mocha CSS for readability (optional)
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/mocha/10.2.0/mocha.min.css';
+        document.head.appendChild(link);
+
+        // Mocha requires a #mocha container
+        var mochaDiv = document.createElement('div');
+        mochaDiv.id = 'mocha';
+        document.body.appendChild(mochaDiv);
+
+        function loadScript(src, cb) {
+          var s = document.createElement('script');
+          s.src = src; s.onload = cb; document.body.appendChild(s);
+        }
+
+        // Chain-load Mocha → Chai → tests → run()
+        loadScript('https://cdnjs.cloudflare.com/ajax/libs/mocha/10.2.0/mocha.min.js', function() {
+          loadScript('https://cdnjs.cloudflare.com/ajax/libs/chai/4.3.7/chai.min.js', function() {
+            window.expect = chai.expect;
+            mocha.setup('bdd');
+            loadScript('tests/word/tests.js', function() { mocha.run(); });
+          });
+        });
+      })();
+    </script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
-    // Point Cursor’s Python extension at your venv
-    "python.defaultInterpreterPath": ".venv/bin/python",   // Windows: ".venv\\Scripts\\python.exe"
-    // Make the integrated terminal run `.venv/bin/activate` for you
-    "python.terminal.activateEnvironment": true
-  }
+    "python.defaultInterpreterPath": "C:/Users/gabri/Documents/Infotopology/DSS/dss_template_repo/.venv/Scripts/python.exe",
+    "python.analysis.extraPaths": [
+        "C:/Users/gabri/Documents/Infotopology/DSS/dss_template_repo/.venv/Lib/site-packages"
+    ]
+} 

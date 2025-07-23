@@ -1,0 +1,170 @@
+{
+  "name": "markdown-table-formatter",
+  "displayName": "Markdown Table Formatter",
+  "description": "Format markdown tables with consistent alignment, padding, and advanced features",
+  "version": "0.1.0",
+  "publisher": "dss-tools",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Formatters",
+    "Linters"
+  ],
+  "keywords": [
+    "markdown",
+    "table",
+    "format",
+    "alignment",
+    "padding"
+  ],
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "activationEvents": [
+    "onLanguage:markdown",
+    "onCommand:markdownTableFormatter.formatTable",
+    "onCommand:markdownTableFormatter.formatAllTables",
+    "onCommand:markdownTableFormatter.formatSelection"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "markdownTableFormatter.formatTable",
+        "title": "Format Markdown Table at Cursor"
+      },
+      {
+        "command": "markdownTableFormatter.formatAllTables",
+        "title": "Format All Markdown Tables in Document"
+      },
+      {
+        "command": "markdownTableFormatter.formatSelection",
+        "title": "Format Selection as Markdown Table"
+      },
+      {
+        "command": "markdownTableFormatter.formatDropdown",
+        "title": "Table Formatting Options..."
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "markdownTableFormatter.formatTable",
+        "key": "ctrl+alt+t",
+        "mac": "cmd+alt+t",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+      },
+      {
+        "command": "markdownTableFormatter.formatAllTables",
+        "key": "ctrl+alt+a",
+        "mac": "cmd+alt+a",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+      }
+    ],
+    "configuration": {
+      "title": "Markdown Table Formatter",
+      "properties": {
+        "markdownTableFormatter.pythonPath": {
+          "type": "string",
+          "default": "python",
+          "description": "Path to the Python executable"
+        },
+        "markdownTableFormatter.formatterPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the table formatter script (leave empty to use the bundled formatter)"
+        },
+        "markdownTableFormatter.defaultTemplate": {
+          "type": "string",
+          "enum": ["github", "technical", "minimal", "smart", "none"],
+          "default": "github",
+          "description": "Default template to use for formatting"
+        },
+        "markdownTableFormatter.formatOnSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically format tables when saving markdown files"
+        },
+        "markdownTableFormatter.maxTableWidth": {
+          "type": "number",
+          "default": 80,
+          "description": "Maximum width of the table in characters"
+        },
+        "markdownTableFormatter.minPadding": {
+          "type": "number",
+          "default": 1,
+          "description": "Minimum padding between cell content and cell borders"
+        },
+        "markdownTableFormatter.preserveCodeBlocks": {
+          "type": "boolean",
+          "default": true,
+          "description": "Preserve code blocks in table cells"
+        },
+        "markdownTableFormatter.wrapText": {
+          "type": "boolean",
+          "default": true,
+          "description": "Wrap text in table cells"
+        },
+        "markdownTableFormatter.enableBackgroundFormatter": {
+          "type": "boolean",
+          "default": false,
+          "description": "Keep a background Python formatter process alive between commands to improve performance (experimental)."
+        },
+        "markdownTableFormatter.enablePreview": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show a preview (diff or webview) before applying formatting commands."
+        },
+        "markdownTableFormatter.previewMode": {
+          "type": "string",
+          "enum": ["diff", "webview"],
+          "default": "diff",
+          "description": "Preview mode for formatting changes (diff editor or webview)."
+        }
+      }
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorTextFocus && editorLangId == 'markdown'",
+          "command": "markdownTableFormatter.formatDropdown",
+          "group": "1_modification"
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "fs-extra": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^16.11.7",
+    "@types/vscode": "^1.60.0",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "@vscode/test-electron": "^2.1.5",
+    "eslint": "^8.20.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "typescript": "^4.7.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dub1n/md_table_formatter.git"
+  },
+  "files": [
+    "out",
+    "core",
+    "main.py",
+    "bg_server.py",
+    "requirements.txt",
+    "README.md"
+  ]
+}

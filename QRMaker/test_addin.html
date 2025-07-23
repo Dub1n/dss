@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>QR Code Add-in Test</title>
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    
+    <!-- QR Code Generation Library -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/davidshimjs-qrcodejs@0.0.2/qrcode.min.js"></script>
+
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-4">
+    <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
+        <h1 class="text-xl font-semibold text-gray-800 mb-4">QR Code Add-in Test</h1>
+        
+        <div id="status" class="text-sm text-center text-gray-600 p-2 bg-gray-200 rounded-md mb-4">
+            Testing add-in components...
+        </div>
+        
+        <div id="test-results" class="space-y-2">
+            <!-- Test results will be populated here -->
+        </div>
+        
+        <button id="run-tests" class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700">
+            Run Tests
+        </button>
+    </div>
+
+    <script>
+        // Simple test to verify the add-in components load without errors
+        document.addEventListener('DOMContentLoaded', () => {
+            const status = document.getElementById('status');
+            const results = document.getElementById('test-results');
+            
+            function addResult(test, passed, message) {
+                const div = document.createElement('div');
+                div.className = `p-2 rounded ${passed ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
+                div.innerHTML = `<strong>${test}:</strong> ${passed ? 'PASS' : 'FAIL'} - ${message}`;
+                results.appendChild(div);
+            }
+            
+            function runTests() {
+                results.innerHTML = '';
+                status.textContent = 'Running tests...';
+                
+                // Test 1: Office.js loaded
+                const officeLoaded = typeof Office !== 'undefined';
+                addResult('Office.js', officeLoaded, officeLoaded ? 'Office.js is available' : 'Office.js not loaded');
+                
+                // Test 2: QRCode library loaded
+                const qrLoaded = typeof QRCode !== 'undefined';
+                addResult('QRCode Library', qrLoaded, qrLoaded ? 'QRCode library is available' : 'QRCode library not loaded');
+                
+                // Test 3: Tailwind CSS loaded
+                const tailwindLoaded = document.querySelector('[class*="bg-gray-100"]') !== null;
+                addResult('Tailwind CSS', tailwindLoaded, tailwindLoaded ? 'Tailwind CSS is working' : 'Tailwind CSS not loaded');
+                
+                // Test 4: Template file exists
+                const templateUrl = new URL('assets/qr_template.docx', window.location.href).href;
+                console.log('Attempting to fetch template from:', templateUrl);
+                
+                fetch(templateUrl)
+                    .then(response => {
+                        console.log('Template fetch response:', response.status, response.statusText);
+                        const templateExists = response.ok;
+                        addResult('Template File', templateExists, templateExists ? 'qr_template.docx is accessible' : `qr_template.docx not found (${response.status})`);
+                    })
+                    .catch((error) => {
+                        console.error('Template fetch error:', error);
+                        addResult('Template File', false, `qr_template.docx not accessible: ${error.message}`);
+                    });
+                
+                status.textContent = 'Tests completed';
+            }
+            
+            document.getElementById('run-tests').onclick = runTests;
+            
+            // Run tests automatically
+            setTimeout(runTests, 1000);
+        });
+    </script>
+</body>
+</html> 

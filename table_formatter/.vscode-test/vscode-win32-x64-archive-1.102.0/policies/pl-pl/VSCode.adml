@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+	<displayName />
+	<description />
+	<resources>
+		<stringTable>
+			<string id="Application">Visual Studio Code</string>
+			<string id="Supported_1_101">Visual Studio Code &gt;= 1.101</string>
+			<string id="Supported_1_67">Visual Studio Code &gt;= 1.67</string>
+			<string id="Supported_1_96">Visual Studio Code &gt;= 1.96</string>
+			<string id="Supported_1_99">Visual Studio Code &gt;= 1.99</string>
+			<string id="Category_extensionsConfigurationTitle">Rozszerzenia</string>
+			<string id="Category_interactiveSessionConfigurationTitle">Czat</string>
+			<string id="Category_updateConfigurationTitle">Aktualizuj</string>
+			<string id="Category_telemetryConfigurationTitle">Telemetria</string>
+			<string id="ExtensionGalleryServiceUrl">ExtensionGalleryServiceUrl</string>
+			<string id="ExtensionGalleryServiceUrl_extensions_gallery_serviceUrl">Konfigurowanie adresu URL usługi Marketplace w celu nawiązania połączenia z</string>
+			<string id="ChatToolsAutoApprove">ChatToolsAutoApprove</string>
+			<string id="ChatToolsAutoApprove_chat_tools_autoApprove_description">Controls whether tool use should be automatically approved. Allow all tools to run automatically without user confirmation, overriding any tool-specific settings such as terminal auto-approval. Use with caution: carefully review selected tools and be extra wary of possible sources of prompt injection!</string>
+			<string id="ChatMCP">ChatMCP</string>
+			<string id="ChatMCP_chat_mcp_enabled">Umożliwia integrację z serwerami protokołu kontekstowego modelu w celu zapewnienia dodatkowych narzędzi i funkcji.</string>
+			<string id="ChatAgentExtensionTools">ChatAgentExtensionTools</string>
+			<string id="ChatAgentExtensionTools_chat_extensionToolsPolicy">Włącz korzystanie z narzędzi dostarczonych przez rozszerzenia innych firm.</string>
+			<string id="ChatAgentMode">ChatAgentMode</string>
+			<string id="ChatAgentMode_chat_agent_enabled_description">Włącz tryb agenta dla {0}. Gdy ta opcja jest włączona, tryb agenta można aktywować z rozwijanej listy w widoku.</string>
+			<string id="McpGalleryServiceUrl">McpGalleryServiceUrl</string>
+			<string id="McpGalleryServiceUrl_mcp_gallery_serviceUrl">Skonfiguruj adres URL usługi MCP Gallery, aby nawiązać połączenie z</string>
+			<string id="ChatPromptFiles">ChatPromptFiles</string>
+			<string id="ChatPromptFiles_chat_promptFiles_policy">Włącza pliki monitów i instrukcji wielokrotnego użytku w sesjach czatu, edycji i czatu wbudowanego.</string>
+			<string id="UpdateMode">UpdateMode</string>
+			<string id="UpdateMode_updateMode">Skonfiguruj, czy chcesz otrzymywać aktualizacje automatyczne. Wymaga ponownego uruchomienia po zmianie. Aktualizacje są pobierane z usługi online firmy Microsoft.</string>
+			<string id="UpdateMode_none">Wyłącz aktualizacje.</string>
+			<string id="UpdateMode_manual">Wyłącz automatyczne sprawdzanie aktualizacji w tle. Aktualizacje będą dostępne, jeśli wyszukasz aktualizacje ręcznie.</string>
+			<string id="UpdateMode_start">Sprawdź aktualizacje tylko przy uruchamianiu. Wyłącz automatyczne sprawdzanie aktualizacji w tle.</string>
+			<string id="UpdateMode_default">Włącz automatyczne sprawdzanie aktualizacji. Program Code będzie sprawdzać aktualizacje automatycznie i okresowo.</string>
+			<string id="TelemetryLevel">TelemetryLevel</string>
+			<string id="TelemetryLevel_telemetry_telemetryLevel_policyDescription">Steruje poziomem telemetrii.</string>
+			<string id="EnableFeedback">EnableFeedback</string>
+			<string id="EnableFeedback_telemetry_feedback_enabled">Włącz mechanizmy opinii, takie jak reporter problemów, ankiety i opcje opinii w funkcjach takich jak czat Copilot Chat.</string>
+			<string id="AllowedExtensions">AllowedExtensions</string>
+			<string id="AllowedExtensions_extensions_allowed_policy">Określ listę rozszerzeń, które mogą być używane. Pomaga to zachować bezpieczne i spójne środowisko programistyczne, ograniczając użycie nieautoryzowanych rozszerzeń. Więcej informacji: https://code.visualstudio.com/docs/setup/enterprise#_configure-allowed-extensions</string>
+		</stringTable>
+		<presentationTable>
+			<presentation id="ExtensionGalleryServiceUrl"><textBox refId="ExtensionGalleryServiceUrl"><label>ExtensionGalleryServiceUrl:</label></textBox></presentation>
+			<presentation id="ChatToolsAutoApprove"><checkBox refId="ChatToolsAutoApprove">ChatToolsAutoApprove</checkBox></presentation>
+			<presentation id="ChatMCP"><checkBox refId="ChatMCP">ChatMCP</checkBox></presentation>
+			<presentation id="ChatAgentExtensionTools"><checkBox refId="ChatAgentExtensionTools">ChatAgentExtensionTools</checkBox></presentation>
+			<presentation id="ChatAgentMode"><checkBox refId="ChatAgentMode">ChatAgentMode</checkBox></presentation>
+			<presentation id="McpGalleryServiceUrl"><textBox refId="McpGalleryServiceUrl"><label>McpGalleryServiceUrl:</label></textBox></presentation>
+			<presentation id="ChatPromptFiles"><checkBox refId="ChatPromptFiles">ChatPromptFiles</checkBox></presentation>
+			<presentation id="UpdateMode"><dropdownList refId="UpdateMode" /></presentation>
+			<presentation id="TelemetryLevel"><textBox refId="TelemetryLevel"><label>TelemetryLevel:</label></textBox></presentation>
+			<presentation id="EnableFeedback"><checkBox refId="EnableFeedback">EnableFeedback</checkBox></presentation>
+			<presentation id="AllowedExtensions"><multiTextBox refId="AllowedExtensions" /></presentation>
+		</presentationTable>
+	</resources>
+</policyDefinitionResources>

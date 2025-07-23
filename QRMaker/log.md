@@ -1,0 +1,6 @@
+21/07/2025 14:36:10.985	Medium	Web Add-In Runtime Logging Session Started			
+21/07/2025 14:36:10.985	Unexpected	Resource Id specified for Icon Url not found in Url resource table	SolutionId:c1d2e3f4-a5b6-c7d8-e9f0-a1b2c3d4e5f6, Version:6.0.0.0, StoreId:\\BLADEE\QRMaker2	Control Id:TaskpaneButton	resid:Icon.16x16
+21/07/2025 14:36:17.041	Unexpected	Resource Id specified for Icon Url not found in Url resource table	SolutionId:c1d2e3f4-a5b6-c7d8-e9f0-a1b2c3d4e5f6, Version:6.0.0.0, StoreId:\\BLADEE\QRMaker2	Control Id:TaskpaneButton	resid:Icon.16x16
+21/07/2025 14:36:17.513	Unexpected	Resource Id specified for Icon Url not found in Url resource table	SolutionId:c1d2e3f4-a5b6-c7d8-e9f0-a1b2c3d4e5f6, Version:6.0.0.0, StoreId:\\BLADEE\QRMaker2	Control Id:TaskpaneButton	resid:Icon.16x16
+21/07/2025 14:36:21.712	Unexpected	Resource Id specified for Icon Url not found in Url resource table	SolutionId:c1d2e3f4-a5b6-c7d8-e9f0-a1b2c3d4e5f6, Version:6.0.0.0, StoreId:\\BLADEE\QRMaker2	Control Id:TaskpaneButton	resid:Icon.16x16
+21/07/2025 14:36:22.038	Unexpected	Resource Id specified for Icon Url not found in Url resource table	SolutionId:c1d2e3f4-a5b6-c7d8-e9f0-a1b2c3d4e5f6, Version:6.0.0.0, StoreId:\\BLADEE\QRMaker2	Control Id:TaskpaneButton	resid:Icon.16x16

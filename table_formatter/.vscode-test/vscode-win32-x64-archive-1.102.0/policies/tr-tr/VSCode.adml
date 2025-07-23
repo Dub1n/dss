@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+	<displayName />
+	<description />
+	<resources>
+		<stringTable>
+			<string id="Application">Visual Studio Code</string>
+			<string id="Supported_1_101">Visual Studio Code &gt;= 1.101</string>
+			<string id="Supported_1_67">Visual Studio Code &gt;= 1.67</string>
+			<string id="Supported_1_96">Visual Studio Code &gt;= 1.96</string>
+			<string id="Supported_1_99">Visual Studio Code &gt;= 1.99</string>
+			<string id="Category_extensionsConfigurationTitle">Uzantılar</string>
+			<string id="Category_interactiveSessionConfigurationTitle">Sohbet</string>
+			<string id="Category_updateConfigurationTitle">Güncelleştir</string>
+			<string id="Category_telemetryConfigurationTitle">Telemetri</string>
+			<string id="ExtensionGalleryServiceUrl">ExtensionGalleryServiceUrl</string>
+			<string id="ExtensionGalleryServiceUrl_extensions_gallery_serviceUrl">Şuraya bağlanmak için Market hizmeti URL'sini yapılandır</string>
+			<string id="ChatToolsAutoApprove">ChatToolsAutoApprove</string>
+			<string id="ChatToolsAutoApprove_chat_tools_autoApprove_description">Controls whether tool use should be automatically approved. Allow all tools to run automatically without user confirmation, overriding any tool-specific settings such as terminal auto-approval. Use with caution: carefully review selected tools and be extra wary of possible sources of prompt injection!</string>
+			<string id="ChatMCP">ChatMCP</string>
+			<string id="ChatMCP_chat_mcp_enabled">Model Bağlam Protokolü sunucularıyla tümleştirme sağlayarak ek araçlar ve işlevler sunar.</string>
+			<string id="ChatAgentExtensionTools">ChatAgentExtensionTools</string>
+			<string id="ChatAgentExtensionTools_chat_extensionToolsPolicy">Üçüncü taraf uzantıları tarafından sağlanan araçların kullanımını etkinleştirin.</string>
+			<string id="ChatAgentMode">ChatAgentMode</string>
+			<string id="ChatAgentMode_chat_agent_enabled_description">{0} için aracı modunu etkinleştirin. Etkinleştirildiğinde, aracı modu görünümdeki açılır listeden etkinleştirilebilir.</string>
+			<string id="McpGalleryServiceUrl">McpGalleryServiceUrl</string>
+			<string id="McpGalleryServiceUrl_mcp_gallery_serviceUrl">MCP Galeri hizmeti URL'sini şuna bağlanacak şekilde yapılandır</string>
+			<string id="ChatPromptFiles">ChatPromptFiles</string>
+			<string id="ChatPromptFiles_chat_promptFiles_policy">Sohbet, Düzenlemeler ve Satır İçi Sohbet oturumlarında yeniden kullanılabilir istem ve yönerge dosyalarını etkinleştirin.</string>
+			<string id="UpdateMode">UpdateMode</string>
+			<string id="UpdateMode_updateMode">Otomatik güncelleştirmeleri alıp almayacağınızı yapılandırın. Değişiklikten sonra yeniden başlatma gerektirir. Güncelleştirmeler bir Microsoft çevrimiçi hizmetinden getirilir.</string>
+			<string id="UpdateMode_none">Güncelleştirmeleri devre dışı bırak.</string>
+			<string id="UpdateMode_manual">Otomatik arka plan güncelleştirme denetimlerini devre dışı bırak. El ile denetlerseniz güncelleştirmeler kullanılabilir.</string>
+			<string id="UpdateMode_start">Güncelleştirmeleri yalnızca başlangıçta denetle. Otomatik arka plan güncelleştirme denetimlerini devre dışı bırak.</string>
+			<string id="UpdateMode_default">Otomatik güncelleştirme denetimlerini etkinleştir. Kod, güncelleştirmeleri otomatik ve düzenli olarak denetler.</string>
+			<string id="TelemetryLevel">TelemetryLevel</string>
+			<string id="TelemetryLevel_telemetry_telemetryLevel_policyDescription">Telemetri düzeyini kontrol eder.</string>
+			<string id="EnableFeedback">EnableFeedback</string>
+			<string id="EnableFeedback_telemetry_feedback_enabled">Copilot Chat gibi özelliklerde sorun bildirici, anketler ve geri bildirim seçenekleri gibi geri bildirim mekanizmalarını etkinleştirin.</string>
+			<string id="AllowedExtensions">AllowedExtensions</string>
+			<string id="AllowedExtensions_extensions_allowed_policy">Kullanılmasına izin verilen uzantıların bir listesini belirtin. Bu, yetkisiz uzantıların kullanımını kısıtlayarak güvenli ve tutarlı bir geliştirme ortamının korunmasına yardımcı olur. Daha fazla bilgi: https://code.visualstudio.com/docs/setup/enterprise#_configure-allowed-extensions</string>
+		</stringTable>
+		<presentationTable>
+			<presentation id="ExtensionGalleryServiceUrl"><textBox refId="ExtensionGalleryServiceUrl"><label>ExtensionGalleryServiceUrl:</label></textBox></presentation>
+			<presentation id="ChatToolsAutoApprove"><checkBox refId="ChatToolsAutoApprove">ChatToolsAutoApprove</checkBox></presentation>
+			<presentation id="ChatMCP"><checkBox refId="ChatMCP">ChatMCP</checkBox></presentation>
+			<presentation id="ChatAgentExtensionTools"><checkBox refId="ChatAgentExtensionTools">ChatAgentExtensionTools</checkBox></presentation>
+			<presentation id="ChatAgentMode"><checkBox refId="ChatAgentMode">ChatAgentMode</checkBox></presentation>
+			<presentation id="McpGalleryServiceUrl"><textBox refId="McpGalleryServiceUrl"><label>McpGalleryServiceUrl:</label></textBox></presentation>
+			<presentation id="ChatPromptFiles"><checkBox refId="ChatPromptFiles">ChatPromptFiles</checkBox></presentation>
+			<presentation id="UpdateMode"><dropdownList refId="UpdateMode" /></presentation>
+			<presentation id="TelemetryLevel"><textBox refId="TelemetryLevel"><label>TelemetryLevel:</label></textBox></presentation>
+			<presentation id="EnableFeedback"><checkBox refId="EnableFeedback">EnableFeedback</checkBox></presentation>
+			<presentation id="AllowedExtensions"><multiTextBox refId="AllowedExtensions" /></presentation>
+		</presentationTable>
+	</resources>
+</policyDefinitionResources>

@@ -4,6 +4,11 @@ globs:
 alwaysApply: true
 ---
 ---
+description: Core DSS concepts, folder structure, and metadata system
+globs: 
+alwaysApply: true
+---
+---
 tags: [DSS, Core, Structure, Concepts]
 provides: [DSS Core Structure and Concepts]
 requires: [DSS Core Structure and Concepts]

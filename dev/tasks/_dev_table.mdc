@@ -1,0 +1,50 @@
+---
+tags: [dev_overview, generated, table]
+provides: [dev_tasks_overview]
+requires: []
+generated: '2025-06-06 00:58:40'
+---
+
+# Dev Tasks Overview
+
+Generated: 2025-06-06 00:58:40
+Total tasks: 3
+Sorted by: status
+
+| File                            | Status     | Tags                                     |
+| ------------------------------- | ---------- | ---------------------------------------- |
+| [cursor_rules_migration_roadmap](mdc:dev/tasks/cursor_rules_migration_roadmap.md) | active     | roadmap, migration, cursor_rules, ...    |
+| [brainstorming_assistant_dev](mdc:dev/tasks/brainstorming_assistant_dev.md)    | N/A        | documentation, ai_interaction, dev...    |
+| [dss_repo_phase1](mdc:dev/tasks/dss_repo_phase1.md)                | N/A        | task_breakdown, project_management...    |
+
+## Status Groups
+
+- **active**: Tasks currently in active state
+
+## Details Reference
+
+### [cursor_rules_migration_roadmap](mdc:dev/tasks/cursor_rules_migration_roadmap.md)
+- **Path**: `cursor_rules_migration_roadmap.md`
+- **Status**: active
+- **Tags**: roadmap, migration, cursor_rules, restructure, implementation
+- **Provides**: migration_roadmap, restructure_plan, implementation_steps
+- **Requires**: meta/integrations/cursor_rules_integration.md, meta/DSS_GUIDE.md
+
+### [brainstorming_assistant_dev](mdc:dev/tasks/brainstorming_assistant_dev.md)
+- **Path**: `brainstorming_assistant_dev.md`
+- **Status**: N/A
+- **Tags**: documentation, ai_interaction, development
+- **Provides**: assistant_development_brainstorming
+- **Requires**: assistant.mdc
+
+### [dss_repo_phase1](mdc:dev/tasks/dss_repo_phase1.md)
+- **Path**: `dss_repo_phase1.md`
+- **Status**: N/A
+- **Tags**: task_breakdown, project_management, phase1, automation
+- **Provides**: dss_repo_phase1_tasks
+- **Requires**: meta/roadmap.md, docs/task_decomposition.md, meta/guidelines/tag_conventions.md
+
+---
+
+*This file is auto-generated. Run `python dev/dev_table.py` to update.*
+*For more columns, run with `--extra-columns provides requires`*

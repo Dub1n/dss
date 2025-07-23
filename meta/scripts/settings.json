@@ -1,0 +1,9 @@
+{
+    "padding": 1,
+    "max_line_length": 120,
+    "use_row_separators": true,
+    "smart_separators": true,
+    "end_row": false,
+    "uniform_cell_height": true,
+    "vertical_align": "middle"
+} 

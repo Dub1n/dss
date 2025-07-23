@@ -1,7 +1,7 @@
 ---
-description: USE WHEN creating specifications, planning features, writing API documentation, or taking a documentation-first approach to development. Provides template-based documentation workflow and planning guidelines.
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 ---
 tags: [Workflow, Documentation Driven, Planning, Specification, Templates]

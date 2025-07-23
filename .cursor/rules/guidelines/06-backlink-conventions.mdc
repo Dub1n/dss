@@ -1,7 +1,7 @@
 ---
-description: USE WHEN managing cross-references, updating documentation links, handling file renames, or maintaining bidirectional navigation. Provides backlink implementation and reference tracking standards.
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 ---
 tags: [Guidelines, Backlinks, Cross References, Navigation, Documentation]

@@ -1,7 +1,7 @@
 ---
-description: USE WHEN handling simple, atomic tasks affecting 1-2 files that can be completed in a single interaction. Provides streamlined execution guidelines for minimal-scope changes, text corrections, and simple modifications.
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 ---
 tags: [Workflow, Quick Tasks, Simple Changes, Atomic Operations]

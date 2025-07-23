@@ -1,7 +1,7 @@
 ---
-description: USE WHEN creating or updating folder README files, managing directory documentation, or establishing navigation standards. Provides README structure templates and folder documentation policies.
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 ---
 tags: [Documentation, README, Folder Structure, Navigation, Policy]

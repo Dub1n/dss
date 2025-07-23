@@ -1,7 +1,7 @@
 ---
-description: USE WHEN creating, editing, or refactoring source code, implementing new functions/classes, or making API changes. Provides development-focused workflow with architecture integration and testing requirements.
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 ---
 tags: [Workflow, Code Modification, Development, Source Code]

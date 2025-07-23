@@ -1,7 +1,7 @@
 ---
-description: USE WHEN processing GitHub Issues, analyzing user feedback patterns, or converting community reports into development tasks. Provides issue classification, pattern detection, and community feedback integration workflows.
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 ---
 tags: [Workflow, GitHub Issues, Community Feedback, Pattern Detection, Development Queue]

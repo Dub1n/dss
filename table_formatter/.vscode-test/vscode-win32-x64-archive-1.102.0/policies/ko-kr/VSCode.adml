@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+	<displayName />
+	<description />
+	<resources>
+		<stringTable>
+			<string id="Application">Visual Studio Code</string>
+			<string id="Supported_1_101">Visual Studio Code &gt;= 1.101</string>
+			<string id="Supported_1_67">Visual Studio Code &gt;= 1.67</string>
+			<string id="Supported_1_96">Visual Studio Code &gt;= 1.96</string>
+			<string id="Supported_1_99">Visual Studio Code &gt;= 1.99</string>
+			<string id="Category_extensionsConfigurationTitle">확장</string>
+			<string id="Category_interactiveSessionConfigurationTitle">채팅</string>
+			<string id="Category_updateConfigurationTitle">업데이트</string>
+			<string id="Category_telemetryConfigurationTitle">원격 분석</string>
+			<string id="ExtensionGalleryServiceUrl">ExtensionGalleryServiceUrl</string>
+			<string id="ExtensionGalleryServiceUrl_extensions_gallery_serviceUrl">연결할 Marketplace 서비스 URL 구성</string>
+			<string id="ChatToolsAutoApprove">ChatToolsAutoApprove</string>
+			<string id="ChatToolsAutoApprove_chat_tools_autoApprove_description">Controls whether tool use should be automatically approved. Allow all tools to run automatically without user confirmation, overriding any tool-specific settings such as terminal auto-approval. Use with caution: carefully review selected tools and be extra wary of possible sources of prompt injection!</string>
+			<string id="ChatMCP">ChatMCP</string>
+			<string id="ChatMCP_chat_mcp_enabled">추가 도구와 기능을 제공하기 위해 모델 컨텍스트 프로토콜 서버와의 통합을 가능하게 합니다.</string>
+			<string id="ChatAgentExtensionTools">ChatAgentExtensionTools</string>
+			<string id="ChatAgentExtensionTools_chat_extensionToolsPolicy">타사 확장에서 제공하는 도구를 사용하여 사용하도록 설정합니다.</string>
+			<string id="ChatAgentMode">ChatAgentMode</string>
+			<string id="ChatAgentMode_chat_agent_enabled_description">{0}에 에이전트 모드를 사용하도록 설정합니다. 이 기능을 사용하도록 설정하면 보기의 드롭다운을 통해 에이전트 모드를 활성화할 수 있습니다.</string>
+			<string id="McpGalleryServiceUrl">McpGalleryServiceUrl</string>
+			<string id="McpGalleryServiceUrl_mcp_gallery_serviceUrl">MCP 갤러리 서비스 URL을 연결할 수 있도록 구성하세요.</string>
+			<string id="ChatPromptFiles">ChatPromptFiles</string>
+			<string id="ChatPromptFiles_chat_promptFiles_policy">채팅, 편집 및 인라인 채팅 세션에서 재사용 가능한 프롬프트 및 명령 파일을 사용하도록 설정합니다.</string>
+			<string id="UpdateMode">UpdateMode</string>
+			<string id="UpdateMode_updateMode">자동 업데이트를 받을지 여부를 구성합니다. 변경 후 다시 시작해야 합니다. 업데이트는 Microsoft 온라인 서비스에서 가져옵니다.</string>
+			<string id="UpdateMode_none">업데이트를 사용하지 않도록 설정합니다.</string>
+			<string id="UpdateMode_manual">자동 백그라운드 업데이트 확인을 사용하지 않도록 설정합니다. 업데이트를 수동으로 확인하여 진행할 수 있습니다.</string>
+			<string id="UpdateMode_start">시작할 때만 업데이트를 확인합니다. 자동 백그라운드 업데이트 검사를 사용하지 않도록 설정합니다.</string>
+			<string id="UpdateMode_default">자동 업데이트 확인을 사용하도록 설정합니다. Code에서 정기적으로 업데이트를 자동 확인합니다.</string>
+			<string id="TelemetryLevel">TelemetryLevel</string>
+			<string id="TelemetryLevel_telemetry_telemetryLevel_policyDescription">원격 분석 수준을 제어합니다.</string>
+			<string id="EnableFeedback">EnableFeedback</string>
+			<string id="EnableFeedback_telemetry_feedback_enabled">Copilot Chat과 같은 기능에서 문제 보고자, 설문 조사, 피드백 옵션과 같은 피드백 메커니즘을 활성화합니다.</string>
+			<string id="AllowedExtensions">AllowedExtensions</string>
+			<string id="AllowedExtensions_extensions_allowed_policy">사용할 수 있는 확장 목록을 지정합니다. 이는 권한 없는 확장의 사용을 제한하여 안전하고 일관된 개발 환경을 유지하는 데 도움이 됩니다. 추가 정보: https://code.visualstudio.com/docs/setup/enterprise#_configure-allowed-extensions</string>
+		</stringTable>
+		<presentationTable>
+			<presentation id="ExtensionGalleryServiceUrl"><textBox refId="ExtensionGalleryServiceUrl"><label>ExtensionGalleryServiceUrl:</label></textBox></presentation>
+			<presentation id="ChatToolsAutoApprove"><checkBox refId="ChatToolsAutoApprove">ChatToolsAutoApprove</checkBox></presentation>
+			<presentation id="ChatMCP"><checkBox refId="ChatMCP">ChatMCP</checkBox></presentation>
+			<presentation id="ChatAgentExtensionTools"><checkBox refId="ChatAgentExtensionTools">ChatAgentExtensionTools</checkBox></presentation>
+			<presentation id="ChatAgentMode"><checkBox refId="ChatAgentMode">ChatAgentMode</checkBox></presentation>
+			<presentation id="McpGalleryServiceUrl"><textBox refId="McpGalleryServiceUrl"><label>McpGalleryServiceUrl:</label></textBox></presentation>
+			<presentation id="ChatPromptFiles"><checkBox refId="ChatPromptFiles">ChatPromptFiles</checkBox></presentation>
+			<presentation id="UpdateMode"><dropdownList refId="UpdateMode" /></presentation>
+			<presentation id="TelemetryLevel"><textBox refId="TelemetryLevel"><label>TelemetryLevel:</label></textBox></presentation>
+			<presentation id="EnableFeedback"><checkBox refId="EnableFeedback">EnableFeedback</checkBox></presentation>
+			<presentation id="AllowedExtensions"><multiTextBox refId="AllowedExtensions" /></presentation>
+		</presentationTable>
+	</resources>
+</policyDefinitionResources>

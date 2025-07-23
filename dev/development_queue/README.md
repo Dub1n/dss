@@ -5,6 +5,7 @@ This directory contains the automated development task management system that pr
 ## Overview
 
 The GitHub Issues Integration system automatically:
+
 1. **Fetches Issues** from the DSS repository with specific labels
 2. **Analyzes Patterns** to identify common problems and improvement opportunities
 3. **Generates Tasks** with priorities, effort estimates, and success criteria
@@ -12,7 +13,7 @@ The GitHub Issues Integration system automatically:
 
 ## Directory Structure
 
-```
+```text
 meta/development_queue/
 ├── README.md                    # This file - system overview
 ├── analysis_summary.md          # Current status and metrics
@@ -32,6 +33,7 @@ meta/development_queue/
 **GitHub Issues** → **Pattern Detection** → **Task Generation** → **Priority Assignment** → **Progress Tracking**
 
 The system processes issues with these labels:
+
 - `installation-report`: Automated reports from `dss_bootstrap.py`
 - `bug`: Problems with existing functionality
 - `enhancement`: Feature requests and improvements
@@ -42,6 +44,7 @@ The system processes issues with these labels:
 ### 2. Pattern Detection
 
 The system identifies patterns like:
+
 - Platform-specific installation failures
 - Common error messages across multiple reports
 - Component-specific recurring issues
@@ -50,6 +53,7 @@ The system identifies patterns like:
 ### 3. Task Generation
 
 For each pattern, the system generates:
+
 - **Problem Statement**: Clear description of what needs solving
 - **Success Criteria**: Measurable outcomes
 - **Implementation Approach**: Step-by-step plan
@@ -76,6 +80,7 @@ python meta/scripts/github_issues_processor.py --labels bug enhancement --genera
 ### Manual Assistant Workflow
 
 Ask the AI assistant to:
+
 - "Review recent GitHub Issues and identify patterns"
 - "Generate development tasks from installation reports"
 - "What improvements does DSS need based on user feedback?"
@@ -84,6 +89,7 @@ Ask the AI assistant to:
 ## Assistant Integration
 
 The AI assistant automatically triggers issue processing when:
+
 - **Weekly Review**: Process new issues and update priorities
 - **User Request**: When asked about DSS improvements
 - **Task Completion**: Check for related issues after completing work
@@ -92,6 +98,7 @@ The AI assistant automatically triggers issue processing when:
 ## Success Metrics
 
 The system tracks:
+
 - **Issue Response Time**: Speed of pattern detection and task generation
 - **Resolution Rate**: Percentage of issues leading to improvements
 - **Bootstrap Success Rate**: Installation success improvements over time
@@ -100,6 +107,7 @@ The system tracks:
 ## Development Workflow Integration
 
 This system integrates with existing DSS workflows:
+
 - **[GitHub Issues Integration](../assistant_workflows/github_issues_integration.md)**: Main workflow documentation
 - **[Feedback Loop](../assistant_guidelines/feedback_loop.md)**: Continuous improvement process
 - **[Task Decomposition](../assistant_workflows/task_decomposition.md)**: Complex task breakdown
@@ -113,4 +121,4 @@ This system integrates with existing DSS workflows:
 4. **Start Implementation**: Begin with high-priority tasks
 5. **Track Progress**: Update task status as work progresses
 
-The system creates a powerful feedback loop where community-reported issues automatically become structured development tasks, making DSS continuously better at helping users succeed with their projects. 
+The system creates a powerful feedback loop where community-reported issues automatically become structured development tasks, making DSS continuously better at helping users succeed with their projects.

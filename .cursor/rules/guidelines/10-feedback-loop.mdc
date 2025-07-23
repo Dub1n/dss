@@ -1,7 +1,7 @@
 ---
-description: USE WHEN collecting user feedback, implementing continuous improvement, analyzing performance patterns, or enhancing development processes. Provides feedback collection, integration protocols, and improvement implementation frameworks.
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 ---
 tags: [Feedback, Continuous Improvement, Quality, Process Enhancement]

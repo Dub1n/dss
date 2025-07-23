@@ -1,7 +1,7 @@
 ---
-description: USE WHEN managing continuous improvement cycles, processing installation reports, or generating development tasks from user feedback patterns. Provides automated task generation and community-driven enhancement workflows.
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 ---
 tags: [Workflow, Development Queue, Continuous Improvement, Issue Processing, Task Generation]
