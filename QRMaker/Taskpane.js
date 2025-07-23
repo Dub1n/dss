@@ -736,6 +736,11 @@ function internalUpdateStatus(message, isError = false) {
         status.textContent = message;
         status.className = isError ? "text-sm text-center text-red-600 p-2 bg-red-100 rounded-md" : "text-sm text-center text-gray-600 p-2 bg-gray-200 rounded-md";
     }
+
+    // Expose last status for autotest assertions
+    if (typeof window !== 'undefined') {
+        window.__lastStatus = { message, isError };
+    }
 }
 
 // Expose the internal function via the originally expected name *only if* the host
@@ -757,19 +762,69 @@ function errorHandler(error) {
  ********************/
 const __debugLogs = [];
 function logDebug(msg) {
-    __debugLogs.push({ ts: Date.now(), msg });
+    __debugLogs.push({ ts: isoNow(), msg });
     console.log("[AUTOTEST]", msg);
+}
+
+// capture current QR tags in document
+async function captureState(ctx) {
+    const ccs = ctx.document.body.contentControls;
+    ctx.load(ccs, 'items/tag');
+    await ctx.sync();
+    return ccs.items.filter(cc=>cc.tag.startsWith('qr_')).map(cc=>cc.tag);
+}
+
+function diffTags(beforeArr, afterArr) {
+    const before = new Set(beforeArr); const after = new Set(afterArr);
+    const added = [...after].filter(t=>!before.has(t));
+    const removed = [...before].filter(t=>!after.has(t));
+    return { added, removed };
+}
+
+function serializeError(err) {
+    if (!err) return undefined;
+    return { message: err.message, stack: err.stack, debugInfo: err.debugInfo };
+}
+
+/** Returns an object with counts & tags after each operation */
+async function snapshotPairs(ctx) {
+  const all = ctx.document.body.contentControls;
+  ctx.load(all, 'items/tag');
+  await ctx.sync();
+  const pairs = {};
+  all.items.forEach(cc => {
+    if (cc.tag.startsWith('qr_source_') || cc.tag.startsWith('qr_target_')) {
+      const id = cc.tag.replace(/qr_(source|target)_/, '');
+      pairs[id] ??= { src: false, tgt: false };
+      if (cc.tag.includes('_source_')) pairs[id].src = true;
+      else pairs[id].tgt = true;
+    }
+  });
+  return pairs;      // e.g. { '5': {src:true,tgt:true}, '6':{src:true,tgt:false} }
+}
+
+function isoNow() { return new Date().toISOString(); }
+
+// Structured test reporting helpers
+const __testResults = [];
+let __failures = 0;
+function addTest(name, pass, details = {}) {
+    if (!pass) __failures++;
+    __testResults.push({ name, status: pass ? 'pass' : 'fail', ...details });
 }
 
 async function runAutoTests() {
     logDebug("Autotest starting …");
 
-    let failures = 0;
+    let startTs = Date.now();
+    let failures = 0; // keep local count for log convenience
     function recordFailure(msg) {
-        failures += 1;
+        failures += 1; __failures++;
         logDebug("❌ " + msg);
     }
 
+    function pairCount(map) { return Object.keys(map).length; }
+ 
     try {
         // Ensure we have at least one paragraph
         await Word.run(async ctx => {
@@ -796,21 +851,50 @@ async function runAutoTests() {
             logDebug("Selected text: " + firstPara.text);
         });
 
-        // Invoke main add-in commands
-        await createNewPair();
+        // ───────────────────────────────────────────────────────────────
+        // 1. CREATE
+        // -----------------------------------------------------------------
+        const beforeTags = await Word.run(captureState);
+        let afterTags = [];
+        let createPass = false; let createErr;
+        try {
+            await createNewPair();
+            afterTags = await Word.run(captureState);
+            const d = diffTags(beforeTags, afterTags);
+            createPass = d.added.length === 2 && d.removed.length === 0; // expect one src + one tgt tag added
+            addTest("Create pair", createPass, { diff: d });
+        } catch (e) {
+            addTest("Create pair", false, { error: serializeError(e) });
+        }
         logDebug("createNewPair executed");
+
         await refreshAllQrCodes();
         logDebug("refreshAllQrCodes executed");
 
+        // Check status bar errors
+        if (window.__lastStatus?.isError) {
+            recordFailure(`updateStatus error after refresh: ${window.__lastStatus.message}`);
+        }
+
         // Duplicate + Delete flow
         try {
+            const beforeDupTags = await Word.run(captureState);
             await duplicateSelectedPair();
+            const afterDupTags = await Word.run(captureState);
+            const dupDiff = diffTags(beforeDupTags, afterDupTags);
+            const dupPass = dupDiff.added.length === 2 && dupDiff.removed.length === 0;
+            addTest("Duplicate pair", dupPass, { diff: dupDiff });
             logDebug("duplicateSelectedPair executed");
 
+            const beforeDelTags = afterDupTags;
             await deleteSelectedPair();
+            const afterDelTags = await Word.run(captureState);
+            const delDiff = diffTags(beforeDelTags, afterDelTags);
+            const delPass = delDiff.removed.length === 2 && delDiff.added.length === 0;
+            addTest("Delete pair", delPass, { diff: delDiff });
             logDebug("deleteSelectedPair executed");
         } catch (dupDelErr) {
-            recordFailure("Duplicate/Delete flow failed: " + dupDelErr.message);
+            addTest("Duplicate/Delete flow", false, { error: serializeError(dupDelErr) });
         }
 
         // Live-update toggle: enable, modify text, check QR refresh
@@ -831,18 +915,28 @@ async function runAutoTests() {
                 // wait 2s for auto refresh
                 await new Promise(r => setTimeout(r, 2000));
                 logDebug("Live update check completed");
+
+                // crude check: ensure lastStatus updated and is not error
+                const livePass = !window.__lastStatus?.isError;
+                addTest("Live-update", livePass);
             } else {
                 logDebug("Live update toggle not found (likely API support missing)");
             }
         } catch (luErr) {
-            recordFailure("Live update toggle flow failed: " + luErr.message);
+            addTest("Live-update", false, { error: serializeError(luErr) });
         }
 
-        // Final result push
-        postResults({ failures, logs: __debugLogs });
+        const summary = {
+            started: isoNow(),
+            durationMs: Date.now() - startTs,
+            failures: __failures,
+            wordVersion: Office?.context?.diagnostics?.version || "unknown",
+            doc: Office?.context?.document?.url || "N/A"
+        };
+        postResults({ summary, tests: __testResults, logs: __debugLogs, lastStatus: window.__lastStatus });
     } catch (err) {
-        recordFailure(err.message);
-        postResults({ failures, error: err.message, logs: __debugLogs });
+        const summary = { started: isoNow(), durationMs: Date.now() - startTs, failures: __failures + 1 };
+        postResults({ summary, tests: __testResults, error: err.message, logs: __debugLogs });
     }
 }
 
@@ -851,7 +945,19 @@ function postResults(payload) {
     const port = params.get("port") || "4201";
     const query = encodeURIComponent(JSON.stringify(payload));
     fetch(`https://localhost:${port}/results?data=${query}`, { method: "POST" })
-        .catch(() => { /* ignore network errors */ });
+        .catch(() => {
+            console.warn("Result POST failed – offering download instead.");
+            const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = "qr_autotest_results.json";
+            a.click();
+        });
+}
+
+// Expose to manual button
+if (typeof window !== "undefined") {
+    window.runAutoTests = runAutoTests;
 }
 
 // Trigger when ?autotest present

@@ -13,6 +13,7 @@ This document breaks down the outstanding work needed to restore full functional
 ## 1. Top-Level Goal
 
 Restore all core features (QR generation, pair creation, error handling, and tests) so that:
+
 - All existing automated tests pass in Node.js mock environment
 - The add-in works reliably inside Word
 - Version bumps to **6.0.0** with updated documentation
@@ -88,4 +89,4 @@ Restore all core features (QR generation, pair creation, error handling, and tes
 ## Referenced By
 
 - [continue_chat.md](mdc:continue_chat.md) – Handoff context
-- Will be linked from future changelog & roadmap entries 
+- Will be linked from future changelog & roadmap entries

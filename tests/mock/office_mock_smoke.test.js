@@ -12,7 +12,6 @@ describe("OfficeAddinMock basic smoke", function () {
   const mockData = {
     context: {
       document: {
-        data: null,
         setSelectedDataAsync: function (str) {
           this.data = str;
         },

@@ -17,7 +17,7 @@ const path = require("path");
   app.post("/results", (req, res) => {
     try {
       const json = req.query.data ? JSON.parse(decodeURIComponent(req.query.data)) : req.body;
-      const logPath = path.join(__dirname, "autotest_log.json");
+      const logPath = path.join(__dirname, "../log.json");
       fs.writeFileSync(logPath, JSON.stringify(json, null, 2));
       console.log("↪︎ Results saved to", logPath);
       res.sendStatus(200);

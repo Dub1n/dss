@@ -1,0 +1,109 @@
+{
+  "failures": 4,
+  "logs": [
+    {
+      "ts": 1753116473518,
+      "msg": "Autotest starting …"
+    },
+    {
+      "ts": 1753116473525,
+      "msg": "Inserted sample paragraph if needed"
+    },
+    {
+      "ts": 1753116473542,
+      "msg": "Selected text: Enter text here..."
+    },
+    {
+      "ts": 1753116473572,
+      "msg": "❌ CreatePair did not add a full src+tgt pair"
+    },
+    {
+      "ts": 1753116473572,
+      "msg": "createNewPair executed"
+    },
+    {
+      "ts": 1753116473579,
+      "msg": "refreshAllQrCodes executed"
+    },
+    {
+      "ts": 1753116473590,
+      "msg": "❌ DuplicatePair did not add a full src+tgt pair"
+    },
+    {
+      "ts": 1753116473590,
+      "msg": "duplicateSelectedPair executed"
+    },
+    {
+      "ts": 1753116473603,
+      "msg": "❌ DeletePair did not remove a full src+tgt pair"
+    },
+    {
+      "ts": 1753116473603,
+      "msg": "deleteSelectedPair executed"
+    },
+    {
+      "ts": 1753116473603,
+      "msg": "Live update toggled ON"
+    },
+    {
+      "ts": 1753116475612,
+      "msg": "Live update check completed"
+    },
+    {
+      "ts": 1753116507570,
+      "msg": "Autotest starting …"
+    },
+    {
+      "ts": 1753116507575,
+      "msg": "Inserted sample paragraph if needed"
+    },
+    {
+      "ts": 1753116507610,
+      "msg": "Selected text: Enter text here... updated"
+    },
+    {
+      "ts": 1753116507672,
+      "msg": "❌ CreatePair did not add a full src+tgt pair"
+    },
+    {
+      "ts": 1753116507672,
+      "msg": "createNewPair executed"
+    },
+    {
+      "ts": 1753116507679,
+      "msg": "refreshAllQrCodes executed"
+    },
+    {
+      "ts": 1753116507679,
+      "msg": "❌ updateStatus error after refresh: Please select some text first, then click Create New Pair."
+    },
+    {
+      "ts": 1753116507700,
+      "msg": "❌ DuplicatePair did not add a full src+tgt pair"
+    },
+    {
+      "ts": 1753116507700,
+      "msg": "duplicateSelectedPair executed"
+    },
+    {
+      "ts": 1753116507716,
+      "msg": "❌ DeletePair did not remove a full src+tgt pair"
+    },
+    {
+      "ts": 1753116507716,
+      "msg": "deleteSelectedPair executed"
+    },
+    {
+      "ts": 1753116507717,
+      "msg": "Live update toggled ON"
+    },
+    {
+      "ts": 1753116509737,
+      "msg": "Live update check completed"
+    }
+  ],
+  "lastStatus": {
+    "message": "Please select a QR source or target content control first.",
+    "isError": true
+  }
+}

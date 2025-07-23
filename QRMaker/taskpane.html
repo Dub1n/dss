@@ -88,17 +88,30 @@
         <div id="qrcode-container" class="hidden"></div>
     </div>
     
+    <!-- Dev-only Run Tests button -->
+    <div id="dev-actions" class="mb-2 hidden">
+        <button id="run-tests" class="w-full bg-purple-600 text-white font-bold py-1 px-2 rounded-md text-sm">Run Tests</button>
+    </div>
+
     <!-- Status Messages -->
     <div id="status" class="text-sm text-center text-gray-600 p-2 bg-gray-200 rounded-md">
         Initializing...
     </div>
 
     <!-- Main Logic -->
-    <script type="text/javascript" src="Taskpane.js?v=6.0.0"></script>
+    <script type="text/javascript" src="Taskpane.js?v=6.0.1"></script>
 
     <!-- Autotest runner (loads only when ?autotest is in the query string) -->
     <script>
       (function() {
+        // Show dev Run Tests button when not in ?autotest mode
+        if (!location.search.includes('autotest')) {
+          document.getElementById('dev-actions').classList.remove('hidden');
+          document.getElementById('run-tests').addEventListener('click', function() {
+            if (typeof window.runAutoTests === 'function') { window.runAutoTests(); }
+          });
+        }
+
         if (!location.search.includes('autotest')) { return; }
 
         // Add Mocha CSS for readability (optional)

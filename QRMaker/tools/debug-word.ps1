@@ -34,8 +34,8 @@ npx office-addin-dev-settings unregister $Manifest | Out-Null
 npx office-addin-dev-settings register $Manifest | Out-Null
 
 # 3. Disable live-reload (clean session)
-Write-Host "Step 3 : Disabling live-reload (clean slate)..."
-npx office-addin-dev-settings live-reload --disable $Manifest | Out-Null
+#Write-Host "Step 3 : Disabling live-reload (clean slate)..."
+#npx office-addin-dev-settings live-reload --disable $Manifest | Out-Null
 
 # 4. Start debugging with DevTools
 Write-Host "Step 4 : Starting debugging..."
@@ -55,30 +55,48 @@ if ($server.HasExited) {
   Exit 1
 }
 
-# ─────────────────────────────────────────────────────────────────────────────
-# (Optional) Pure-Node unit tests
-# -----------------------------------------------------------------------------
-try {
-  Write-Host "Running Node unit tests (tests/run_tests.js)…"
-  & node "tests/run_tests.js"
-  if ($LASTEXITCODE -ne 0) {
-    throw "Node unit tests failed with exit code $LASTEXITCODE"
-  }
-  Write-Host "Node unit tests passed."
-} catch {
-  Write-Error $_
-  exit 1
+if ($PSBoundParameters.ContainsKey('RunTests')) {
+  Write-Host "Running local unit tests first…"
+  npm run test:mock; if ($LASTEXITCODE -ne 0) { exit 1 }
+  node tests/run_tests.js; if ($LASTEXITCODE -ne 0) { exit 1 }
+  Write-Host "Unit tests passed." -ForegroundColor Green
 }
 
-# 6. Launch Word + test document via sideload
-Write-Host "Step 6 : Launching Word..."
+# ----------------------------------------------------------------------------
+# Create temp manifest copy with cache-buster so Word reloads JS each run
+# ----------------------------------------------------------------------------
+$tempManifest = Join-Path $env:TEMP ("manifest-debug-" + ([guid]::NewGuid()) + ".xml")
+Copy-Item -Path $Manifest -Destination $tempManifest -Force
+
+[xml]$manXml = Get-Content $tempManifest
+$mgr = New-Object System.Xml.XmlNamespaceManager($manXml.NameTable)
+$mgr.AddNamespace("ov", "http://schemas.microsoft.com/office/taskpaneappversionoverrides")
+$mgr.AddNamespace("bt", "http://schemas.microsoft.com/office/officeappbasictypes/1.0")
+$cb = (Get-Date).ToFileTimeUtc()
+$newUrl = "https://localhost:$Port/QRMaker/taskpane.html?cb=$cb"
+$nodes = $manXml.SelectNodes("//ov:SourceLocation | //bt:Url[@id='Taskpane.Url']", $mgr)
+foreach ($n in $nodes) {
+  if ($n.HasAttribute("DefaultValue")) { $n.SetAttribute("DefaultValue", $newUrl) }
+  elseif ($n.HasAttribute("defaultValue")) { $n.SetAttribute("defaultValue", $newUrl) }
+  else { $n.InnerText = $newUrl }
+}
+$manXml.Save($tempManifest)
+
+# re-register using temp manifest
+npx office-addin-dev-settings unregister $tempManifest | Out-Null
+npx office-addin-dev-settings register   $tempManifest | Out-Null
+npx office-addin-dev-settings live-reload --disable $tempManifest | Out-Null
+
+# Use temp manifest in sideload
 if (Test-Path $TestDoc) {
-  npx office-addin-dev-settings sideload $Manifest --app Word --document (Resolve-Path $TestDoc)
+  npx office-addin-dev-settings sideload $tempManifest --app Word --document (Resolve-Path $TestDoc)
   Write-Host "Opened test document: $TestDoc"
 } else {
-  Start-Process "winword.exe" "/n"
-  Write-Host "(No pre-seeded doc found : opened blank document.)"
+  npx office-addin-dev-settings sideload $tempManifest --app Word
 }
+
+# store path for later re-enable live reload
+$registeredManifestPath = $tempManifest
 
 if ($PSBoundParameters.ContainsKey('RunTests')) {
   Write-Host "`nWaiting for Word autotests to finish…"
@@ -95,7 +113,7 @@ if ($PSBoundParameters.ContainsKey('RunTests')) {
 # ensure live-reload is switched back on regardless of test mode
 if (-not $server.HasExited) { Stop-Process -Id $server.Id }
 Write-Host "`nRe-enabling live-reload for convenience..."
-npx office-addin-dev-settings live-reload --enable $Manifest | Out-Null
+npx office-addin-dev-settings live-reload --enable $registeredManifestPath | Out-Null
 Write-Host "`nDebug session ended. Live-reload is ON."
 
 exit $exitCode

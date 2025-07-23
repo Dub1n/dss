@@ -1,0 +1,81 @@
+{
+  "summary": {
+    "started": "2025-07-21T17:11:27.447Z",
+    "durationMs": 2184,
+    "failures": 3,
+    "wordVersion": "16.0.18429.20158",
+    "doc": "C:\\Users\\gabri\\AppData\\Local\\Temp\\Word add-in c1d2e3f4-a5b6-c7d8-e9f0-a1b2c3d4e5f6.docx"
+  },
+  "tests": [
+    {
+      "name": "Create pair",
+      "status": "fail",
+      "diff": {
+        "added": [],
+        "removed": []
+      }
+    },
+    {
+      "name": "Duplicate pair",
+      "status": "fail",
+      "diff": {
+        "added": [],
+        "removed": []
+      }
+    },
+    {
+      "name": "Delete pair",
+      "status": "fail",
+      "diff": {
+        "added": [],
+        "removed": []
+      }
+    },
+    {
+      "name": "Live-update",
+      "status": "pass"
+    }
+  ],
+  "logs": [
+    {
+      "ts": "2025-07-21T17:11:25.262Z",
+      "msg": "Autotest starting …"
+    },
+    {
+      "ts": "2025-07-21T17:11:25.271Z",
+      "msg": "Inserted sample paragraph if needed"
+    },
+    {
+      "ts": "2025-07-21T17:11:25.314Z",
+      "msg": "Selected text: Enter text here..."
+    },
+    {
+      "ts": "2025-07-21T17:11:25.381Z",
+      "msg": "createNewPair executed"
+    },
+    {
+      "ts": "2025-07-21T17:11:25.393Z",
+      "msg": "refreshAllQrCodes executed"
+    },
+    {
+      "ts": "2025-07-21T17:11:25.424Z",
+      "msg": "duplicateSelectedPair executed"
+    },
+    {
+      "ts": "2025-07-21T17:11:25.436Z",
+      "msg": "deleteSelectedPair executed"
+    },
+    {
+      "ts": "2025-07-21T17:11:25.437Z",
+      "msg": "Live update toggled ON"
+    },
+    {
+      "ts": "2025-07-21T17:11:27.446Z",
+      "msg": "Live update check completed"
+    }
+  ],
+  "lastStatus": {
+    "message": "Live update enabled.",
+    "isError": false
+  }
+}

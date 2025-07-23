@@ -116,21 +116,15 @@ def fnmatch_pattern(pattern, string):
     return re.search(f"^{regex}$", string) is not None
 
 def main():
-    config = load_config()
-    staged_files = get_staged_files()
-    
-    invalid_files = []
-    for filename in staged_files:
-        if not validate_filename(filename, config):
-            invalid_files.append(filename)
-    
-    if invalid_files:
-        print("The following files don't follow naming conventions:")
-        for f in invalid_files:
-            print(f"- {f}")
-        print("\nPlease rename these files to follow snake_case conventions.")
-        sys.exit(1)
-    
+    """Entry point for the script.
+
+    The original behaviour blocked commits when staged files violated
+    strict snake_case naming conventions. Per user request on
+    2025-07-23, this enforcement has been disabled. The script now
+    exits successfully without performing any validation so that Git
+    commits are no longer blocked by naming-convention checks.
+    """
+    # Skip all validation logic – allow the commit to proceed.
     sys.exit(0)
 
 if __name__ == "__main__":
